@@ -1,0 +1,9 @@
+.general {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 8px;
+}
+
+.statisticsHeading {
+    font-size: 24px;
+}

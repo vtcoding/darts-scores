@@ -1,0 +1,136 @@
+.match {
+  background-color: #333;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content 1fr min-content min-content;
+  height: 100vh;
+  width: 100%;
+}
+
+.header {
+  align-items: center;
+  color: #fff;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.logoSmall {
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 20px;
+  text-align: left;
+}
+
+.firstTo {
+  font-size: 24px;
+  padding: 20px;
+  text-align: center;
+}
+
+.menu {
+  cursor: pointer;
+  font-size: 20px;
+  padding: 20px;
+  text-align: right;
+}
+
+.scoreAndStats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.score {
+  align-items: center;
+  color: #fff;
+  display: grid;
+  font-size: 256px;
+  text-align: center;
+}
+
+.stats {
+  align-items: center;
+  color: #fff;
+  display: grid;
+  font-size: 48px;
+  text-align: center;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: min-content 1fr min-content;
+}
+
+.undo {
+  align-items: center;
+  display: grid;
+  padding: 2px;
+  text-align: center;
+  width: 200px;
+}
+
+.undoButton {
+  background-color: #e74c3c;
+  color: #fff;
+  cursor: pointer;
+  font-size: 32px;
+  padding: 20px 10px;
+}
+
+.input {
+  align-items: center;
+  display: grid;
+  padding: 2px;
+  text-align: center;
+}
+
+input {
+  border: 0;
+  font-size: 32px;
+  padding: 20px;
+  outline: none;
+  text-align: center;
+}
+
+.submit {
+  align-items: center;
+  display: grid;
+  padding: 2px;
+  text-align: center;
+  width: 200px;
+}
+
+.submitButton {
+  background-color: #3498db;
+  color: #fff;
+  cursor: pointer;
+  font-size: 32px;
+  padding: 20px 10px;
+}
+
+.keyboard {
+  display: grid;
+  gap: 2px;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 2px;
+}
+
+.key {
+  align-items: center;
+  background-color: #444;
+  color: #fff;
+  cursor: pointer;
+  display: grid;
+  font-size: 48px;
+  padding: 24px;
+  text-align: center;
+}
+
+@media screen and (max-width: 1200px) {
+  .scoreAndStats {
+    grid-template-columns: 1fr;
+  }
+  .score {
+    font-size: 128px;
+  }
+}
