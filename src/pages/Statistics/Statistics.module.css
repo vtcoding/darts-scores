@@ -1,9 +1,35 @@
-.general {
-    display: grid;
-    grid-template-columns: 1fr;
-    row-gap: 8px;
+.statistics {
+  background-color: #333;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content min-content;
+  height: 100vh;
+  justify-content: center;
+  text-align: center;
+  row-gap: 32px;
+  width: 100%;
 }
 
-.statisticsHeading {
-    font-size: 24px;
+.container {
+  display: grid;
+  justify-self: center;
+  row-gap: 32px;
+  width: calc(1024px - 24px);
+}
+
+.buttons {
+  display: grid;
+  row-gap: 8px;
+}
+
+@media screen and (max-width: 1023px) {
+  .container {
+    width: calc(767px - 24px);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .container {
+    width: calc(100% - 24px)
+  }
 }

@@ -1,31 +1,118 @@
-import type { Game, Throw } from "./types";
+import type { Match, Turn } from './types';
 
-export const calculateAverage = (throws: { score: number }[]) => {
-    if (throws.length === 0) return 0;
-    const totalScore: number = throws.reduce((acc, curr) => acc + curr.score, 0);
-    return (totalScore / throws.length).toFixed(2);
+export const calculateRemainingScore = (legLength: number, turns: Turn[]) => {
+  let score = 0;
+  turns.forEach((turn: Turn) => {
+    score = score + turn.score
+  })
+  return legLength - score;
 }
 
-export const calculateFirstNineAverage = (throws: Throw[]) => {
-    if (throws.length === 0) return 0;
-    const firstNine: Throw[] = throws.slice(0, 3);
-    const totalScore: number = firstNine.reduce((acc, curr) => acc + curr.score, 0);
-    return (totalScore / firstNine.length).toFixed(2);
+export const calculateThreeDartAverage = (turns: Turn[]) => {
+  let totalScore = 0;
+  turns.forEach(turn => {
+    totalScore = totalScore + turn.score
+  })
+  return turns.length > 0 ? (totalScore / turns.length) : 0
 }
 
-export const calculateRemainingScore = (throws: Throw[]) => {
-    return 501 - throws.filter(t => !t.bust).reduce((sum, t) => sum + t.score, 0);
+export const calculateTotalThreeDartAverage = (matches: Match[]) => {
+  let allTurns: Turn[] = [];
+  matches.forEach(match => {
+    allTurns = allTurns.concat(match.turns)
+  })
+  return calculateThreeDartAverage(allTurns);
 }
 
-export const calculateCheckoutPercentage = (games: Game[]) => {
-    const percentages: number[] = []; 
-    games.forEach(game => {
-        let dartsUsedOnDoubles: number = 0;
-        game.throws.forEach((t) => {
-            dartsUsedOnDoubles += t.dartsUsedOnDouble;
-        })
-        const percentage: number = (1 / dartsUsedOnDoubles) * 100;
-        percentages.push(percentage);
-    })
-    return (percentages.reduce((a, b) => a + b, 0) / percentages.length).toFixed(2);
+export const getBestAndWorsThreeDartAverages = (matches: Match[]) => {
+  const averages: number[] = [];
+  matches.forEach(match => {
+    const average = calculateThreeDartAverage(match.turns);
+    averages.push(average);
+  });
+  return { "best": Math.max(...averages), "worst": Math.min(...averages) }
 }
+
+export const calculateCheckoutPercentage = (turns: Turn[]) => {
+  let dartsUsedOnDoubles = 0;
+  turns.forEach(turn => {
+    dartsUsedOnDoubles = dartsUsedOnDoubles + turn.dartsUsedOnDouble
+  });
+  return (1 / dartsUsedOnDoubles) * 100;
+}
+
+export const calculateTotalCheckoutPercentage = (matches: Match[]) => {
+  const percentages: number[] = [];
+  matches.forEach(match => {
+    const percentage = calculateCheckoutPercentage(match.turns);
+    if (percentage) {
+      percentages.push(percentage);
+    }
+  });
+  return percentages.reduce((sum, value) => sum + value, 0) / percentages.length;
+}
+
+export const getBestAndWorstCheckoutPercentages = (matches: Match[]) => {
+  const percentages: number[] = [];
+  matches.forEach(match => {
+    const percentage = calculateCheckoutPercentage(match.turns);
+    if (percentage) {
+      percentages.push(percentage);
+    }
+  });
+  return { "best": Math.max(...percentages), "worst": Math.min(...percentages) }
+}
+
+export const calculateFirstNineDartsAverage = (turns: Turn[]) => {
+  return calculateThreeDartAverage(turns.slice(0, 3));
+}
+
+export const calculateTotalFirstNineDartsAverage = (matches: Match[]) => {
+  const averages: number[] = [];
+  matches.forEach(match => {
+    const average = calculateFirstNineDartsAverage(match.turns);
+    averages.push(average);
+  });
+  return averages.reduce((sum, value) => sum + value, 0) / averages.length;
+}
+
+export const getBestAndWorstFirstNineDartsAverages = (matches: Match[]) => {
+  const averages: number[] = [];
+  matches.forEach(match => {
+    const average = calculateFirstNineDartsAverage(match.turns);
+    averages.push(average);
+  });
+  return { "best": Math.max(...averages), "worst": Math.min(...averages) };
+}
+
+export const saveNewMatchToStorage = () => {
+  const id = Date.now();
+  const match: Match = {
+    id: id,
+    started_at: id,
+    ended_at: null,
+    turns: [],
+  };
+
+  const games = JSON.parse(localStorage.getItem("matches") || "[]");
+  games.push(match);
+
+  localStorage.setItem("activeMatch", id.toString());
+  localStorage.setItem("matches", JSON.stringify(games));
+}
+
+export const formatDate = (matchDate: number) => {
+  const date = new Date(matchDate);
+
+  // Get local date
+  const localDate = date.toLocaleDateString("fi-FI");
+
+  // Get local time (24-hour format, no seconds)
+  const localTime = date.toLocaleTimeString("fi-FI", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false
+  });
+
+  return `${localDate} - ${localTime}`;
+};

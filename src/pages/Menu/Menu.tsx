@@ -1,37 +1,29 @@
 import { useNavigate } from "react-router-dom";
-import PageContent from "../../components/PageContent/PageContent";
-import type { Game } from "../../types";
-import Button from "@mui/material/Button";
+import styles from "./Menu.module.css";
+import Button from "../../components/Button/Button";
+import { saveNewMatchToStorage } from "../../utils";
+import FadeIn from "../../components/FadeIn/FadeIn";
+import logo from "../../assets/logo.png";
 
 const Menu = () => {
   const navigate = useNavigate();
 
   const startGame = () => {
-    const id = Date.now();
-    const newGame: Game = {
-      id: id,
-      started_at: id,
-      ended_at: null,
-      throws: [],
-    };
-
-    localStorage.setItem("activeGame", id.toString());
-
-    const games = JSON.parse(localStorage.getItem("games") || "[]");
-    games.push(newGame);
-    localStorage.setItem("games", JSON.stringify(games));
-
+    saveNewMatchToStorage();
     navigate("/match");
   };
 
   return (
-    <PageContent>
-      <h1>Darts scores</h1>
-      <Button onClick={() => startGame()} variant={"contained"}>
-        Play
-      </Button>
-      <Button onClick={() => navigate("/statistics")}>Statistics</Button>
-    </PageContent>
+    <FadeIn>
+      <div className={styles.menu}>
+        <div className={styles.logo}><img className={styles.img} src={logo} alt="Logo" /></div>
+        <div className={styles.container}>
+          <Button onClick={() => startGame()} text={"PLAY MATCH"} />
+          <Button disabled onClick={() => navigate("/")} text={"PRACTICE"} />
+          <Button onClick={() => navigate("/statistics")} text={"STATISTICS"} />
+        </div>
+      </div>
+    </FadeIn>
   );
 };
 

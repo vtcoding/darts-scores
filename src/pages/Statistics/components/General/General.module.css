@@ -1,0 +1,68 @@
+.general {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 8px;
+}
+
+.title {
+    font-size: 32px;
+    color: #FFF;
+}
+
+table {
+    background-color: #444;
+    border-collapse: collapse;
+    border-radius: 4px;
+    color: #FFF;
+    font-family: arial, sans-serif;
+    font-size: 24px;
+    width: 100%;
+}
+
+td,
+th {
+    border-radius: 4px;
+    padding: 16px;
+    text-align: left;
+}
+
+tr:not(:last-child) td,
+tr:not(:last-child) th {
+    border-bottom: 1px solid #555;
+}
+
+.stat {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(auto-fit, auto);
+}
+
+@media screen and (max-width: 1279px) {
+    table {
+        font-size: 20px;
+    }
+
+    td,
+    th {
+        padding: 12px 16px;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    table {
+        font-size: 16px;
+    }
+
+    td,
+    th {
+        padding: 8px 16px;
+    }
+
+    .title {
+        font-size: 20px;
+    }
+}

@@ -1,8 +1,8 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Menu from "./pages/Menu/Menu";
-import Match from "./pages/Match/Match";
-import Statistics from "./pages/Statistics/Statistics";
-import styles from "./App.module.css";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Menu from './pages/Menu/Menu';
+import Match from './pages/Match/Match';
+import Statistics from './pages/Statistics/Statistics';
+import styles from './App.module.css';
 const App = () => {
   return (
     <div className={styles.app}>

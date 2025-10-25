@@ -1,0 +1,50 @@
+.menu {
+    align-content: center;
+    background-color: #333;
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 100vh;
+    justify-content: center;
+    text-align: center;
+    row-gap: 64px;
+    width: 100%;
+}
+
+.container {
+    display: grid;
+    justify-self: center;
+    row-gap: 16px;
+    width: 800px;
+}
+
+.img {
+    width: 400px;
+}
+
+@media screen and (max-width: 1279px) {
+    .menu {
+        row-gap: 48px;
+    }
+
+    .img {
+        width: 300px;
+    }
+
+    .container {
+        width: 600px;
+    }
+}
+
+@media screen and (max-width: 676px) {
+    .menu {
+        row-gap: 32px;
+    }
+
+    .img {
+        width: 200px;
+    }
+
+    .container {
+        width: calc(100% - 48px);
+    }
+}

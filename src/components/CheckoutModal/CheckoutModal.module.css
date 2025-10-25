@@ -1,9 +1,0 @@
-.modalHeading {
-    font-size: 24px;
-}
-
-.modalButtons {
-    display: grid;
-    gap: 4px;
-    grid-template-columns: repeat(4, 1fr);
-}

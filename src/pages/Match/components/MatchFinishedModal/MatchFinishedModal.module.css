@@ -1,0 +1,40 @@
+.title {
+    font-size: 24px;
+}
+
+.statsWrapper {
+    display: grid;
+    row-gap: 4px;
+}
+
+.stats {
+    display: grid;
+    row-gap: 2px;
+}
+
+.stat {
+    font-size: 20px;
+}
+
+
+@media screen and (max-width: 1279px) {
+
+    .title {
+        font-size: 20px;
+    }
+
+    .stat {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+
+    .title {
+        font-size: 16px;
+    }
+
+    .stat {
+        font-size: 12px;
+    }
+}

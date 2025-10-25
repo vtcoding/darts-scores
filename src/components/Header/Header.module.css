@@ -1,0 +1,50 @@
+.header {
+    align-items: center;
+    background-color: #3498db;
+    color: #fff;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.logo {
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 20px;
+    text-align: left;
+}
+
+.img {
+    width: 75px;
+}
+
+.title {
+    font-size: 24px;
+    padding: 20px;
+    text-align: center;
+}
+
+.quit {
+    cursor: pointer;
+    font-size: 24px;
+    padding: 20px;
+    text-align: right;
+}
+
+@media screen and (max-width: 1279px) {
+
+    .logo,
+    .title,
+    .quit {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+
+    .logo,
+    .title,
+    .quit {
+        font-size: 16px;
+    }
+}

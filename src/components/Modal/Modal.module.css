@@ -1,0 +1,32 @@
+.modal {
+    background-color: #222;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px -1px #333;
+    color: #FFF;
+    display: grid;
+    padding: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    row-gap: 24px;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    width: 600px;
+}
+
+@media screen and (max-width: 1279px) {
+    .modal {
+        row-gap: 20px;
+    }
+}
+
+@media screen and (max-width: 676px) {
+    .modal {
+        width: calc(100vw - 48px);
+        row-gap: 16px;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+}
