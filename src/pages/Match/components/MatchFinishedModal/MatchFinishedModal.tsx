@@ -40,7 +40,7 @@ const MatchFinishedModal = ({ open, turns, playAgain, quit }: MatchFinishedModal
             <div className={styles.statsWrapper}>
                 <Title text={"Stats"} />
                 <div className={styles.stats}>
-                    <div className={styles.stat}>3 dart average: {calculateThreeDartAverage(turns)}</div>
+                    <div className={styles.stat}>3 dart average: {calculateThreeDartAverage(turns).toFixed(2)}</div>
                     <div className={styles.stat}>Checkout percentage: {calculateCheckoutPercentage(turns).toFixed(2)}%</div>
                     <div className={styles.stat}>Darts thrown: {turns.length * 3}</div>
                 </div>

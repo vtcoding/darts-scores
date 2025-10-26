@@ -5,11 +5,12 @@ import styles from "./Modal.module.css";
 interface ModalProps {
     children: ReactNode;
     open: boolean;
+    close?: () => void
 }
 
-const Modal = ({ children, open }: ModalProps) => {
+const Modal = ({ children, open, close }: ModalProps) => {
     return (
-        <MuiModal open={open}>
+        <MuiModal open={open} onClose={close}>
             <div className={styles.modal}>
                 {children}
             </div>
