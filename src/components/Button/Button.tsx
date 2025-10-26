@@ -4,11 +4,12 @@ interface ButtonProps {
     onClick: () => void;
     text: string;
     variant?: string;
+    size?: string;
     selected?: boolean;
     disabled?: boolean;
 }
 
-const Button = ({ onClick, text, variant, selected, disabled }: ButtonProps) => {
+const Button = ({ onClick, text, variant, size, selected, disabled }: ButtonProps) => {
     return (
         <div
             onClick={() => onClick()}
@@ -16,6 +17,7 @@ const Button = ({ onClick, text, variant, selected, disabled }: ButtonProps) => 
                 ${styles.button}
                 ${variant === "green" && styles.green}
                 ${variant === "red" && styles.red}
+                ${size === "large" && styles.large}
                 ${selected && styles.selected}
                 ${disabled && styles.disabled}`}
         >

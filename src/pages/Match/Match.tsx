@@ -102,14 +102,14 @@ const Match = () => {
           </div>
         </div>
         <div className={styles.controls}>
-          <Button onClick={() => undoTurn()} text={"Undo"} variant={"red"} />
+          <Button onClick={() => undoTurn()} text={"Undo"} variant={"red"} size={"large"} />
           <Input placeholder={"Set a score"} value={input} validateInput={(value: string) => validateInput(value)} />
-          <Button onClick={() => submitTurn()} text={"Submit"} variant={"green"} />
+          <Button onClick={() => submitTurn()} text={"Submit"} variant={"green"} size={"large"} />
         </div>
         <div className={styles.keyboard}>
           {keys.map((key) => {
             return (
-              <Button onClick={() => handleKeyKlick(key.toString())} key={key} text={key.toString()} />
+              <Button onClick={() => handleKeyKlick(key.toString())} size={"large"} key={key} text={key.toString()} />
             );
           })}
         </div>
