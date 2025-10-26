@@ -13,7 +13,6 @@ interface MatchModalProps {
 
 const MatchModal = ({ open, close, match }: MatchModalProps) => {
     const turns = match.turns;
-    const id = match.id;
     const date = match.ended_at ? formatDate(match.ended_at) : "-";
 
     return (
