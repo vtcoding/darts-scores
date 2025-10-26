@@ -6,7 +6,7 @@ import styles from './App.module.css';
 const App = () => {
   return (
     <div className={styles.app}>
-      <Router>
+      <Router basename="/darts-scores">
         <Routes>
           <Route path="/" element={<Menu />} />
           <Route path="/match" element={<Match />} />
