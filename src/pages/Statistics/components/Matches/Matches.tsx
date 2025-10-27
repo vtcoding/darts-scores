@@ -26,7 +26,7 @@ const Matches = ({ matches }: MatchesProps) => {
                     matches.length > 0 &&
                     <>
                         {
-                            matches.slice(-5).map((match: Match, index: number) => {
+                            matches.slice(-5).reverse().map((match: Match, index: number) => {
                                 const date = match.ended_at ? formatDate(match.ended_at) : "-";
                                 return (
                                     <div
