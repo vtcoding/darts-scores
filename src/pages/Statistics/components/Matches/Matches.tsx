@@ -4,6 +4,7 @@ import type { Match } from "../../../../types";
 import { calculateThreeDartAverage, formatDate } from "../../../../utils";
 import styles from "./Matches.module.css";
 import MatchModal from "../MatchModal/MatchModal";
+import Block from "../../../../components/Block/Block";
 
 interface MatchesProps {
     matches: Match[]
@@ -14,7 +15,7 @@ const Matches = ({ matches }: MatchesProps) => {
     const [selectedMatch, setSelectedMatch] = useState<Match | null>(null);
 
     return (
-        <div className={styles.matches}>
+        <Block>
             <Title text={"Last 5 matches"} />
             <div className={styles.matchesHeader}>
                 <div className={styles.dateHeader}>Ended at</div>
@@ -44,7 +45,7 @@ const Matches = ({ matches }: MatchesProps) => {
                 </>
             }
             {matchModalVisible && selectedMatch && <MatchModal match={selectedMatch} open={matchModalVisible} close={() => setMatchModalVisible(false)} />}
-        </div>);
+        </Block>);
 }
 
 export default Matches;

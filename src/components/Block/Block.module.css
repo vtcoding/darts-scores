@@ -1,0 +1,18 @@
+.block {
+    color: #FFF;
+    background-color: #444;
+    border-radius: 4px;
+    display: grid;
+    grid-auto-rows: min-content;
+    padding: 20px;
+    row-gap: 16px;
+}
+
+.block.clickable {
+    cursor: pointer;
+}
+
+.block.disabled {
+    cursor: default;
+    opacity: 0.4;
+}

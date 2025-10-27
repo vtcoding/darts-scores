@@ -1,0 +1,72 @@
+.sidebar {
+    background-color: #222;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content min-content;
+    height: 100vh;
+    row-gap: 32px;
+    width: 300px;
+}
+
+.logo {
+    color: #FFF;
+    font-size: 24px;
+    padding: 20px;
+    text-align: center;
+}
+
+.navigation {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, min-content);
+    row-gap: 8px;
+    padding: 8px;
+}
+
+.navItem {
+    align-items: center;
+    background-color: #333;
+    border-radius: 4px;
+    color: #FFF;
+    cursor: pointer;
+    display: grid;
+    font-size: 24px;
+    gap: 16px;
+    grid-template-columns: min-content max-content;
+    padding: 20px;
+    text-align: left;
+    width: 100%;
+}
+
+.navItem:hover {
+    opacity: 0.9;
+}
+
+.navItem.disabled {
+    cursor: default;
+    opacity: 0.4;
+}
+
+
+
+@media screen and (max-width: 1279px) {
+    .logo {
+        font-size: 20px;
+    }
+
+    .navItem {
+        font-size: 20px;
+        gap: 12px;
+    }
+}
+
+@media screen and (max-width: 676px) {
+    .logo {
+        font-size: 16px;
+    }
+
+    .navItem {
+        font-size: 16px;
+        gap: 8px;
+    }
+}

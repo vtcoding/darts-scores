@@ -3,48 +3,30 @@
     background-color: #3498db;
     color: #fff;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    padding: 16px;
 }
 
-.logo {
-    cursor: pointer;
-    font-size: 24px;
-    font-weight: bold;
-    padding: 20px;
-    text-align: left;
+.menuIcon {
+    display: none;
 }
 
-.img {
-    width: 75px;
+.header> :nth-child(1) {
+    justify-self: start;
+    /* aligns to the left */
 }
 
-.title {
-    font-size: 24px;
-    padding: 20px;
-    text-align: center;
+.header> :nth-child(2) {
+    justify-self: end;
+    /* aligns to the right */
 }
 
-.quit {
-    cursor: pointer;
-    font-size: 24px;
-    padding: 20px;
-    text-align: right;
-}
-
-@media screen and (max-width: 1279px) {
-
-    .logo,
-    .title,
-    .quit {
-        font-size: 20px;
-    }
-}
+@media screen and (max-width: 1279px) {}
 
 @media screen and (max-width: 767px) {
-
-    .logo,
-    .title,
-    .quit {
-        font-size: 16px;
+    .menuIcon {
+        align-items: center;
+        cursor: pointer;
+        display: grid;
     }
 }

@@ -89,7 +89,7 @@ const Match = () => {
   return (
     <FadeIn>
       <div className={styles.match}>
-        <Header title={"501"} />
+        <Header title={"501"} showQuitButton />
         <div className={styles.scoreAndStats}>
           <div className={styles.score}>{calculateRemainingScore(legLength, turns)}</div>
           <div className={styles.statsWrapper}>

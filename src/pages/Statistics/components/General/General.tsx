@@ -1,3 +1,4 @@
+import Block from "../../../../components/Block/Block";
 import Title from "../../../../components/Title/Title";
 import type { Match } from "../../../../types";
 import { calculateTotalCheckoutPercentage, calculateTotalFirstNineDartsAverage, calculateTotalThreeDartAverage, getBestAndWorstCheckoutPercentages, getBestAndWorstFirstNineDartsAverages, getBestAndWorsThreeDartAverages } from "../../../../utils";
@@ -16,35 +17,35 @@ const General = ({ matches }: GeneralProps) => {
     const bestAndWorstCheckoutPercentages = getBestAndWorstCheckoutPercentages(matches);
 
     return (
-        <div className={styles.general}>
-            <Title text={"General"} />
-            <table>
-                <tr>
-                    <th></th>
-                    <th>Avg</th>
-                    <th>Best</th>
-                    <th>Worst</th>
+        <Block>
+            <Title text={"General statistics"} />
+            <table className={styles.table}>
+                <tr className={styles.tr}>
+                    <th className={styles.th}></th>
+                    <th className={styles.th}>Avg</th>
+                    <th className={styles.th}>Best</th>
+                    <th className={styles.th}>Worst</th>
                 </tr>
-                <tr>
-                    <td>3 dart average</td>
-                    <td>{totalThreeDartAverage.toFixed(2)}</td>
-                    <td>{bestAndWorstAverages["best"].toFixed(2)}</td>
-                    <td>{bestAndWorstAverages["worst"].toFixed(2)}</td>
+                <tr className={styles.tr}>
+                    <td className={styles.td}>3 dart average</td>
+                    <td className={styles.td}>{totalThreeDartAverage.toFixed(2)}</td>
+                    <td className={styles.td}>{bestAndWorstAverages["best"].toFixed(2)}</td>
+                    <td className={styles.td}>{bestAndWorstAverages["worst"].toFixed(2)}</td>
                 </tr>
-                <tr>
-                    <td>First 9 darts</td>
-                    <td>{totalFirstNineDartsAverage.toFixed(2)}</td>
-                    <td>{bestAndWorstFirstNineDartsAverages["best"].toFixed(2)}</td>
-                    <td>{bestAndWorstFirstNineDartsAverages["worst"].toFixed(2)}</td>
+                <tr className={styles.tr}>
+                    <td className={styles.td}>First 9 darts</td>
+                    <td className={styles.td}>{totalFirstNineDartsAverage.toFixed(2)}</td>
+                    <td className={styles.td}>{bestAndWorstFirstNineDartsAverages["best"].toFixed(2)}</td>
+                    <td className={styles.td}>{bestAndWorstFirstNineDartsAverages["worst"].toFixed(2)}</td>
                 </tr>
-                <tr>
-                    <td>Checkout rate</td>
-                    <td>{totalCheckoutPercentage.toFixed(2)}%</td>
-                    <td>{bestAndWorstCheckoutPercentages["best"].toFixed(2)}%</td>
-                    <td>{bestAndWorstCheckoutPercentages["worst"].toFixed(2)}%</td>
+                <tr className={styles.tr}>
+                    <td className={styles.td}>Checkout rate</td>
+                    <td className={styles.td}>{totalCheckoutPercentage.toFixed(2)}%</td>
+                    <td className={styles.td}>{bestAndWorstCheckoutPercentages["best"].toFixed(2)}%</td>
+                    <td className={styles.td}>{bestAndWorstCheckoutPercentages["worst"].toFixed(2)}%</td>
                 </tr>
             </table>
-        </div>
+        </Block>
     )
 }
 
