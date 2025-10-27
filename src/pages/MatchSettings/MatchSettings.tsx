@@ -19,7 +19,7 @@ const MatchSettings = () => {
     }
 
     // Upcoming feature
-    const validateInput = (input: string) => {
+    /* const validateInput = (input: string) => {
         if (input) {
             const number: number = parseInt(input)
             if (!isNaN(number)) {
@@ -28,7 +28,7 @@ const MatchSettings = () => {
         } else {
             setLegs("")
         }
-    }
+    } */
 
     return (
         <FadeIn>
