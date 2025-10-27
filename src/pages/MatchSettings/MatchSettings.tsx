@@ -11,7 +11,7 @@ import styles from "./MatchSettings.module.css";
 const MatchSettings = () => {
     const navigate = useNavigate();
     const [mode, setMode] = useState<string>("501");
-    const [legs, setLegs] = useState<string>("1");
+    const [legs] = useState<string>("1");
 
     const startMatch = () => {
         saveNewMatchToStorage(parseInt(mode), parseInt(legs));
