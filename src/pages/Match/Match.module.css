@@ -2,8 +2,16 @@
   background-color: #333;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: min-content 1fr min-content min-content;
+  grid-template-rows: min-content min-content 1fr min-content min-content;
   height: 100vh;
+  width: 100%;
+}
+
+.matchInfo {
+  background-color: #444;
+  color: #FFF;
+  padding: 20px;
+  text-align: center;
   width: 100%;
 }
 
@@ -11,7 +19,6 @@
   align-content: center;
   display: grid;
   grid-template-rows: min-content;
-  row-gap: 16px;
 }
 
 .score {
@@ -28,6 +35,7 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: min-content;
+  margin-bottom: 8px;
   text-align: center;
   row-gap: 16px;
 }

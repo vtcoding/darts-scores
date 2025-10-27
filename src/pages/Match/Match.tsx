@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './Match.module.css';
-import type { Turn } from '../../types';
-import { calculateRemainingScore, calculateThreeDartAverage, saveNewMatchToStorage } from '../../utils';
+import type { Turn, Match } from '../../types';
+import { calculateRemainingScore, calculateThreeDartAverage, getMatchSettings, saveNewMatchToStorage } from '../../utils';
 import { useNavigate } from 'react-router-dom';
 import FadeIn from '../../components/FadeIn/FadeIn';
 import Header from '../../components/Header/Header';
@@ -9,11 +9,15 @@ import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
 import DoublesModal from './components/DoublesModal/DoublesModal';
 import MatchFinishedModal from './components/MatchFinishedModal/MatchFinishedModal';
+import Title from '../../components/Title/Title';
 
 const Match = () => {
   const navigate = useNavigate();
   const keys = [1, 2, 3, 4, 5, 6, 7, 8, 9, "Clear", 0]
-  const legLength = 501
+  const matchSettings: Match = getMatchSettings();
+  const legLength = matchSettings.mode;
+  const legs = matchSettings.legs;
+  const [currentLeg, setCurrentLeg] = useState<number>(1)
   const [turns, setTurns] = useState<Turn[]>([]);
   const [input, setInput] = useState<string>("");
   const [doublesModalVisible, setDoublesModalVisible] = useState<boolean>(false);
@@ -41,7 +45,7 @@ const Match = () => {
   const submitTurn = () => {
     const numberInput = input === "" ? "0" : input;
     const number: number = parseInt(numberInput);
-    const remaining: number = calculateRemainingScore(legLength, turns);
+    const remaining: number = calculateRemainingScore(legLength, currentLeg, turns);
     const newRemaining = remaining - number;
 
     if (number < 181 && newRemaining > -1 && newRemaining !== 1) {
@@ -51,6 +55,7 @@ const Match = () => {
         setInput("");
         const newTurn: Turn = {
           score: number,
+          leg: currentLeg,
           dartsUsedOnDouble: 0
         }
         setTurns(turns => [...turns, newTurn]);
@@ -64,10 +69,11 @@ const Match = () => {
     const number: number = parseInt(numberInput);
     const newTurn: Turn = {
       score: number,
+      leg: currentLeg,
       dartsUsedOnDouble: dartsUsedOnDouble
     }
     const newTurns = [...turns, newTurn];
-    const remaining: number = calculateRemainingScore(legLength, newTurns);
+    const remaining: number = calculateRemainingScore(legLength, currentLeg, newTurns);
     setInput("");
     setTurns(newTurns);
     if (remaining === 0) {
@@ -80,8 +86,9 @@ const Match = () => {
   }
 
   const playAgain = () => {
-    saveNewMatchToStorage();
+    saveNewMatchToStorage(legLength, legs);
     setMatchFinishedModalVisible(false);
+    setCurrentLeg(1);
     setTurns([]);
     setInput("");
   }
@@ -89,9 +96,10 @@ const Match = () => {
   return (
     <FadeIn>
       <div className={styles.match}>
-        <Header title={"501"} showQuitButton />
+        <Header title={`${legLength} - First to 1 leg`} showQuitButton />
+        <div className={styles.matchInfo}><Title text={`Current leg: ${currentLeg}`} /></div>
         <div className={styles.scoreAndStats}>
-          <div className={styles.score}>{calculateRemainingScore(legLength, turns)}</div>
+          <div className={styles.score}>{calculateRemainingScore(legLength, currentLeg, turns)}</div>
           <div className={styles.statsWrapper}>
             <div className={styles.statsTitle}>Stats</div>
             <div className={styles.stats}>

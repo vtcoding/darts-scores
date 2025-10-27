@@ -3,6 +3,8 @@ import Home from './pages/Home/Home';
 import Match from './pages/Match/Match';
 import Statistics from './pages/Statistics/Statistics';
 import styles from './App.module.css';
+import MatchSettings from './pages/MatchSettings/MatchSettings';
+
 const App = () => {
   return (
     <div className={styles.app}>
@@ -10,6 +12,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/match" element={<Match />} />
+          <Route path="/match-settings" element={<MatchSettings />} />
           <Route path="/statistics" element={<Statistics />} />
         </Routes>
       </Router>

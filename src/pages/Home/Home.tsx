@@ -19,21 +19,20 @@ const Home = () => {
         <Block>
           <Title text={"Welcome to Darts Scores!"} />
           <BlockParagraph>
-            Darts Scores is an app for tracking your darts practicing.
-            You can play 501, handful of practice games and track your progress in statistics.
+            Play, practice and track your darts progress with Darts Scores.
           </BlockParagraph>
         </Block>
         <div className={styles.games}>
-          <Block onClick={() => navigate("/match")}>
+          <Block onClick={() => navigate("/match-settings")}>
             <div className={styles.blockHeader}>
               <ScoreboardIcon />
               <Title text={"Play match"} />
             </div>
             <div className={styles.blockParagraph}>
-              Play 501
+              Play 301, 501 or 701
             </div>
           </Block>
-          <Block>
+          <Block disabled>
             <div className={styles.blockHeader}>
               <FitnessCenterIcon />
               <Title text={"Practice (upcoming feature)"} />

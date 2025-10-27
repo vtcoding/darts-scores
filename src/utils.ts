@@ -1,9 +1,11 @@
 import type { Match, Turn } from './types';
 
-export const calculateRemainingScore = (legLength: number, turns: Turn[]) => {
+export const calculateRemainingScore = (legLength: number, currentLeg: number, turns: Turn[]) => {
   let score = 0;
   turns.forEach((turn: Turn) => {
-    score = score + turn.score
+    if (turn.leg === currentLeg) {
+      score = score + turn.score
+    }
   })
   return legLength - score;
 }
@@ -30,7 +32,10 @@ export const getBestAndWorsThreeDartAverages = (matches: Match[]) => {
     const average = calculateThreeDartAverage(match.turns);
     averages.push(average);
   });
-  return { "best": Math.max(...averages), "worst": Math.min(...averages) }
+  return {
+    "best": averages.length > 0 ? Math.max(...averages) : 0,
+    "worst": averages.length > 0 ? Math.min(...averages) : 0
+  }
 }
 
 export const calculateCheckoutPercentage = (turns: Turn[]) => {
@@ -38,7 +43,7 @@ export const calculateCheckoutPercentage = (turns: Turn[]) => {
   turns.forEach(turn => {
     dartsUsedOnDoubles = dartsUsedOnDoubles + turn.dartsUsedOnDouble
   });
-  return (1 / dartsUsedOnDoubles) * 100;
+  return dartsUsedOnDoubles > 0 ? (1 / dartsUsedOnDoubles) * 100 : 0;
 }
 
 export const calculateTotalCheckoutPercentage = (matches: Match[]) => {
@@ -49,7 +54,7 @@ export const calculateTotalCheckoutPercentage = (matches: Match[]) => {
       percentages.push(percentage);
     }
   });
-  return percentages.reduce((sum, value) => sum + value, 0) / percentages.length;
+  return percentages.length > 0 ? percentages.reduce((sum, value) => sum + value, 0) / percentages.length : 0;
 }
 
 export const getBestAndWorstCheckoutPercentages = (matches: Match[]) => {
@@ -60,7 +65,10 @@ export const getBestAndWorstCheckoutPercentages = (matches: Match[]) => {
       percentages.push(percentage);
     }
   });
-  return { "best": Math.max(...percentages), "worst": Math.min(...percentages) }
+  return {
+    "best": percentages.length > 0 ? Math.max(...percentages) : 0,
+    "worst": percentages.length > 0 ? Math.min(...percentages) : 0
+  }
 }
 
 export const calculateFirstNineDartsAverage = (turns: Turn[]) => {
@@ -73,7 +81,7 @@ export const calculateTotalFirstNineDartsAverage = (matches: Match[]) => {
     const average = calculateFirstNineDartsAverage(match.turns);
     averages.push(average);
   });
-  return averages.reduce((sum, value) => sum + value, 0) / averages.length;
+  return averages.length > 0 ? averages.reduce((sum, value) => sum + value, 0) / averages.length : 0;
 }
 
 export const getBestAndWorstFirstNineDartsAverages = (matches: Match[]) => {
@@ -82,23 +90,35 @@ export const getBestAndWorstFirstNineDartsAverages = (matches: Match[]) => {
     const average = calculateFirstNineDartsAverage(match.turns);
     averages.push(average);
   });
-  return { "best": Math.max(...averages), "worst": Math.min(...averages) };
+  return {
+    "best": averages.length > 0 ? Math.max(...averages) : 0,
+    "worst": averages.length > 0 ? Math.min(...averages) : 0
+  };
 }
 
-export const saveNewMatchToStorage = () => {
+export const saveNewMatchToStorage = (mode: number, legs: number) => {
   const id = Date.now();
   const match: Match = {
     id: id,
+    mode: mode,
+    legs: legs,
     started_at: id,
     ended_at: null,
     turns: [],
   };
 
-  const games = JSON.parse(localStorage.getItem("matches") || "[]");
-  games.push(match);
+  const matches = JSON.parse(localStorage.getItem("matches") || "[]");
+  matches.push(match);
 
   localStorage.setItem("activeMatch", id.toString());
-  localStorage.setItem("matches", JSON.stringify(games));
+  localStorage.setItem("matches", JSON.stringify(matches));
+}
+
+export const getMatchSettings = () => {
+  const id = localStorage.getItem("activeMatch");
+  const matches = JSON.parse(localStorage.getItem("matches") || "[]");
+  const currentMatch = matches.find((match: Match) => match.id === parseInt(id as string));
+  return currentMatch;
 }
 
 export const formatDate = (matchDate: number) => {
