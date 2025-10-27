@@ -15,8 +15,8 @@
     grid-template-columns: 1fr;
     grid-auto-rows: min-content;
     justify-self: center;
-    padding: 8px;
-    row-gap: 8px;
+    padding: var(--gap-3);
+    row-gap: var(--gap-3);
     width: calc(1279px - 300px);
 }
 

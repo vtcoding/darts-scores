@@ -1,11 +1,11 @@
 .block {
-    color: #FFF;
-    background-color: #444;
-    border-radius: 4px;
+    color: var(--color-text);
+    background-color: var(--color-background-2);
+    border-radius: var(--radius-size-m);
     display: grid;
     grid-auto-rows: min-content;
-    padding: 20px;
-    row-gap: 16px;
+    padding: var(--gap-5);
+    row-gap: var(--gap-4);
 }
 
 .block.clickable {
@@ -14,5 +14,5 @@
 
 .block.disabled {
     cursor: default;
-    opacity: 0.4;
+    opacity: var(--opacity-disabled);
 }

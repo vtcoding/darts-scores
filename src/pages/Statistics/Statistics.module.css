@@ -1,6 +1,6 @@
 .buttons {
   display: grid;
-  row-gap: 8px;
+  row-gap: var(--gap-3);
 }
 
 @media screen and (max-width: 1023px) {}

@@ -1,32 +1,32 @@
 .matches {
     display: grid;
     grid-template-columns: 1fr;
-    row-gap: 4px;
+    row-gap: var(--gap-2);
     width: 100%;
 }
 
 .matchesHeader {
-    color: #fff;
+    color: var(--color-text);
     display: grid;
-    font-size: 24px;
+    font-size: var(--font-size-l);
     grid-template-columns: 1fr 1fr;
-    padding: 4px 16px;
+    padding: var(--gap-2) var(--gap-4);
     width: 100%;
 }
 
 .match {
-    background-color: #555;
-    border-radius: 4px;
-    color: #FFF;
+    background-color: var(--color-hover-1);
+    border-radius: var(--radius-size-m);
+    color: var(--color-text);
     cursor: pointer;
     display: grid;
-    font-size: 24px;
+    font-size: var(--font-size-l);
     grid-template-columns: 1fr 1fr;
-    padding: 16px;
+    padding: var(--gap-4);
 }
 
 .match:hover {
-    background-color: #666;
+    background-color: var(--color-hover-2);
 }
 
 .dateHeader,
@@ -43,7 +43,7 @@
 
     .matchesHeader,
     .match {
-        font-size: 20px;
+        font-size: var(--font-size-m);
     }
 }
 
@@ -51,6 +51,6 @@
 
     .matchesHeader,
     .match {
-        font-size: 16px;
+        font-size: var(--font-size-s);
     }
 }

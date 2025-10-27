@@ -1,5 +1,5 @@
 .match {
-  background-color: #333;
+  background-color: var(--color-background);
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: min-content min-content 1fr min-content min-content;
@@ -8,9 +8,9 @@
 }
 
 .matchInfo {
-  background-color: #444;
-  color: #FFF;
-  padding: 20px;
+  background-color: var(--color-background-2);
+  color: var(--color-text);
+  padding: var(--gap-3);
   text-align: center;
   width: 100%;
 }
@@ -23,7 +23,7 @@
 
 .score {
   align-items: center;
-  color: #fff;
+  color: var(--color-text);
   display: grid;
   font-size: 192px;
   text-align: center;
@@ -35,31 +35,31 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: min-content;
-  margin-bottom: 8px;
+  margin-bottom: var(--gap-3);
   text-align: center;
-  row-gap: 16px;
+  row-gap: var(--gap-4);
 }
 
 .statsTitle {
-  font-size: 32px;
+  font-size: var(--font-size-xl);
 }
 
 .stat {
-  font-size: 24px;
+  font-size: var(--font-size-l);
 }
 
 .controls {
   display: grid;
-  gap: 2px;
+  gap: var(--gap-1);
   grid-template-columns: 1fr 2fr 1fr;
-  padding: 0 2px;
+  padding: 0 var(--gap-1);
 }
 
 .keyboard {
   display: grid;
-  gap: 2px;
+  gap: var(--gap-1);
   grid-template-columns: repeat(3, 1fr);
-  padding: 2px;
+  padding: var(--gap-1);
 }
 
 @media screen and (max-width: 1279px) {
@@ -69,15 +69,16 @@
   }
 
   .statsWrapper {
-    row-gap: 12px;
+    row-gap: var(--gap-3);
   }
 
   .statsTitle {
-    font-size: 32px;
+    font-size: var(--font-size-xl);
+    ;
   }
 
   .stat {
-    font-size: 20px;
+    font-size: var(--font-size-m);
   }
 }
 
@@ -88,14 +89,14 @@
   }
 
   .statsWrapper {
-    row-gap: 8px;
+    row-gap: var(--gap-2);
   }
 
   .statsTitle {
-    font-size: 24px;
+    font-size: var(--font-size-l);
   }
 
   .stat {
-    font-size: 16px;
+    font-size: var(--font-size-s);
   }
 }

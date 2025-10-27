@@ -1,31 +1,26 @@
 .matchModal {
     display: grid;
-    row-gap: 16px;
+    row-gap: var(--gap-4);
 }
 
 .statsWrapper {
     display: grid;
-    row-gap: 4px;
+    row-gap: var(--gap-2);
 }
 
 .stats {
     display: grid;
-    row-gap: 2px;
+    row-gap: var(--gap-1);
 }
 
 .stat {
-    font-size: 20px;
+    font-size: var(--font-size-m);
 }
 
 @media screen and (max-width: 1279px) {
     .stat {
-        font-size: 16px;
+        font-size: var(--font-size-s);
     }
 }
 
-@media screen and (max-width: 767px) {
-
-    .title {
-        font-size: 16px;
-    }
-}
+@media screen and (max-width: 767px) {}

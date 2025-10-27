@@ -3,56 +3,56 @@
     border-radius: 4px;
     color: #FFF;
     cursor: pointer;
-    font-size: 24px;
-    padding: 20px;
+    font-size: var(--font-size-l);
+    padding: var(--gap-5);
     text-align: center;
     width: 100%;
 }
 
 .button.large {
-    padding: 32px;
+    padding: var(--gap-6);
 }
 
 .green {
-    background-color: #2ecc71;
+    background-color: var(--color-green);
 }
 
 .red {
-    background-color: #e74c3c;
+    background-color: var(--color-red);
 }
 
 .button.disabled {
     cursor: default;
-    opacity: 0.4;
+    opacity: var(--opacity-disabled);
 }
 
 .selected {
-    opacity: 0.5;
+    opacity: var(--opacity-selected);
 }
 
 .button:not(.disabled):not(.selected):hover {
-    opacity: 0.9;
+    opacity: var(--opacity-hover);
     cursor: pointer;
 }
 
 @media screen and (max-width: 1279px) {
     .button {
-        font-size: 20px;
-        padding: 16px 0;
+        font-size: var(--font-size-l);
+        padding: var(--gap-5) 0;
     }
 
     .button.large {
-        padding: 24px 0;
+        padding: var(--gap-6) 0;
     }
 }
 
 @media screen and (max-width: 676px) {
     .button {
-        font-size: 16px;
-        padding: 12px 0;
+        font-size: var(--font-size-s);
+        padding: var(--gap-4) 0;
     }
 
     .button.large {
-        padding: 20px 0;
+        padding: var(--gap-5) 0;
     }
 }

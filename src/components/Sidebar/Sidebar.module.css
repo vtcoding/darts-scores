@@ -4,14 +4,14 @@
     grid-template-columns: 1fr;
     grid-template-rows: min-content min-content;
     height: 100vh;
-    row-gap: 32px;
+    row-gap: var(--gap-7);
     width: 300px;
 }
 
 .logo {
     color: #FFF;
-    font-size: 24px;
-    padding: 20px;
+    font-size: var(--font-size-l);
+    padding: var(--gap-5);
     text-align: center;
 }
 
@@ -19,54 +19,54 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(4, min-content);
-    row-gap: 8px;
-    padding: 8px;
+    row-gap: var(--gap-3);
+    padding: var(--gap-3);
 }
 
 .navItem {
     align-items: center;
     background-color: #333;
-    border-radius: 4px;
+    border-radius: var(--radius-size-m);
     color: #FFF;
     cursor: pointer;
     display: grid;
-    font-size: 24px;
-    gap: 16px;
+    font-size: var(--font-size-l);
+    gap: var(--gap-4);
     grid-template-columns: min-content max-content;
-    padding: 20px;
+    padding: var(--gap-5);
     text-align: left;
     width: 100%;
 }
 
 .navItem:hover {
-    opacity: 0.9;
+    opacity: var(--opacity-hover);
 }
 
 .navItem.disabled {
     cursor: default;
-    opacity: 0.4;
+    opacity: var(--opacity-disabled);
 }
 
 
 
 @media screen and (max-width: 1279px) {
     .logo {
-        font-size: 20px;
+        font-size: var(--font-size-m);
     }
 
     .navItem {
-        font-size: 20px;
-        gap: 12px;
+        font-size: var(--font-size-m);
+        gap: var(--gap-4);
     }
 }
 
 @media screen and (max-width: 676px) {
     .logo {
-        font-size: 16px;
+        font-size: var(--font-size-s);
     }
 
     .navItem {
-        font-size: 16px;
-        gap: 8px;
+        font-size: var(--font-size-s);
+        gap: var(--gap-3);
     }
 }

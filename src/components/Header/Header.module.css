@@ -1,10 +1,10 @@
 .header {
     align-items: center;
-    background-color: #3498db;
-    color: #fff;
+    background-color: var(--color-blue);
+    color: var(--color-text);
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding: 16px;
+    padding: var(--gap-4);
 }
 
 .menuIcon {
