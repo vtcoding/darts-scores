@@ -1,0 +1,22 @@
+.options {
+    display: grid;
+    gap: var(--gap-3);
+    grid-template-columns: repeat(4, max-content);
+}
+
+.option {
+    border: 1px solid #555;
+    border-radius: var(--radius-size-m);
+    color: #FFF;
+    cursor: pointer;
+    font-size: var(--font-size-l);
+    padding: var(--gap-3) var(--gap-5);
+}
+
+.option:hover {
+    background-color: var(--color-hover-2);
+}
+
+.option.selected {
+    background-color: var(--color-hover-1);
+}

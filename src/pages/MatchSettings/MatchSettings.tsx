@@ -6,7 +6,7 @@ import PageContent from "../../components/PageContent/PageContent";
 import Title from "../../components/Title/Title";
 import { useState } from "react";
 import { saveNewMatchToStorage } from "../../utils";
-import styles from "./MatchSettings.module.css";
+import Options from "../../components/Options/Options";
 
 const MatchSettings = () => {
     const navigate = useNavigate();
@@ -18,34 +18,19 @@ const MatchSettings = () => {
         navigate("/match")
     }
 
-    // Upcoming feature
-    /* const validateInput = (input: string) => {
-        if (input) {
-            const number: number = parseInt(input)
-            if (!isNaN(number)) {
-                setLegs(input.toString())
-            }
-        } else {
-            setLegs("")
-        }
-    } */
+    const options = [
+        { name: "301" },
+        { name: "501" },
+        { name: "701" }
+    ]
 
     return (
         <FadeIn>
             <PageContent headerTitle={"Match settings"}>
                 <Block>
                     <Title text={"Choose mode"} />
-                    <div className={styles.modes}>
-                        <div onClick={() => setMode("301")} className={`${styles.mode} ${mode === "301" && styles.selected}`}>301</div>
-                        <div onClick={() => setMode("501")} className={`${styles.mode} ${mode === "501" && styles.selected}`}>501</div>
-                        <div onClick={() => setMode("701")} className={`${styles.mode} ${mode === "701" && styles.selected}`}>701</div>
-                    </div>
+                    <Options options={options} selectedOption={mode} setSelectedOption={setMode} />
                 </Block>
-                {/* Upcoming feature
-                <Block>
-                    <Title text={"Set match length (amount of legs)"} />
-                    <input value={legs} onChange={(e) => validateInput(e.target.value)} className={styles.legsInput} />
-                </Block> */}
                 <Button disabled={legs === ""} onClick={() => startMatch()} text={"Start match"} variant={"green"} />
             </PageContent>
         </FadeIn>

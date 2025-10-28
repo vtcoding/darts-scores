@@ -7,8 +7,10 @@ import { useState } from 'react';
 import Button from '../../components/Button/Button';
 import DeleteStatsModal from './components/DeleteStatsModal/DeleteStatsModal';
 import PageContent from '../../components/PageContent/PageContent';
+import Dropdown from '../../components/Dropdown/Dropdown';
 
 const Statistics = () => {
+  const [selectedOption, setSelectedOption] = useState<string>("Match");
   const [deleteStatsModalVisible, setDeleteStatsModalVisible] = useState<boolean>(false);
   const matches = JSON.parse(localStorage.getItem("matches") || "[]");
   const finishedMatches = matches.filter((match: Match) => match.ended_at)
@@ -18,9 +20,17 @@ const Statistics = () => {
     window.location.reload();
   }
 
+  const options = [
+    { name: "Match" },
+    { name: "Around the clock" },
+    { name: "Doubles practice" },
+    { name: "Triples practice" }
+  ]
+
   return (
     <FadeIn>
       <PageContent headerTitle={"Statistics"}>
+        <Dropdown options={options} selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
         <General matches={finishedMatches} />
         <Matches matches={finishedMatches} />
         <div className={styles.buttons}>

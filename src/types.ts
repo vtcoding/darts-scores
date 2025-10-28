@@ -27,3 +27,7 @@ export type PracticeTurn = {
   dart2: number | null;
   dart3: number | null;
 }
+
+export type Option = {
+  name: string;
+}

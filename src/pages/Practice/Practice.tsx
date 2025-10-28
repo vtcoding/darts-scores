@@ -4,7 +4,7 @@ import Header from "../../components/Header/Header";
 import styles from "./Practice.module.css";
 import { getPracticeMatchSettings } from "../../utils";
 import type { PracticeTurn } from "../../types";
-import PracticeEndedModal from "./components/PracticeEndedModal/PracticeEndedModal";
+import PracticeFinishedModal from "./components/PracticeFinishedModal/PracticeFinishedModal";
 import { useNavigate } from "react-router-dom";
 
 const Practice = () => {
@@ -164,8 +164,9 @@ const Practice = () => {
                 <div onClick={() => handleKeyClick(getTarget())} className={styles.key}>{getTargetPrefix()}{getTarget()}</div>
             </div>
             {practiceEndedModalVisible &&
-                <PracticeEndedModal
+                <PracticeFinishedModal
                     open={practiceEndedModalVisible}
+                    turns={turns}
                     playAgain={() => playAgain()}
                     quitToMenu={() => navigate("/")}
                 />
