@@ -13,7 +13,7 @@ import Title from '../../components/Title/Title';
 
 const Match = () => {
   const navigate = useNavigate();
-  const keys = [1, 2, 3, 4, 5, 6, 7, 8, 9, "Clear", 0]
+  const keys = [1, 2, 3, 0, 4, 5, 6, "", 7, 8, 9, "Clear"]
   const matchSettings: MatchType = getMatchSettings();
   const legLength = matchSettings.mode;
   const legs = matchSettings.legs;

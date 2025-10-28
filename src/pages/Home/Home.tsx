@@ -9,6 +9,7 @@ import styles from "./Home.module.css";
 import { useNavigate } from "react-router-dom";
 import Block from "../../components/Block/Block";
 import BlockParagraph from "../../components/BlockParagraph/BlockParagraph";
+import BlockHeader from "../../components/BlockHeader/BlockHeader";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -24,29 +25,29 @@ const Home = () => {
         </Block>
         <div className={styles.games}>
           <Block onClick={() => navigate("/match-settings")}>
-            <div className={styles.blockHeader}>
+            <BlockHeader>
               <ScoreboardIcon />
               <Title text={"Play match"} />
-            </div>
-            <div className={styles.blockParagraph}>
-              Play 301, 501 or 701
-            </div>
+            </BlockHeader>
+            <BlockParagraph>
+              Play 301, 501 or 701.
+            </BlockParagraph>
           </Block>
-          <Block disabled>
-            <div className={styles.blockHeader}>
+          <Block onClick={() => navigate("/practice-settings")}>
+            <BlockHeader>
               <FitnessCenterIcon />
-              <Title text={"Practice (upcoming feature)"} />
-            </div>
+              <Title text={"Practice"} />
+            </BlockHeader>
             <BlockParagraph>
               Practice your throwing with Around the clock, Doubles training or Bobs 27.
             </BlockParagraph>
           </Block>
         </div>
         <Block onClick={() => navigate("/statistics")}>
-          <div className={styles.blockHeader}>
+          <BlockHeader>
             <EqualizerIcon />
             <Title text={"Statistics"} />
-          </div>
+          </BlockHeader>
           <BlockParagraph>
             View your practice statistics and track your progress.
           </BlockParagraph>

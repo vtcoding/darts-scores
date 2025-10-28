@@ -58,7 +58,7 @@
 .keyboard {
   display: grid;
   gap: var(--gap-1);
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   padding: var(--gap-1);
 }
 

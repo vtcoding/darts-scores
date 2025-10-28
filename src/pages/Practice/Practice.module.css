@@ -1,0 +1,135 @@
+.practice {
+    background-color: var(--color-background);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content 1fr min-content min-content;
+    height: 100vh;
+    width: 100%;
+}
+
+.scoreAndStats {
+    align-content: center;
+    display: grid;
+    grid-template-rows: min-content;
+}
+
+.score {
+    align-items: center;
+    color: var(--color-text);
+    display: grid;
+    font-size: 192px;
+    text-align: center;
+}
+
+.statsWrapper {
+    align-content: center;
+    color: #fff;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content;
+    margin-bottom: var(--gap-3);
+    text-align: center;
+    row-gap: var(--gap-4);
+}
+
+.statsTitle {
+    font-size: var(--font-size-xl);
+}
+
+.stat {
+    font-size: var(--font-size-l);
+}
+
+.controls {
+    display: grid;
+    gap: var(--gap-1);
+    grid-template-columns: 1fr 3fr;
+    padding: 0 var(--gap-1);
+}
+
+.darts {
+    display: grid;
+    gap: var(--gap-1);
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.dart {
+    align-items: center;
+    background-color: var(--color-hover-2);
+    border-radius: var(--radius-size-m);
+    display: grid;
+    color: var(--color-text);
+    height: 100%;
+    text-align: center;
+    width: 100%;
+}
+
+.keyboard {
+    display: grid;
+    gap: var(--gap-1);
+    grid-template-columns: 1fr 1fr;
+    padding: var(--gap-1);
+}
+
+.key {
+    align-items: center;
+    background-color: var(--color-background-2);
+    color: var(--color-text);
+    cursor: pointer;
+    display: grid;
+    font-size: var(--font-size-l);
+    height: 200px;
+    text-align: center;
+}
+
+.key:hover {
+    background-color: var(--color-hover-1);
+}
+
+@media screen and (max-width: 1279px) {
+
+    .score {
+        font-size: 128px;
+    }
+
+    .statsWrapper {
+        row-gap: var(--gap-3);
+    }
+
+    .statsTitle {
+        font-size: var(--font-size-xl);
+    }
+
+    .stat {
+        font-size: var(--font-size-m);
+    }
+
+    .key {
+        font-size: var(--font-size-m);
+        height: 175px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+
+    .score {
+        font-size: 96px;
+    }
+
+    .statsWrapper {
+        row-gap: var(--gap-2);
+    }
+
+    .statsTitle {
+        font-size: var(--font-size-l);
+    }
+
+    .stat {
+        font-size: var(--font-size-s);
+    }
+
+    .key {
+        font-size: var(--font-size-s);
+        height: 150px;
+    }
+}

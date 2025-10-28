@@ -14,7 +14,7 @@ const Sidebar = () => {
             <div className={styles.navigation}>
                 <div onClick={() => navigate("/")} className={styles.navItem}><HomeIcon /> Home</div>
                 <div onClick={() => navigate("/match-settings")} className={styles.navItem}><ScoreboardIcon /> Play match</div>
-                <div onClick={() => { }} className={`${styles.navItem} ${styles.disabled}`}><FitnessCenterIcon /> Practice</div>
+                <div onClick={() => navigate("/practice-settings")} className={styles.navItem}><FitnessCenterIcon /> Practice</div>
                 <div onClick={() => navigate("/statistics")} className={styles.navItem}><EqualizerIcon />Statistics</div>
             </div>
         </div >

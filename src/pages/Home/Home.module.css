@@ -1,24 +1,5 @@
-.blockHeader {
-    align-items: center;
-    display: grid;
-    gap: var(--gap-4);
-    grid-template-columns: min-content 1fr;
-}
-
 .games {
     display: grid;
     gap: var(--gap-3);
     grid-template-columns: 1fr 1fr;
-}
-
-@media screen and (max-width: 1279px) {
-    .blockHeader {
-        gap: var(--gap-3);
-    }
-}
-
-@media screen and (max-width: 676px) {
-    .blockHeader {
-        gap: var(--gap-3);
-    }
 }

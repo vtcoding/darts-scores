@@ -1,4 +1,4 @@
-import type { Match, Turn } from './types';
+import type { Match, PracticeMatch, Turn } from './types';
 
 export const calculateRemainingScore = (legLength: number, currentLeg: number, turns: Turn[]) => {
   let score = 0;
@@ -121,6 +121,27 @@ export const getMatchSettings = () => {
   return currentMatch;
 }
 
+export const saveNewPracticeToStorage = (
+  mode: string,
+  finishOn: number,
+) => {
+  const id = Date.now();
+  const practiceMatch: PracticeMatch = {
+    id: id,
+    mode: mode,
+    finish_on: finishOn,
+    started_at: id,
+    ended_at: null,
+    turns: [],
+  }
+
+  const practiceMatches = JSON.parse(localStorage.getItem("practiceMatches") || "[]");
+  practiceMatches.push(practiceMatch);
+
+  localStorage.setItem("activePracticeMatch", id.toString());
+  localStorage.setItem("practiceMatches", JSON.stringify(practiceMatches));
+}
+
 export const formatDate = (matchDate: number) => {
   const date = new Date(matchDate);
 
@@ -136,3 +157,10 @@ export const formatDate = (matchDate: number) => {
 
   return `${localDate} - ${localTime}`;
 };
+
+export const getPracticeMatchSettings = () => {
+  const id = localStorage.getItem("activePracticeMatch");
+  const practiceMatches = JSON.parse(localStorage.getItem("practiceMatches") || "[]");
+  const currentMatch = practiceMatches.find((match: Match) => match.id === parseInt(id as string));
+  return currentMatch;
+}
