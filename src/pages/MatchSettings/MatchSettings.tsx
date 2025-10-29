@@ -19,9 +19,9 @@ const MatchSettings = () => {
     }
 
     const options = [
-        { name: "301" },
-        { name: "501" },
-        { name: "701" }
+        { name: "301", id: "301" },
+        { name: "501", id: "501" },
+        { name: "701", id: "701" }
     ]
 
     return (
