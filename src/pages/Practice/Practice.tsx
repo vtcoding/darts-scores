@@ -120,6 +120,8 @@ const Practice = () => {
 
         if (max === 20) {
             return matchSettings.finish_on;
+        } else if (max === -1) {
+            return 1;
         } else if (max !== matchSettings.finish_on) {
             return max + 1;
         } else {
