@@ -15,7 +15,7 @@
 }
 
 .match {
-    background-color: var(--color-hover-1);
+    background-color: var(--color-background-4);
     border-radius: var(--radius-size-m);
     color: var(--color-text);
     cursor: pointer;
@@ -26,7 +26,7 @@
 }
 
 .match:hover {
-    background-color: var(--color-hover-2);
+    background-color: var(--color-hover-4);
 }
 
 .dateHeader,

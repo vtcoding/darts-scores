@@ -30,4 +30,21 @@ export type PracticeTurn = {
 
 export type Option = {
   name: string;
+  id: string;
+}
+
+export type StatRow = {
+  name: string;
+  average: {
+    value: number | string,
+    unit: string
+  };
+  best: {
+    value: number | string,
+    unit: string
+  };
+  worst: {
+    value: number | string,
+    unit: string
+  };
 }

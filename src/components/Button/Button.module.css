@@ -1,5 +1,5 @@
 .button {
-    background-color: #444;
+    background-color: var(--color-background-3);
     border-radius: 4px;
     color: #FFF;
     cursor: pointer;
@@ -31,7 +31,17 @@
 }
 
 .button:not(.disabled):not(.selected):hover {
-    opacity: var(--opacity-hover);
+    background-color: var(--color-hover-3);
+    cursor: pointer;
+}
+
+.button.green:not(.disabled):not(.selected):hover {
+    background-color: var(--color-green-hover);
+    cursor: pointer;
+}
+
+.button.red:not(.disabled):not(.selected):hover {
+    background-color: var(--color-red-hover);
     cursor: pointer;
 }
 

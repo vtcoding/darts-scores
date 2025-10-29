@@ -1,7 +1,7 @@
 .modal {
-    background-color: var(--color-background-3);
+    background-color: var(--color-background-2);
     border-radius: 4px;
-    box-shadow: 0 4px 6px -1px var(--color-background);
+    box-shadow: 0 4px 6px -1px var(--color-background-2);
     color: var(--color-text);
     display: grid;
     padding: var(--gap-7);

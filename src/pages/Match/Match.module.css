@@ -1,5 +1,5 @@
 .match {
-  background-color: var(--color-background);
+  background-color: var(--color-background-2);
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: min-content min-content 1fr min-content min-content;

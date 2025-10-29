@@ -1,5 +1,5 @@
 .practice {
-    background-color: var(--color-background);
+    background-color: var(--color-background-2);
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: min-content 1fr min-content min-content;
@@ -73,7 +73,7 @@
 
 .key {
     align-items: center;
-    background-color: var(--color-background-2);
+    background-color: var(--color-background-3);
     color: var(--color-text);
     cursor: pointer;
     display: grid;
@@ -83,7 +83,7 @@
 }
 
 .key:hover {
-    background-color: var(--color-hover-1);
+    background-color: var(--color-hover-3);
 }
 
 @media screen and (max-width: 1279px) {

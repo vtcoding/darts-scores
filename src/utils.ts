@@ -1,4 +1,29 @@
-import type { Match, PracticeMatch, Turn } from './types';
+import type { Match, PracticeMatch, PracticeTurn, Turn } from './types';
+
+export const saveNewMatchToStorage = (mode: number, legs: number) => {
+  const id = Date.now();
+  const match: Match = {
+    id: id,
+    mode: mode,
+    legs: legs,
+    started_at: id,
+    ended_at: null,
+    turns: [],
+  };
+
+  const matches = JSON.parse(localStorage.getItem("matches") || "[]");
+  matches.push(match);
+
+  localStorage.setItem("activeMatch", id.toString());
+  localStorage.setItem("matches", JSON.stringify(matches));
+}
+
+export const getMatchSettings = () => {
+  const id = localStorage.getItem("activeMatch");
+  const matches = JSON.parse(localStorage.getItem("matches") || "[]");
+  const currentMatch = matches.find((match: Match) => match.id === parseInt(id as string));
+  return currentMatch;
+}
 
 export const calculateRemainingScore = (legLength: number, currentLeg: number, turns: Turn[]) => {
   let score = 0;
@@ -96,31 +121,6 @@ export const getBestAndWorstFirstNineDartsAverages = (matches: Match[]) => {
   };
 }
 
-export const saveNewMatchToStorage = (mode: number, legs: number) => {
-  const id = Date.now();
-  const match: Match = {
-    id: id,
-    mode: mode,
-    legs: legs,
-    started_at: id,
-    ended_at: null,
-    turns: [],
-  };
-
-  const matches = JSON.parse(localStorage.getItem("matches") || "[]");
-  matches.push(match);
-
-  localStorage.setItem("activeMatch", id.toString());
-  localStorage.setItem("matches", JSON.stringify(matches));
-}
-
-export const getMatchSettings = () => {
-  const id = localStorage.getItem("activeMatch");
-  const matches = JSON.parse(localStorage.getItem("matches") || "[]");
-  const currentMatch = matches.find((match: Match) => match.id === parseInt(id as string));
-  return currentMatch;
-}
-
 export const saveNewPracticeToStorage = (
   mode: string,
   finishOn: number,
@@ -163,4 +163,61 @@ export const getPracticeMatchSettings = () => {
   const practiceMatches = JSON.parse(localStorage.getItem("practiceMatches") || "[]");
   const currentMatch = practiceMatches.find((match: Match) => match.id === parseInt(id as string));
   return currentMatch;
+}
+
+/* Darts hit on practice matches */
+export const calculateDartsHit = (turns: PracticeTurn[]) => {
+  let hitDarts = 0;
+  let missedDarts = 0;
+  turns.forEach(turn => {
+    // Hit darts
+    if (turn.dart1 && turn.dart1 !== -1) hitDarts++;
+    if (turn.dart2 && turn.dart2 !== -1) hitDarts++;
+    if (turn.dart3 && turn.dart3 !== -1) hitDarts++;
+
+    // Missed darts
+    if (turn.dart1 && turn.dart1 === -1) missedDarts++;
+    if (turn.dart2 && turn.dart2 === -1) missedDarts++;
+    if (turn.dart3 && turn.dart3 === -1) missedDarts++;
+  });
+  return `${hitDarts}/${missedDarts + hitDarts}`;
+}
+
+export const calculateHitRate = (turns: PracticeTurn[]) => {
+  let hitDarts = 0;
+  let missedDarts = 0;
+  turns.forEach(turn => {
+    // Hit darts
+    if (turn.dart1 && turn.dart1 !== -1) hitDarts++;
+    if (turn.dart2 && turn.dart2 !== -1) hitDarts++;
+    if (turn.dart3 && turn.dart3 !== -1) hitDarts++;
+
+    // Missed darts
+    if (turn.dart1 && turn.dart1 === -1) missedDarts++;
+    if (turn.dart2 && turn.dart2 === -1) missedDarts++;
+    if (turn.dart3 && turn.dart3 === -1) missedDarts++;
+  });
+  const totalDarts = hitDarts + missedDarts;
+  return totalDarts > 0 ? (hitDarts / totalDarts) * 100 : 0;
+}
+
+export const calculateTotalHitRate = (matches: PracticeMatch[]) => {
+  const rates: number[] = [];
+  matches.forEach(match => {
+    const rate = calculateHitRate(match.turns);
+    rates.push(rate);
+  });
+  return rates.length > 0 ? rates.reduce((a, b) => a + b, 0) / rates.length : 0;
+}
+
+export const calculateBestAndWorstHitRates = (matches: PracticeMatch[]) => {
+  const rates: number[] = [];
+  matches.forEach(match => {
+    const rate = calculateHitRate(match.turns);
+    rates.push(rate);
+  });
+  return {
+    "best": rates.length > 0 ? Math.max(...rates) : 0,
+    "worst": rates.length > 0 ? Math.min(...rates) : 0
+  };
 }

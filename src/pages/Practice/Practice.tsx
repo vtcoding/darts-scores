@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from "../../components/Button/Button";
 import Header from "../../components/Header/Header";
 import styles from "./Practice.module.css";
-import { getPracticeMatchSettings } from "../../utils";
+import { calculateDartsHit, calculateHitRate, getPracticeMatchSettings } from "../../utils";
 import type { PracticeTurn } from "../../types";
 import PracticeFinishedModal from "./components/PracticeFinishedModal/PracticeFinishedModal";
 import { useNavigate } from "react-router-dom";
@@ -140,8 +140,8 @@ const Practice = () => {
                 <div className={styles.statsWrapper}>
                     <div className={styles.statsTitle}>Stats</div>
                     <div className={styles.stats}>
-                        <div className={styles.stat}>Darts hit: ?</div>
-                        <div className={styles.stat}>Hit rate: ?</div>
+                        <div className={styles.stat}>Darts hit: {calculateDartsHit(turns)}</div>
+                        <div className={styles.stat}>Hit rate: {calculateHitRate(turns).toFixed(2)}%</div>
                     </div>
                 </div>
             </div>

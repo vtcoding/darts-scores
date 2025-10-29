@@ -1,6 +1,7 @@
 .background {
-    background-color: var(--color-background);
-    height: 100vh;
+    background-color: var(--color-background-2);
+    min-height: 100vh;
+    max-height: 100%;
     width: 100%;
 }
 

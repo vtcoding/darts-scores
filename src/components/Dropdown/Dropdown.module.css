@@ -5,7 +5,7 @@
 
 .select {
     align-items: center;
-    background-color: var(--color-background-2);
+    background-color: var(--color-background-4);
     border-radius: var(--radius-size-m);
     color: var(--color-text);
     cursor: pointer;
@@ -26,7 +26,7 @@
 }
 
 .menuOption {
-    background-color: var(--color-background-2);
+    background-color: var(--color-background-4);
     color: var(--color-text);
     cursor: pointer;
     display: grid;
@@ -34,7 +34,7 @@
 }
 
 .menuOption:hover {
-    background-color: var(--color-hover-1);
+    background-color: var(--color-hover-4);
 }
 
 .menuOption:last-child {

@@ -7,8 +7,8 @@ import { useState } from 'react';
 
 interface DropdownProps {
     options: Option[];
-    selectedOption: string;
-    setSelectedOption: (value: string) => void;
+    selectedOption: Option;
+    setSelectedOption: (value: Option) => void;
 }
 
 const Dropdown = ({ options, selectedOption, setSelectedOption }: DropdownProps) => {
@@ -19,7 +19,7 @@ const Dropdown = ({ options, selectedOption, setSelectedOption }: DropdownProps)
             onClick={() => setMenuOpen(menuOpen ? false : true)}
             className={`${styles.select} ${menuOpen && styles.opened}`}
         >
-            <Title text={selectedOption} />
+            <Title text={selectedOption.name} />
             {menuOpen && <ArrowDropUpIcon />}
             {!menuOpen && <ArrowDropDownIcon />}
         </div>
@@ -27,14 +27,14 @@ const Dropdown = ({ options, selectedOption, setSelectedOption }: DropdownProps)
             menuOpen &&
             <div className={styles.menu}>
                 {
-                    options.map((option, index) => {
+                    options.map((option) => {
                         return (
                             <div
                                 onClick={() => {
-                                    setSelectedOption(option.name);
+                                    setSelectedOption(option);
                                     setMenuOpen(false);
                                 }}
-                                key={index}
+                                key={option.id}
                                 className={styles.menuOption}
                             >
                                 <Title text={option.name} />

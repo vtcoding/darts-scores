@@ -14,9 +14,9 @@
 }
 
 .option:hover {
-    background-color: var(--color-hover-2);
+    background-color: var(--color-hover-4);
 }
 
 .option.selected {
-    background-color: var(--color-hover-1);
+    background-color: var(--color-hover-3);
 }

@@ -16,13 +16,18 @@
 
   /* Colors */
   --color-text: #FFF;
-  --color-background: #333;
-  --color-background-2: #444;
-  --color-background-3: #222;
-  --color-hover-1: #555;
-  --color-hover-2: #666;
+  --color-background-1: #222;
+  --color-background-2: #333;
+  --color-background-3: #444;
+  --color-background-4: #555;
+  --color-hover-1: #333;
+  --color-hover-2: #444;
+  --color-hover-3: #555;
+  --color-hover-4: #666;
   --color-green: #2ecc71;
+  --color-green-hover: #56c785;
   --color-red: #e74c3c;
+  --color-red-hover: #bd473a;
   --color-blue: #3498db;
 
   /* Radius sizes */

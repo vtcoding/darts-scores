@@ -1,6 +1,6 @@
 .block {
     color: var(--color-text);
-    background-color: var(--color-background-2);
+    background-color: var(--color-background-3);
     border-radius: var(--radius-size-m);
     display: grid;
     grid-auto-rows: min-content;
