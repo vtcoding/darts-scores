@@ -1,6 +1,6 @@
 import type { Match, PracticeMatch, PracticeTurn, Turn } from './types';
 
-export const saveNewMatchToStorage = (mode: number, legs: number) => {
+export const saveNewMatchToStorage = (mode: string, legs: number) => {
   const id = Date.now();
   const match: Match = {
     id: id,

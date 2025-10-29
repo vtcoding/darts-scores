@@ -1,10 +1,11 @@
 import { useState } from "react";
 import Title from "../../../../components/Title/Title";
-import type { Match, Option, PracticeMatch } from "../../../../types";
+import { type Match, type Option, type PracticeMatch } from "../../../../types";
 import { calculateHitRate, calculateThreeDartAverage, formatDate } from "../../../../utils";
 import styles from "./Matches.module.css";
 import MatchModal from "../MatchModal/MatchModal";
 import Block from "../../../../components/Block/Block";
+import PracticeMatchModal from "../PracticeMatchModal/PracticeMatchModal";
 
 interface MatchesProps {
     mode: Option;
@@ -15,7 +16,7 @@ interface MatchesProps {
 
 const Matches = ({ mode, matches, practiceMatches, defaultStat }: MatchesProps) => {
     const [matchModalVisible, setMatchModalVisible] = useState<boolean>(false);
-    const [selectedMatch, setSelectedMatch] = useState<Match | null>(null);
+    const [selectedMatch, setSelectedMatch] = useState<Match | PracticeMatch | null>(null);
 
     return (
         <Block>
@@ -57,7 +58,8 @@ const Matches = ({ mode, matches, practiceMatches, defaultStat }: MatchesProps) 
                                 return (
                                     <div
                                         onClick={() => {
-
+                                            setSelectedMatch(match)
+                                            setMatchModalVisible(true)
                                         }}
                                         key={index}
                                         className={styles.match}
@@ -72,7 +74,8 @@ const Matches = ({ mode, matches, practiceMatches, defaultStat }: MatchesProps) 
                 }
 
             </div>
-            {matchModalVisible && selectedMatch && <MatchModal match={selectedMatch} open={matchModalVisible} close={() => setMatchModalVisible(false)} />}
+            {matchModalVisible && selectedMatch && mode.id === "match" && <MatchModal match={selectedMatch as Match} open={matchModalVisible} close={() => setMatchModalVisible(false)} />}
+            {matchModalVisible && selectedMatch && mode.id !== "match" && <PracticeMatchModal mode={mode.name} match={selectedMatch as PracticeMatch} open={matchModalVisible} close={() => setMatchModalVisible(false)} />}
         </Block>);
 }
 

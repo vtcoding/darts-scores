@@ -1,6 +1,6 @@
 export type Match = {
   id: number;
-  mode: number;
+  mode: string;
   legs: number;
   started_at: number;
   ended_at: number | null;

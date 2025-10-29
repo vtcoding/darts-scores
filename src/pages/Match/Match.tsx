@@ -45,7 +45,7 @@ const Match = () => {
   const submitTurn = () => {
     const numberInput = input === "" ? "0" : input;
     const number: number = parseInt(numberInput);
-    const remaining: number = calculateRemainingScore(legLength, currentLeg, turns);
+    const remaining: number = calculateRemainingScore(parseInt(legLength), currentLeg, turns);
     const newRemaining = remaining - number;
 
     if (number < 181 && newRemaining > -1 && newRemaining !== 1) {
@@ -73,7 +73,7 @@ const Match = () => {
       dartsUsedOnDouble: dartsUsedOnDouble
     }
     const newTurns = [...turns, newTurn];
-    const remaining: number = calculateRemainingScore(legLength, currentLeg, newTurns);
+    const remaining: number = calculateRemainingScore(parseInt(legLength), currentLeg, newTurns);
     setInput("");
     setTurns(newTurns);
     if (remaining === 0) {
@@ -99,7 +99,7 @@ const Match = () => {
         <Header title={`${legLength} - First to 1 leg`} showQuitButton />
         <div className={styles.matchInfo}><Title text={`Current leg: ${currentLeg}`} /></div>
         <div className={styles.scoreAndStats}>
-          <div className={styles.score}>{calculateRemainingScore(legLength, currentLeg, turns)}</div>
+          <div className={styles.score}>{calculateRemainingScore(parseInt(legLength), currentLeg, turns)}</div>
           <div className={styles.statsWrapper}>
             <div className={styles.statsTitle}>Stats</div>
             <div className={styles.stats}>
@@ -117,7 +117,13 @@ const Match = () => {
         <div className={styles.keyboard}>
           {keys.map((key) => {
             return (
-              <Button onClick={() => handleKeyKlick(key.toString())} size={"large"} key={key} text={key.toString()} />
+              <div
+                className={styles.key}
+                onClick={() => handleKeyKlick(key.toString())}
+                key={key}
+              >
+                <Title text={key.toString()} />
+              </div>
             );
           })}
         </div>

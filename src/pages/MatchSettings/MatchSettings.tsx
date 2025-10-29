@@ -6,19 +6,20 @@ import PageContent from "../../components/PageContent/PageContent";
 import Title from "../../components/Title/Title";
 import { useState } from "react";
 import { saveNewMatchToStorage } from "../../utils";
-import Options from "../../components/Options/Options";
+import type { Option } from "../../types";
+import Dropdown from "../../components/Dropdown/Dropdown";
 
 const MatchSettings = () => {
     const navigate = useNavigate();
-    const [mode, setMode] = useState<string>("501");
+    const [mode, setMode] = useState<Option>({ name: "501", id: "501" });
     const [legs] = useState<string>("1");
 
     const startMatch = () => {
-        saveNewMatchToStorage(parseInt(mode), parseInt(legs));
+        saveNewMatchToStorage(mode.id, parseInt(legs));
         navigate("/match")
     }
 
-    const options = [
+    const modes: Option[] = [
         { name: "301", id: "301" },
         { name: "501", id: "501" },
         { name: "701", id: "701" }
@@ -29,7 +30,7 @@ const MatchSettings = () => {
             <PageContent headerTitle={"Match settings"}>
                 <Block>
                     <Title text={"Choose mode"} />
-                    <Options options={options} selectedOption={mode} setSelectedOption={setMode} />
+                    <Dropdown options={modes} selectedOption={mode} setSelectedOption={setMode} />
                 </Block>
                 <Button disabled={legs === ""} onClick={() => startMatch()} text={"Start match"} variant={"green"} />
             </PageContent>

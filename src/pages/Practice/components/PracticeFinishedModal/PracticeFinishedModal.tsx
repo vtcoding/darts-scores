@@ -30,7 +30,7 @@ const PracticeFinishedModal = ({ open, turns, playAgain, quitToMenu }: PracticeF
     // Save match when modal is rendered
     useEffect(() => {
         savePractice()
-    }, []);
+    });
 
     return <Modal open={open}>
         <Title text={"Practice ended"} />

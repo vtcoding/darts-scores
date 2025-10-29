@@ -32,7 +32,7 @@ const MatchFinishedModal = ({ open, turns, playAgain, quit }: MatchFinishedModal
     // Save match when modal is rendered
     useEffect(() => {
         saveMatch()
-    }, []);
+    });
 
     return (
         <Modal open={open}>

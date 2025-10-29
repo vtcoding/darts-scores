@@ -39,7 +39,7 @@ const Home = () => {
               <Title text={"Practice"} />
             </BlockHeader>
             <BlockParagraph>
-              Practice your throwing with Around the clock, Doubles training or Bobs 27.
+              Practice your throwing with Around the clock, Doubles training or triples training..
             </BlockParagraph>
           </Block>
         </div>

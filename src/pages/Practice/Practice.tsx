@@ -129,6 +129,16 @@ const Practice = () => {
         }
     }
 
+    const getThrownString = (value: number | null) => {
+        if (value && value !== -1 && value !== matchSettings.finish_on) {
+            return getTargetPrefix() + value;
+        } else if (value === -1) {
+            return "Miss";
+        } else {
+            return value;
+        }
+    }
+
     const playAgain = () => {
         setPracticeEndedModalVisible(false);
         setTurns([]);
@@ -151,13 +161,13 @@ const Practice = () => {
                 <Button onClick={() => undoThrow()} text={"Undo"} variant={"red"} size={"large"} />
                 <div className={styles.darts}>
                     <div className={styles.dart}>
-                        {turns.length > 0 ? turns[turns.length - 1].dart1 : ""}
+                        {turns.length > 0 ? getThrownString(turns[turns.length - 1].dart1) : ""}
                     </div>
                     <div className={styles.dart}>
-                        {turns.length > 0 ? turns[turns.length - 1].dart2 : ""}
+                        {turns.length > 0 ? getThrownString(turns[turns.length - 1].dart2) : ""}
                     </div>
                     <div className={styles.dart}>
-                        {turns.length > 0 ? turns[turns.length - 1].dart3 : ""}
+                        {turns.length > 0 ? getThrownString(turns[turns.length - 1].dart3) : ""}
                     </div>
                 </div>
             </div>

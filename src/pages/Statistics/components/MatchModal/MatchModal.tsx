@@ -18,7 +18,7 @@ const MatchModal = ({ open, close, match }: MatchModalProps) => {
     return (
         <Modal open={open} close={close}>
             <div className={styles.matchModal}>
-                <Title text={"Best of 1 leg - 501"} />
+                <Title text={`Best of 1 leg - ${match.mode}`} />
                 <div className={styles.stats}>
                     <div className={styles.stat}>Ended at: {date}</div>
                     <div className={styles.stat}>3 dart average: {calculateThreeDartAverage(turns).toFixed(2)}</div>
