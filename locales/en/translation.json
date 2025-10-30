@@ -1,125 +1,125 @@
 {
-    "components": {
-        "sidebar": {
-            "home": "Home",
-            "playMatch": "Play match",
-            "practice": "Practice",
-            "statistics": "Statistics",
-            "language": "Language"
-        },
-        "header": {
-            "goToMenu": "Go to menu"
-        }
+  "components": {
+    "sidebar": {
+      "home": "Home",
+      "playMatch": "Play match",
+      "practice": "Practice",
+      "statistics": "Statistics",
+      "language": "Language"
     },
-    "pages": {
-        "home": {
-            "title": "Home",
-            "welcomeTitle": "Welcome to Darts Scores!",
-            "welcomeDesc": "Play, practice and track your darts progress with Darts Scores.",
-            "matchTitle": "Play match",
-            "matchDesc": "Play 301, 501 or 701.",
-            "practiceTitle": "Practice",
-            "practiceDesc": "Practice your throwing with Around the clock, Doubles training or Triples training.",
-            "statisticsTitle": "Statistics",
-            "statisticsDesc": "View your practice statistics and track your progress."
-        },
-        "matchSettings": {
-            "title": "Match settings",
-            "chooseMode": "Choose mode",
-            "startMatch": "Start match"
-        },
-        "practiceSettings": {
-            "title": "Practice settings",
-            "aroundTheClockTitle": "Play Around the clock",
-            "aroundTheClockDesc": "Go through each sector (1-20) and finish with single bull.",
-            "doublesTitle": "Play Doubles practice",
-            "doublesDesc": "Go through each double (1-20).",
-            "triplesTitle": "Play Triple practice",
-            "triplesDesc": "Go through each triple (1-20)."
-        },
-        "statistics": {
-            "title": "Statistics",
-            "selectMode": "Select mode",
-            "modeMatch": "Match",
-            "modeAroundTheClock": "Around the clock",
-            "modeDoublesPractice": "Doubles practice",
-            "modeTriplesPractice": "Triples practice",
-            "defaultStatMatch": "Three dart average",
-            "defaultStatPractice": "Hit rate",
-            "exportStatsButton": "Export statistics as CSV",
-            "deleteStatsButton": "Delete statistics",
-            "deleteStatsModal": {
-                "title": "Are you sure you want to delete your statistics?",
-                "cancel": "Cancel",
-                "delete": "Delete"
-            },
-            "general": {
-                "title": "General statistics",
-                "threeDartAverage": "Three dart average",
-                "firstNineDartsAverage": "First nine darts average",
-                "checkoutPercentage": "Checkout percentage",
-                "totalHitRate": "Total hit rate"
-            },
-            "matches": {
-                "lastFive": "Last 5 matches",
-                "endedAt": "Ended at"
-            },
-            "matchModals": {
-                "firstTo": "First to 1 leg - ",
-                "endedAt": "Ended at",
-                "threeDartAverage": "Three dart average",
-                "firstNineDartsAverage": "First nine darts average",
-                "checkoutPercentage": "Checkout percentage",
-                "dartsThrown": "Darts thrown",
-                "hitRate": "Hit rate",
-                "deleteMatch": "Delete match",
-                "close": "Close"
-            },
-            "statsTable": {
-                "average": "Avg",
-                "best": "Best",
-                "worst": "Worst"
-            }
-        },
-        "match": {
-            "firstTo": "First to 1 leg",
-            "currentLeg": "Current leg",
-            "statsTitle": "Statistics",
-            "threeDartAverage": "3 dart average",
-            "dartsThrown": "Darts thrown",
-            "lastScore": "Last score",
-            "undo": "Undo",
-            "setScore": "Set a score",
-            "submit": "Submit",
-            "clear": "Clear",
-            "doublesModal": {
-                "title": "How many darts used on doubles?",
-                "submit": "Submit"
-            },
-            "matchFinishedModal": {
-                "title": "Match finished",
-                "stats": "Statistics",
-                "threeDartAverage": "3 dart average",
-                "checkoutPercentage": "Checkout percentage",
-                "dartsThrown": "Darts thrown",
-                "playAgain": "Play again",
-                "quit": "Quit"
-            }
-        },
-        "practiceMatch": {
-            "statsTitle": "Statistics",
-            "dartsHit": "Darts hit",
-            "hitRate": "Hit rate",
-            "undo": "Undo",
-            "miss": "Miss",
-            "practiceFinishedModal": {
-                "title": "Practice finished",
-                "statsTitle": "Statistics",
-                "dartsHit": "Darts hit",
-                "hitRate": "Hit rate",
-                "playAgain": "Play again",
-                "quit": "Quit"
-            }
-        }
+    "header": {
+      "goToMenu": "Go to menu"
     }
+  },
+  "pages": {
+    "home": {
+      "title": "Home",
+      "welcomeTitle": "Welcome to Darts Scores!",
+      "welcomeDesc": "Play, practice and track your darts progress with Darts Scores.",
+      "matchTitle": "Play match",
+      "matchDesc": "Play 301, 501 or 701.",
+      "practiceTitle": "Practice",
+      "practiceDesc": "Practice your throwing with Around the clock, Doubles training or Triples training.",
+      "statisticsTitle": "Statistics",
+      "statisticsDesc": "View your practice statistics and track your progress."
+    },
+    "matchSettings": {
+      "title": "Match settings",
+      "chooseMode": "Choose mode",
+      "startMatch": "Start match"
+    },
+    "practiceSettings": {
+      "title": "Practice settings",
+      "aroundTheClockTitle": "Play Around the clock",
+      "aroundTheClockDesc": "Go through each sector (1-20) and finish with single bull.",
+      "doublesTitle": "Play Doubles practice",
+      "doublesDesc": "Go through each double (1-20).",
+      "triplesTitle": "Play Triple practice",
+      "triplesDesc": "Go through each triple (1-20)."
+    },
+    "statistics": {
+      "title": "Statistics",
+      "selectMode": "Select mode",
+      "modeMatch": "Match",
+      "modeAroundTheClock": "Around the clock",
+      "modeDoublesPractice": "Doubles practice",
+      "modeTriplesPractice": "Triples practice",
+      "defaultStatMatch": "Three dart average",
+      "defaultStatPractice": "Hit rate",
+      "exportStatsButton": "Export statistics as CSV",
+      "deleteStatsButton": "Delete statistics",
+      "deleteStatsModal": {
+        "title": "Are you sure you want to delete your statistics?",
+        "cancel": "Cancel",
+        "delete": "Delete"
+      },
+      "general": {
+        "title": "General statistics",
+        "threeDartAverage": "Three dart average",
+        "firstNineDartsAverage": "First nine darts average",
+        "checkoutPercentage": "Checkout percentage",
+        "totalHitRate": "Total hit rate"
+      },
+      "matches": {
+        "lastFive": "Last 5 matches",
+        "endedAt": "Ended at"
+      },
+      "matchModals": {
+        "firstTo": "First to 1 leg - ",
+        "endedAt": "Ended at",
+        "threeDartAverage": "Three dart average",
+        "firstNineDartsAverage": "First nine darts average",
+        "checkoutPercentage": "Checkout percentage",
+        "dartsThrown": "Darts thrown",
+        "hitRate": "Hit rate",
+        "deleteMatch": "Delete match",
+        "close": "Close"
+      },
+      "statsTable": {
+        "average": "Avg",
+        "best": "Best",
+        "worst": "Worst"
+      }
+    },
+    "match": {
+      "firstTo": "First to 1 leg",
+      "currentLeg": "Current leg",
+      "statsTitle": "Statistics",
+      "threeDartAverage": "3 dart average",
+      "dartsThrown": "Darts thrown",
+      "lastScore": "Last score",
+      "undo": "Undo",
+      "setScore": "Set a score",
+      "submit": "Submit",
+      "clear": "Clear",
+      "doublesModal": {
+        "title": "How many darts used on doubles?",
+        "submit": "Submit"
+      },
+      "matchFinishedModal": {
+        "title": "Match finished",
+        "stats": "Statistics",
+        "threeDartAverage": "3 dart average",
+        "checkoutPercentage": "Checkout percentage",
+        "dartsThrown": "Darts thrown",
+        "playAgain": "Play again",
+        "quit": "Quit"
+      }
+    },
+    "practiceMatch": {
+      "statsTitle": "Statistics",
+      "dartsHit": "Darts hit",
+      "hitRate": "Hit rate",
+      "undo": "Undo",
+      "miss": "Miss",
+      "practiceFinishedModal": {
+        "title": "Practice finished",
+        "statsTitle": "Statistics",
+        "dartsHit": "Darts hit",
+        "hitRate": "Hit rate",
+        "playAgain": "Play again",
+        "quit": "Quit"
+      }
+    }
+  }
 }
