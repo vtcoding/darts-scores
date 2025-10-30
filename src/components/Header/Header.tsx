@@ -3,6 +3,7 @@ import styles from "./Header.module.css";
 import Title from "../Title/Title";
 import Link from "../Link/Link";
 import MenuIcon from '@mui/icons-material/Menu';
+import { useTranslation } from "react-i18next";
 
 interface HeaderProps {
     title: string;
@@ -11,6 +12,7 @@ interface HeaderProps {
 }
 
 const Header = ({ title, toggleSidebar, showQuitButton }: HeaderProps) => {
+    const { t } = useTranslation();
     const navigate = useNavigate();
     return (
         <div className={styles.header}>
@@ -22,7 +24,7 @@ const Header = ({ title, toggleSidebar, showQuitButton }: HeaderProps) => {
             }
             {
                 showQuitButton &&
-                <Link text={"Go to menu"} onClick={() => navigate("/")} />
+                <Link text={t("components.header.goToMenu")} onClick={() => navigate("/")} />
             }
         </div>
     );

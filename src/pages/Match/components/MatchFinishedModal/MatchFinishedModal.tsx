@@ -1,4 +1,5 @@
 
+import { useTranslation } from 'react-i18next';
 import Button from '../../../../components/Button/Button';
 import Modal from '../../../../components/Modal/Modal';
 import Title from '../../../../components/Title/Title';
@@ -16,6 +17,7 @@ interface MatchFinishedModalProps {
 }
 
 const MatchFinishedModal = ({ open, turns, playAgain, quit }: MatchFinishedModalProps) => {
+    const { t } = useTranslation();
     const activeMatch = localStorage.getItem("activeMatch");
     const storedMatches = JSON.parse(localStorage.getItem("matches") || "[]");
 
@@ -36,17 +38,17 @@ const MatchFinishedModal = ({ open, turns, playAgain, quit }: MatchFinishedModal
 
     return (
         <Modal open={open}>
-            <Title text={"Match finished"} />
+            <Title text={t("pages.match.matchFinishedModal.title")} />
             <div className={styles.statsWrapper}>
-                <Title text={"Stats"} />
+                <Title text={t("pages.match.matchFinishedModal.stats")} />
                 <div className={styles.stats}>
-                    <div className={styles.stat}>3 dart average: {calculateThreeDartAverage(turns).toFixed(2)}</div>
-                    <div className={styles.stat}>Checkout percentage: {calculateCheckoutPercentage(turns).toFixed(2)}%</div>
-                    <div className={styles.stat}>Darts thrown: {turns.length * 3}</div>
+                    <div className={styles.stat}>{t("pages.match.matchFinishedModal.threeDartAverage")}: {calculateThreeDartAverage(turns).toFixed(2)}</div>
+                    <div className={styles.stat}>{t("pages.match.matchFinishedModal.checkoutPercentage")}: {calculateCheckoutPercentage(turns).toFixed(2)}%</div>
+                    <div className={styles.stat}>{t("pages.match.matchFinishedModal.dartsThrown")}: {turns.length * 3}</div>
                 </div>
             </div>
-            <Button onClick={() => playAgain()} text={"Play again"} variant={"green"} />
-            <Button onClick={() => quit()} text={"Quit"} variant={"red"} />
+            <Button onClick={() => playAgain()} text={t("pages.match.matchFinishedModal.playAgain")} variant={"green"} />
+            <Button onClick={() => quit()} text={t("pages.match.matchFinishedModal.quit")} variant={"red"} />
         </Modal >
     );
 };

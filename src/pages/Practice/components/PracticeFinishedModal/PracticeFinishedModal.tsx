@@ -5,6 +5,7 @@ import Title from "../../../../components/Title/Title";
 import type { PracticeMatch, PracticeTurn } from "../../../../types";
 import styles from "./PracticeFinishedModal.module.css";
 import { calculateDartsHit, calculateHitRate } from "../../../../utils";
+import { useTranslation } from "react-i18next";
 
 interface PracticeFinishedModalProps {
     open: boolean;
@@ -14,6 +15,7 @@ interface PracticeFinishedModalProps {
 }
 
 const PracticeFinishedModal = ({ open, turns, playAgain, quitToMenu }: PracticeFinishedModalProps) => {
+    const { t } = useTranslation();
     const activePracticeMatch = localStorage.getItem("activePracticeMatch");
     const storedPracticeMatches = JSON.parse(localStorage.getItem("practiceMatches") || "[]");
 
@@ -33,16 +35,16 @@ const PracticeFinishedModal = ({ open, turns, playAgain, quitToMenu }: PracticeF
     });
 
     return <Modal open={open}>
-        <Title text={"Practice ended"} />
+        <Title text={t("pages.practiceMatch.practiceFinishedModal.title")} />
         <div className={styles.statsWrapper}>
-            <Title text={"Stats"} />
+            <Title text={t("pages.practiceMatch.practiceFinishedModal.statsTitle")} />
             <div className={styles.stats}>
-                <div className={styles.stat}>Darts hit: {calculateDartsHit(turns)}</div>
-                <div className={styles.stat}>Hit rate: {calculateHitRate(turns).toFixed(2)}%</div>
+                <div className={styles.stat}>{t("pages.practiceMatch.practiceFinishedModal.dartsHit")}: {calculateDartsHit(turns)}</div>
+                <div className={styles.stat}>{t("pages.practiceMatch.practiceFinishedModal.hitRate")}: {calculateHitRate(turns).toFixed(2)}%</div>
             </div>
         </div>
-        <Button onClick={playAgain} text={"Play again"} variant={"green"} />
-        <Button onClick={quitToMenu} text={"Quit to menu"} variant={"red"} />
+        <Button onClick={playAgain} text={t("pages.practiceMatch.practiceFinishedModal.playAgain")} variant={"green"} />
+        <Button onClick={quitToMenu} text={t("pages.practiceMatch.practiceFinishedModal.quit")} variant={"red"} />
     </Modal>
 }
 

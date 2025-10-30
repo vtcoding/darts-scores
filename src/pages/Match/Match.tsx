@@ -10,10 +10,25 @@ import Input from '../../components/Input/Input';
 import DoublesModal from './components/DoublesModal/DoublesModal';
 import MatchFinishedModal from './components/MatchFinishedModal/MatchFinishedModal';
 import Title from '../../components/Title/Title';
+import { useTranslation } from 'react-i18next';
 
 const Match = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
-  const keys = [1, 2, 3, 0, 4, 5, 6, "", 7, 8, 9, "Clear"]
+  const keys = [
+    { key: 1, name: 1 },
+    { key: 2, name: 2 },
+    { key: 3, name: 3 },
+    { key: 0, name: 0 },
+    { key: 4, name: 4 },
+    { key: 5, name: 5 },
+    { key: 6, name: 6 },
+    { key: "", name: "" },
+    { key: 7, name: 7 },
+    { key: 8, name: 8 },
+    { key: 9, name: 9 },
+    { key: "clear", name: t("pages.match.clear") }
+  ]
   const matchSettings: MatchType = getMatchSettings();
   const legLength = matchSettings.mode;
   const legs = matchSettings.legs;
@@ -35,7 +50,7 @@ const Match = () => {
   }
 
   const handleKeyKlick = (value: string) => {
-    if (value === "Clear") {
+    if (value === "clear") {
       setInput("")
     } else {
       setInput(input + value);
@@ -49,7 +64,8 @@ const Match = () => {
     const newRemaining = remaining - number;
 
     if (number < 181 && newRemaining > -1 && newRemaining !== 1) {
-      if (newRemaining === 0 || (remaining < 171 && (number === 0 || newRemaining < 171))) {
+      /* if (newRemaining === 0 || (remaining < 171 && (number === 0 || newRemaining < 171))) { */
+      if (newRemaining === 0 || (newRemaining < 51 && newRemaining > 1)) {
         setDoublesModalVisible(true);
       } else {
         setInput("");
@@ -96,33 +112,33 @@ const Match = () => {
   return (
     <FadeIn>
       <div className={styles.match}>
-        <Header title={`${legLength} - First to 1 leg`} showQuitButton />
-        <div className={styles.matchInfo}><Title text={`Current leg: ${currentLeg}`} /></div>
+        <Header title={`${legLength} - ${t("pages.match.firstTo")}`} showQuitButton />
+        <div className={styles.matchInfo}><Title text={`${t("pages.match.currentLeg")}: ${currentLeg}`} /></div>
         <div className={styles.scoreAndStats}>
           <div className={styles.score}>{calculateRemainingScore(parseInt(legLength), currentLeg, turns)}</div>
           <div className={styles.statsWrapper}>
-            <div className={styles.statsTitle}>Stats</div>
+            <div className={styles.statsTitle}>{t("pages.match.statsTitle")}</div>
             <div className={styles.stats}>
-              <div className={styles.stat}>3 dart average: {calculateThreeDartAverage(turns).toFixed(2)}</div>
-              <div className={styles.stat}>Darts thrown: {turns.length * 3}</div>
-              <div className={styles.stat}>Last score: {turns[turns.length - 1] ? turns[turns.length - 1].score : "-"}</div>
+              <div className={styles.stat}>{t("pages.match.threeDartAverage")}: {calculateThreeDartAverage(turns).toFixed(2)}</div>
+              <div className={styles.stat}>{t("pages.match.dartsThrown")}: {turns.length * 3}</div>
+              <div className={styles.stat}>{t("pages.match.lastScore")}: {turns[turns.length - 1] ? turns[turns.length - 1].score : "-"}</div>
             </div>
           </div>
         </div>
         <div className={styles.controls}>
-          <Button onClick={() => undoTurn()} text={"Undo"} variant={"red"} size={"large"} />
-          <Input placeholder={"Set a score"} value={input} validateInput={(value: string) => validateInput(value)} />
-          <Button onClick={() => submitTurn()} text={"Submit"} variant={"green"} size={"large"} />
+          <Button onClick={() => undoTurn()} text={t("pages.match.undo")} variant={"red"} size={"large"} />
+          <Input placeholder={t("pages.match.setScore")} value={input} validateInput={(value: string) => validateInput(value)} />
+          <Button onClick={() => submitTurn()} text={t("pages.match.submit")} variant={"green"} size={"large"} />
         </div>
         <div className={styles.keyboard}>
           {keys.map((key) => {
             return (
               <div
                 className={styles.key}
-                onClick={() => handleKeyKlick(key.toString())}
-                key={key}
+                onClick={() => handleKeyKlick(key.key.toString())}
+                key={key.key}
               >
-                <Title text={key.toString()} />
+                <Title text={key.name.toString()} />
               </div>
             );
           })}

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Button from '../../../../components/Button/Button';
 import Modal from '../../../../components/Modal/Modal';
 import Title from '../../../../components/Title/Title';
+import { useTranslation } from 'react-i18next';
 
 interface DoublesModalProps {
   open: boolean;
@@ -10,11 +11,14 @@ interface DoublesModalProps {
 }
 
 const DoublesModal = ({ open, handleSubmit }: DoublesModalProps) => {
+  const { t, i18n } = useTranslation();
   const [selectedDouble, setSelectedDouble] = useState<number>(0);
+
+  console.log(i18n.language)
 
   return (
     <Modal open={open}>
-      <Title text={"How many darts used on doubles?"} />
+      <Title text={t("pages.match.doublesModal.title")} />
       <div className={styles.doubles}>
         {
           [0, 1, 2, 3].map((double) => {
@@ -24,7 +28,7 @@ const DoublesModal = ({ open, handleSubmit }: DoublesModalProps) => {
           })
         }
       </div>
-      <Button onClick={() => handleSubmit(selectedDouble)} text="Submit" variant="green" />
+      <Button onClick={() => handleSubmit(selectedDouble)} text={t("pages.match.doublesModal.submit")} variant="green" />
     </Modal>
   );
 };

@@ -6,8 +6,10 @@ import { calculateDartsHit, calculateHitRate, getPracticeMatchSettings } from ".
 import type { PracticeTurn } from "../../types";
 import PracticeFinishedModal from "./components/PracticeFinishedModal/PracticeFinishedModal";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Practice = () => {
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const matchSettings = getPracticeMatchSettings();
     const [turns, setTurns] = useState<PracticeTurn[]>([]);
@@ -133,7 +135,7 @@ const Practice = () => {
         if (value && value !== -1 && value !== matchSettings.finish_on) {
             return getTargetPrefix() + value;
         } else if (value === -1) {
-            return "Miss";
+            return t("pages.practiceMatch.miss");
         } else {
             return value;
         }
@@ -150,15 +152,15 @@ const Practice = () => {
             <div className={styles.scoreAndStats}>
                 <div className={styles.score}>{getTargetPrefix()}{getTarget()}</div>
                 <div className={styles.statsWrapper}>
-                    <div className={styles.statsTitle}>Stats</div>
+                    <div className={styles.statsTitle}>{t("pages.practiceMatch.statsTitle")}</div>
                     <div className={styles.stats}>
-                        <div className={styles.stat}>Darts hit: {calculateDartsHit(turns)}</div>
-                        <div className={styles.stat}>Hit rate: {calculateHitRate(turns).toFixed(2)}%</div>
+                        <div className={styles.stat}>{t("pages.practiceMatch.dartsHit")}: {calculateDartsHit(turns)}</div>
+                        <div className={styles.stat}>{t("pages.practiceMatch.hitRate")}: {calculateHitRate(turns).toFixed(2)}%</div>
                     </div>
                 </div>
             </div>
             <div className={styles.controls}>
-                <Button onClick={() => undoThrow()} text={"Undo"} variant={"red"} size={"large"} />
+                <Button onClick={() => undoThrow()} text={t("pages.practiceMatch.undo")} variant={"red"} size={"large"} />
                 <div className={styles.darts}>
                     <div className={styles.dart}>
                         {turns.length > 0 ? getThrownString(turns[turns.length - 1].dart1) : ""}
@@ -172,7 +174,7 @@ const Practice = () => {
                 </div>
             </div>
             <div className={styles.keyboard}>
-                <div onClick={() => handleKeyClick(-1)} className={styles.key}>Miss</div>
+                <div onClick={() => handleKeyClick(-1)} className={styles.key}>{t("pages.practiceMatch.miss")}</div>
                 <div onClick={() => handleKeyClick(getTarget())} className={styles.key}>{getTargetPrefix()}{getTarget()}</div>
             </div>
             {practiceEndedModalVisible &&

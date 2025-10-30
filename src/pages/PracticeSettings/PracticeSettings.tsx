@@ -7,9 +7,11 @@ import RefreshIcon from '@mui/icons-material/Refresh';
 import BlockParagraph from "../../components/BlockParagraph/BlockParagraph";
 import { useNavigate } from "react-router-dom";
 import { saveNewPracticeToStorage } from "../../utils";
+import { useTranslation } from "react-i18next";
 
 const PracticeSettings = () => {
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const startPracticeMatch = (mode: string, finishOn: number) => {
         saveNewPracticeToStorage(mode, finishOn);
@@ -18,49 +20,53 @@ const PracticeSettings = () => {
 
     return (
         <FadeIn>
-            <PageContent headerTitle={"Practice"}>
+            <PageContent headerTitle={t("pages.practiceSettings.title")}>
                 <Block onClick={() => startPracticeMatch("around-the-clock", 25)}>
                     <BlockHeader>
                         <RefreshIcon />
                         -
-                        <Title text={"Play around the clock"} />
+                        <Title text={t("pages.practiceSettings.aroundTheClockTitle")} />
                     </BlockHeader>
                     <BlockParagraph>
-                        Go through each sector (1-20) and finish with single bull or bull.
+                        {t("pages.practiceSettings.aroundTheClockDesc")}
                     </BlockParagraph>
                 </Block>
+
                 <Block onClick={() => startPracticeMatch("doubles", 50)}>
                     <BlockHeader>
                         <RefreshIcon />
                         <b>2</b>
                         -
-                        <Title text={"Play doubles practice"} />
+                        <Title text={t("pages.practiceSettings.doublesTitle")} />
                     </BlockHeader>
                     <BlockParagraph>
-                        Go through each double (1-20).
+                        {t("pages.practiceSettings.doublesDesc")}
                     </BlockParagraph>
                 </Block>
+
                 <Block onClick={() => startPracticeMatch("triples", 50)}>
                     <BlockHeader>
                         <RefreshIcon />
                         <b>3</b>
                         -
-                        <Title text={"Play triples practice"} />
+                        <Title text={t("pages.practiceSettings.triplesTitle")} />
                     </BlockHeader>
                     <BlockParagraph>
-                        Go through each triple (1-20).
+                        {t("pages.practiceSettings.triplesDesc")}
                     </BlockParagraph>
                 </Block>
-                <Block disabled>
+
+                {/* <Block disabled>
                     <BlockHeader>
                         <RefreshIcon />
-                        <Title text={"Play Bob's 27"} />
+                        <Title text={t("pages.practiceSettings.bobs27Title")} />
                     </BlockHeader>
                     <BlockParagraph>
-                        Upcoming
+                        {t("pages.practiceSettings.bobs27Desc")}
                     </BlockParagraph>
-                </Block>
+                </Block> */}
             </PageContent>
+
         </FadeIn>
     )
 }

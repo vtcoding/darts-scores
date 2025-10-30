@@ -10,9 +10,11 @@ import PageContent from '../../components/PageContent/PageContent';
 import Dropdown from '../../components/Dropdown/Dropdown';
 import Block from '../../components/Block/Block';
 import Title from '../../components/Title/Title';
+import { useTranslation } from 'react-i18next';
 
 const Statistics = () => {
-  const [selectedMode, setSelectedMode] = useState<Option>({ name: "Match", id: "match" });
+  const { t } = useTranslation();
+  const [selectedMode, setSelectedMode] = useState<Option>({ name: t("pages.statistics.modeMatch"), id: "match" });
   const [deleteStatsModalVisible, setDeleteStatsModalVisible] = useState<boolean>(false);
   const matches = JSON.parse(localStorage.getItem("matches") || "[]");
   const finishedMatches = matches.filter((match: Match) => match.ended_at);
@@ -26,17 +28,17 @@ const Statistics = () => {
   }
 
   const modes = [
-    { name: "Match", id: "match" },
-    { name: "Around the clock", id: "around-the-clock" },
-    { name: "Doubles practice", id: "doubles" },
-    { name: "Triples practice", id: "triples" }
+    { name: t("pages.statistics.modeMatch"), id: "match" },
+    { name: t("pages.statistics.modeAroundTheClock"), id: "around-the-clock" },
+    { name: t("pages.statistics.modeDoublesPractice"), id: "doubles" },
+    { name: t("pages.statistics.modeTriplesPractice"), id: "triples" }
   ]
 
   return (
     <FadeIn>
-      <PageContent headerTitle={"Statistics"}>
+      <PageContent headerTitle={t("pages.statistics.title")}>
         <Block>
-          <Title text={"Select mode"} />
+          <Title text={t("pages.statistics.selectMode")} />
           <Dropdown options={modes} selectedOption={selectedMode} setSelectedOption={setSelectedMode} />
         </Block>
         <General
@@ -48,18 +50,18 @@ const Statistics = () => {
           mode={selectedMode}
           matches={finishedMatches}
           practiceMatches={finishedPracticeMatches}
-          defaultStat={selectedMode.id === "match" ? "Three dart average" : "Hit rate"}
+          defaultStat={selectedMode.id === "match" ? t("pages.statistics.defaultStatMatch") : t("pages.statistics.defaultStatPractice")}
         />
         <div className={styles.buttons}>
           <Button
             onClick={() => { }}
-            text={"Export stats"}
+            text={t("pages.statistics.exportStatsButton")}
             variant={"green"}
             disabled
           />
           <Button
             onClick={() => setDeleteStatsModalVisible(true)}
-            text={"Delete stats"}
+            text={t("pages.statistics.deleteStatsButton")}
             variant={"red"}
           />
         </div>
@@ -77,3 +79,4 @@ const Statistics = () => {
 };
 
 export default Statistics;
+

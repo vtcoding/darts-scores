@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import Button from "../../../../components/Button/Button";
 import Modal from "../../../../components/Modal/Modal";
 import Title from "../../../../components/Title/Title";
@@ -10,13 +11,15 @@ interface DeleteStatsModalProps {
 }
 
 const DeleteStatsModal = ({ open, close, confirmDeletion }: DeleteStatsModalProps) => {
+    const { t } = useTranslation();
+
     return (
         <Modal open={open}>
             <div className={styles.deleteStatsModal}>
-                <Title text={"Are you sure you want to delete your stats?"} />
+                <Title text={t("pages.statistics.deleteStatsModal.title")} />
                 <div className={styles.buttons}>
-                    <Button onClick={() => close()} text={"Cancel"} />
-                    <Button onClick={() => confirmDeletion()} text={"Delete"} variant={"red"} />
+                    <Button onClick={() => close()} text={t("pages.statistics.deleteStatsModal.cancel")} />
+                    <Button onClick={() => confirmDeletion()} text={t("pages.statistics.deleteStatsModal.delete")} variant={"red"} />
                 </div>
             </div>
 

@@ -8,9 +8,11 @@ import { useState } from "react";
 import { saveNewMatchToStorage } from "../../utils";
 import type { Option } from "../../types";
 import Dropdown from "../../components/Dropdown/Dropdown";
+import { useTranslation } from "react-i18next";
 
 const MatchSettings = () => {
     const navigate = useNavigate();
+    const { t } = useTranslation();
     const [mode, setMode] = useState<Option>({ name: "501", id: "501" });
     const [legs] = useState<string>("1");
 
@@ -27,12 +29,12 @@ const MatchSettings = () => {
 
     return (
         <FadeIn>
-            <PageContent headerTitle={"Match settings"}>
+            <PageContent headerTitle={t("pages.matchSettings.title")}>
                 <Block>
-                    <Title text={"Choose mode"} />
+                    <Title text={t("pages.matchSettings.chooseMode")} />
                     <Dropdown options={modes} selectedOption={mode} setSelectedOption={setMode} />
                 </Block>
-                <Button disabled={legs === ""} onClick={() => startMatch()} text={"Start match"} variant={"green"} />
+                <Button disabled={legs === ""} onClick={() => startMatch()} text={t("pages.matchSettings.startMatch")} variant={"green"} />
             </PageContent>
         </FadeIn>
     )

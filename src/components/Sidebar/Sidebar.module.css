@@ -1,15 +1,15 @@
 .sidebar {
-    background-color: #222;
+    background-color: var(--color-background-1);
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: min-content min-content;
+    grid-template-rows: min-content min-content 1fr;
     height: 100vh;
     row-gap: var(--gap-7);
     width: 300px;
 }
 
 .logo {
-    color: #FFF;
+    color: var(--color-text);
     font-size: var(--font-size-l);
     padding: var(--gap-5);
     text-align: center;
@@ -27,7 +27,7 @@
     align-items: center;
     background-color: var(--color-background-2);
     border-radius: var(--radius-size-m);
-    color: #FFF;
+    color: var(--color-text);
     cursor: pointer;
     display: grid;
     font-size: var(--font-size-l);
@@ -47,7 +47,37 @@
     opacity: var(--opacity-disabled);
 }
 
+.languages {
+    align-self: end;
+    color: var(--color-text);
+    display: grid;
+    gap: var(--gap-3);
+    grid-template-columns: 100px min-content min-content;
+    padding: var(--gap-4);
+    text-align: center;
+}
 
+.languageTitle {
+    align-items: center;
+    background-color: var(--color-background-2);
+    border-radius: var(--radius-size-m);
+    display: grid;
+    text-align: center;
+}
+
+.language {
+    background-color: var(--color-background-2);
+    border-radius: var(--radius-size-m);
+    cursor: pointer;
+    height: 50px;
+    justify-self: center;
+    opacity: 0.4;
+    padding: 10px;
+}
+
+.language.selected {
+    opacity: 1;
+}
 
 @media screen and (max-width: 1279px) {
     .logo {

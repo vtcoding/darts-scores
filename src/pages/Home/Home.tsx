@@ -10,51 +10,53 @@ import { useNavigate } from "react-router-dom";
 import Block from "../../components/Block/Block";
 import BlockParagraph from "../../components/BlockParagraph/BlockParagraph";
 import BlockHeader from "../../components/BlockHeader/BlockHeader";
+import { useTranslation } from "react-i18next";
 
 const Home = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   return (
     <FadeIn>
-      <PageContent headerTitle={"Home"}>
+      <PageContent headerTitle={t("pages.home.title")}>
         <Block>
-          <Title text={"Welcome to Darts Scores!"} />
+          <Title text={t("pages.home.welcomeTitle")} />
           <BlockParagraph>
-            Play, practice and track your darts progress with Darts Scores.
+            {t("pages.home.welcomeDesc")}
           </BlockParagraph>
         </Block>
         <div className={styles.games}>
           <Block onClick={() => navigate("/match-settings")}>
             <BlockHeader>
               <ScoreboardIcon />
-              <Title text={"Play match"} />
+              <Title text={t("pages.home.matchTitle")} />
             </BlockHeader>
             <BlockParagraph>
-              Play 301, 501 or 701.
+              {t("pages.home.matchDesc")}
             </BlockParagraph>
           </Block>
           <Block onClick={() => navigate("/practice-settings")}>
             <BlockHeader>
               <FitnessCenterIcon />
-              <Title text={"Practice"} />
+              <Title text={t("pages.home.practiceTitle")} />
             </BlockHeader>
             <BlockParagraph>
-              Practice your throwing with Around the clock, Doubles training or triples training..
+              {t("pages.home.practiceDesc")}
             </BlockParagraph>
           </Block>
         </div>
         <Block onClick={() => navigate("/statistics")}>
           <BlockHeader>
             <EqualizerIcon />
-            <Title text={"Statistics"} />
+            <Title text={t("pages.home.statisticsTitle")} />
           </BlockHeader>
           <BlockParagraph>
-            View your practice statistics and track your progress.
+            {t("pages.home.statisticsDesc")}
           </BlockParagraph>
           <img width={"100%"} src={statistics} />
         </Block>
       </PageContent>
-    </FadeIn>
+    </FadeIn >
   );
 };
 

@@ -6,6 +6,7 @@ import styles from "./Matches.module.css";
 import MatchModal from "../MatchModal/MatchModal";
 import Block from "../../../../components/Block/Block";
 import PracticeMatchModal from "../PracticeMatchModal/PracticeMatchModal";
+import { useTranslation } from "react-i18next";
 
 interface MatchesProps {
     mode: Option;
@@ -15,14 +16,15 @@ interface MatchesProps {
 }
 
 const Matches = ({ mode, matches, practiceMatches, defaultStat }: MatchesProps) => {
+    const { t } = useTranslation();
     const [matchModalVisible, setMatchModalVisible] = useState<boolean>(false);
     const [selectedMatch, setSelectedMatch] = useState<Match | PracticeMatch | null>(null);
 
     return (
         <Block>
-            <Title text={"Last 5 matches"} />
+            <Title text={t("pages.statistics.matches.lastFive")} />
             <div className={styles.matchesHeader}>
-                <div className={styles.dateHeader}>Ended at</div>
+                <div className={styles.dateHeader}>{t("pages.statistics.matches.endedAt")}</div>
                 <div className={styles.averageHeader}>{defaultStat}</div>
             </div>
             <div className={styles.matches}>
