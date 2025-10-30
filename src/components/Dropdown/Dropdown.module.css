@@ -1,43 +1,43 @@
 .dropdown {
-    display: grid;
-    grid-template-columns: 1fr;
+  display: grid;
+  grid-template-columns: 1fr;
 }
 
 .select {
-    align-items: center;
-    background-color: var(--color-background-4);
-    border-radius: var(--radius-size-m);
-    color: var(--color-text);
-    cursor: pointer;
-    display: grid;
-    grid-template-columns: 1fr min-content;
-    padding: var(--gap-5);
-    width: 100%;
+  align-items: center;
+  background-color: var(--color-background-4);
+  border-radius: var(--radius-size-m);
+  color: var(--color-text);
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 1fr min-content;
+  padding: var(--gap-5);
+  width: 100%;
 }
 
 .select.opened {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .menu {
-    display: grid;
-    grid-template-columns: 1fr;
+  display: grid;
+  grid-template-columns: 1fr;
 }
 
 .menuOption {
-    background-color: var(--color-background-4);
-    color: var(--color-text);
-    cursor: pointer;
-    display: grid;
-    padding: var(--gap-4) var(--gap-6);
+  background-color: var(--color-background-4);
+  color: var(--color-text);
+  cursor: pointer;
+  display: grid;
+  padding: var(--gap-4) var(--gap-6);
 }
 
 .menuOption:hover {
-    background-color: var(--color-hover-4);
+  background-color: var(--color-hover-4);
 }
 
 .menuOption:last-child {
-    border-bottom-left-radius: var(--radius-size-m);
-    border-bottom-right-radius: var(--radius-size-m);
+  border-bottom-left-radius: var(--radius-size-m);
+  border-bottom-right-radius: var(--radius-size-m);
 }

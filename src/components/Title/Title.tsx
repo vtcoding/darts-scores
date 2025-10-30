@@ -1,11 +1,11 @@
-import styles from "./Title.module.css";
+import styles from './Title.module.css';
 
 interface TitleProps {
-    text: string;
+  text: string;
 }
 
 const Title = ({ text }: TitleProps) => {
-    return <div className={styles.title}>{text}</div>
-}
+  return <div className={styles.title}>{text}</div>;
+};
 
 export default Title;

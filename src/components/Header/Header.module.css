@@ -1,32 +1,33 @@
 .header {
-    align-items: center;
-    background-color: var(--color-blue);
-    color: var(--color-text);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: var(--gap-4);
+  align-items: center;
+  background-color: var(--color-blue);
+  color: var(--color-text);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: var(--gap-4);
 }
 
 .menuIcon {
-    display: none;
+  display: none;
 }
 
-.header> :nth-child(1) {
-    justify-self: start;
-    /* aligns to the left */
+.header > :nth-child(1) {
+  justify-self: start;
+  /* aligns to the left */
 }
 
-.header> :nth-child(2) {
-    justify-self: end;
-    /* aligns to the right */
+.header > :nth-child(2) {
+  justify-self: end;
+  /* aligns to the right */
 }
 
-@media screen and (max-width: 1279px) {}
+@media screen and (max-width: 1279px) {
+}
 
 @media screen and (max-width: 767px) {
-    .menuIcon {
-        align-items: center;
-        cursor: pointer;
-        display: grid;
-    }
+  .menuIcon {
+    align-items: center;
+    cursor: pointer;
+    display: grid;
+  }
 }

@@ -1,16 +1,23 @@
 import { useState } from 'react';
-import styles from './Match.module.css';
-import type { Turn, Match as MatchType } from '../../types';
-import { calculateRemainingScore, calculateThreeDartAverage, getMatchSettings, saveNewMatchToStorage } from '../../utils';
+
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+
+import Button from '../../components/Button/Button';
 import FadeIn from '../../components/FadeIn/FadeIn';
 import Header from '../../components/Header/Header';
-import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
+import Title from '../../components/Title/Title';
+import type { Match as MatchType, Turn } from '../../types';
+import {
+  calculateRemainingScore,
+  calculateThreeDartAverage,
+  getMatchSettings,
+  saveNewMatchToStorage,
+} from '../../utils';
+import styles from './Match.module.css';
 import DoublesModal from './components/DoublesModal/DoublesModal';
 import MatchFinishedModal from './components/MatchFinishedModal/MatchFinishedModal';
-import Title from '../../components/Title/Title';
-import { useTranslation } from 'react-i18next';
 
 const Match = () => {
   const { t } = useTranslation();
@@ -23,44 +30,50 @@ const Match = () => {
     { key: 4, name: 4 },
     { key: 5, name: 5 },
     { key: 6, name: 6 },
-    { key: "", name: "" },
+    { key: '', name: '' },
     { key: 7, name: 7 },
     { key: 8, name: 8 },
     { key: 9, name: 9 },
-    { key: "clear", name: t("pages.match.clear") }
-  ]
+    { key: 'clear', name: t('pages.match.clear') },
+  ];
   const matchSettings: MatchType = getMatchSettings();
   const legLength = matchSettings.mode;
   const legs = matchSettings.legs;
-  const [currentLeg, setCurrentLeg] = useState<number>(1)
+  const [currentLeg, setCurrentLeg] = useState<number>(1);
   const [turns, setTurns] = useState<Turn[]>([]);
-  const [input, setInput] = useState<string>("");
-  const [doublesModalVisible, setDoublesModalVisible] = useState<boolean>(false);
-  const [matchFinishedModalVisible, setMatchFinishedModalVisible] = useState<boolean>(false);
+  const [input, setInput] = useState<string>('');
+  const [doublesModalVisible, setDoublesModalVisible] =
+    useState<boolean>(false);
+  const [matchFinishedModalVisible, setMatchFinishedModalVisible] =
+    useState<boolean>(false);
 
   const validateInput = (input: string) => {
     if (input) {
-      const number: number = parseInt(input)
+      const number: number = parseInt(input);
       if (!isNaN(number)) {
-        setInput(input)
+        setInput(input);
       }
     } else {
-      setInput("")
+      setInput('');
     }
-  }
+  };
 
   const handleKeyKlick = (value: string) => {
-    if (value === "clear") {
-      setInput("")
+    if (value === 'clear') {
+      setInput('');
     } else {
       setInput(input + value);
     }
-  }
+  };
 
   const submitTurn = () => {
-    const numberInput = input === "" ? "0" : input;
+    const numberInput = input === '' ? '0' : input;
     const number: number = parseInt(numberInput);
-    const remaining: number = calculateRemainingScore(parseInt(legLength), currentLeg, turns);
+    const remaining: number = calculateRemainingScore(
+      parseInt(legLength),
+      currentLeg,
+      turns
+    );
     const newRemaining = remaining - number;
 
     if (number < 181 && newRemaining > -1 && newRemaining !== 1) {
@@ -68,67 +81,102 @@ const Match = () => {
       if (newRemaining === 0 || (newRemaining < 51 && newRemaining > 1)) {
         setDoublesModalVisible(true);
       } else {
-        setInput("");
+        setInput('');
         const newTurn: Turn = {
           score: number,
           leg: currentLeg,
-          dartsUsedOnDouble: 0
-        }
-        setTurns(turns => [...turns, newTurn]);
+          dartsUsedOnDouble: 0,
+        };
+        setTurns((turns) => [...turns, newTurn]);
       }
     }
-  }
+  };
 
   const handleDoubleSubmit = (dartsUsedOnDouble: number) => {
     setDoublesModalVisible(false);
-    const numberInput = input === "" ? "0" : input;
+    const numberInput = input === '' ? '0' : input;
     const number: number = parseInt(numberInput);
     const newTurn: Turn = {
       score: number,
       leg: currentLeg,
-      dartsUsedOnDouble: dartsUsedOnDouble
-    }
+      dartsUsedOnDouble: dartsUsedOnDouble,
+    };
     const newTurns = [...turns, newTurn];
-    const remaining: number = calculateRemainingScore(parseInt(legLength), currentLeg, newTurns);
-    setInput("");
+    const remaining: number = calculateRemainingScore(
+      parseInt(legLength),
+      currentLeg,
+      newTurns
+    );
+    setInput('');
     setTurns(newTurns);
     if (remaining === 0) {
       setMatchFinishedModalVisible(true);
     }
-  }
+  };
 
   const undoTurn = () => {
-    setTurns(turns => turns.slice(0, -1));
-  }
+    setTurns((turns) => turns.slice(0, -1));
+  };
 
   const playAgain = () => {
     saveNewMatchToStorage(legLength, legs);
     setMatchFinishedModalVisible(false);
     setCurrentLeg(1);
     setTurns([]);
-    setInput("");
-  }
+    setInput('');
+  };
 
   return (
     <FadeIn>
       <div className={styles.match}>
-        <Header title={`${legLength} - ${t("pages.match.firstTo")}`} showQuitButton />
-        <div className={styles.matchInfo}><Title text={`${t("pages.match.currentLeg")}: ${currentLeg}`} /></div>
+        <Header
+          title={`${legLength} - ${t('pages.match.firstTo')}`}
+          showQuitButton
+        />
+        <div className={styles.matchInfo}>
+          <Title text={`${t('pages.match.currentLeg')}: ${currentLeg}`} />
+        </div>
         <div className={styles.scoreAndStats}>
-          <div className={styles.score}>{calculateRemainingScore(parseInt(legLength), currentLeg, turns)}</div>
+          <div className={styles.score}>
+            {calculateRemainingScore(parseInt(legLength), currentLeg, turns)}
+          </div>
           <div className={styles.statsWrapper}>
-            <div className={styles.statsTitle}>{t("pages.match.statsTitle")}</div>
+            <div className={styles.statsTitle}>
+              {t('pages.match.statsTitle')}
+            </div>
             <div className={styles.stats}>
-              <div className={styles.stat}>{t("pages.match.threeDartAverage")}: {calculateThreeDartAverage(turns).toFixed(2)}</div>
-              <div className={styles.stat}>{t("pages.match.dartsThrown")}: {turns.length * 3}</div>
-              <div className={styles.stat}>{t("pages.match.lastScore")}: {turns[turns.length - 1] ? turns[turns.length - 1].score : "-"}</div>
+              <div className={styles.stat}>
+                {t('pages.match.threeDartAverage')}:{' '}
+                {calculateThreeDartAverage(turns).toFixed(2)}
+              </div>
+              <div className={styles.stat}>
+                {t('pages.match.dartsThrown')}: {turns.length * 3}
+              </div>
+              <div className={styles.stat}>
+                {t('pages.match.lastScore')}:{' '}
+                {turns[turns.length - 1] ? turns[turns.length - 1].score : '-'}
+              </div>
             </div>
           </div>
         </div>
         <div className={styles.controls}>
-          <Button onClick={() => undoTurn()} text={t("pages.match.undo")} variant={"red"} size={"large"} />
-          <Input placeholder={t("pages.match.setScore")} value={input} validateInput={(value: string) => validateInput(value)} />
-          <Button onClick={() => submitTurn()} text={t("pages.match.submit")} variant={"green"} size={"large"} />
+          <Button
+            onClick={() => undoTurn()}
+            text={t('pages.match.undo')}
+            variant={'red'}
+            size={'large'}
+          />
+          <Input
+            placeholder={t('pages.match.setScore')}
+            value={input}
+            validateInput={(value: string) => validateInput(value)}
+          />
+          <Button
+            onClick={() => submitTurn()}
+            text={t('pages.match.submit')}
+            variant={'green'}
+            size={'large'}
+          />
         </div>
         <div className={styles.keyboard}>
           {keys.map((key) => {
@@ -145,8 +193,22 @@ const Match = () => {
         </div>
 
         {/* Modals */}
-        {doublesModalVisible && <DoublesModal open={doublesModalVisible} handleSubmit={(dartsUsedOnDouble) => handleDoubleSubmit(dartsUsedOnDouble)} />}
-        {matchFinishedModalVisible && <MatchFinishedModal open={matchFinishedModalVisible} turns={turns} playAgain={() => playAgain()} quit={() => navigate('/')} />}
+        {doublesModalVisible && (
+          <DoublesModal
+            open={doublesModalVisible}
+            handleSubmit={(dartsUsedOnDouble) =>
+              handleDoubleSubmit(dartsUsedOnDouble)
+            }
+          />
+        )}
+        {matchFinishedModalVisible && (
+          <MatchFinishedModal
+            open={matchFinishedModalVisible}
+            turns={turns}
+            playAgain={() => playAgain()}
+            quit={() => navigate('/')}
+          />
+        )}
       </div>
     </FadeIn>
   );

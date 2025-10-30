@@ -1,68 +1,68 @@
 .button {
-    background-color: var(--color-background-3);
-    border-radius: 4px;
-    color: #FFF;
-    cursor: pointer;
-    font-size: var(--font-size-l);
-    padding: var(--gap-5);
-    text-align: center;
-    width: 100%;
+  background-color: var(--color-background-3);
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-size: var(--font-size-l);
+  padding: var(--gap-5);
+  text-align: center;
+  width: 100%;
 }
 
 .button.large {
-    padding: var(--gap-6);
+  padding: var(--gap-6);
 }
 
 .green {
-    background-color: var(--color-green);
+  background-color: var(--color-green);
 }
 
 .red {
-    background-color: var(--color-red);
+  background-color: var(--color-red);
 }
 
 .button.disabled {
-    cursor: default;
-    opacity: var(--opacity-disabled);
+  cursor: default;
+  opacity: var(--opacity-disabled);
 }
 
 .selected {
-    opacity: var(--opacity-selected);
+  opacity: var(--opacity-selected);
 }
 
 .button:not(.disabled):not(.selected):hover {
-    background-color: var(--color-hover-3);
-    cursor: pointer;
+  background-color: var(--color-hover-3);
+  cursor: pointer;
 }
 
 .button.green:not(.disabled):not(.selected):hover {
-    background-color: var(--color-green-hover);
-    cursor: pointer;
+  background-color: var(--color-green-hover);
+  cursor: pointer;
 }
 
 .button.red:not(.disabled):not(.selected):hover {
-    background-color: var(--color-red-hover);
-    cursor: pointer;
+  background-color: var(--color-red-hover);
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1279px) {
-    .button {
-        font-size: var(--font-size-l);
-        padding: var(--gap-5) 0;
-    }
+  .button {
+    font-size: var(--font-size-l);
+    padding: var(--gap-5) 0;
+  }
 
-    .button.large {
-        padding: var(--gap-6) 0;
-    }
+  .button.large {
+    padding: var(--gap-6) 0;
+  }
 }
 
 @media screen and (max-width: 676px) {
-    .button {
-        font-size: var(--font-size-s);
-        padding: var(--gap-4) 0;
-    }
+  .button {
+    font-size: var(--font-size-s);
+    padding: var(--gap-4) 0;
+  }
 
-    .button.large {
-        padding: var(--gap-5) 0;
-    }
+  .button.large {
+    padding: var(--gap-5) 0;
+  }
 }

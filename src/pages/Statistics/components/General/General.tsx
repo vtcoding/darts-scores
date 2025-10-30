@@ -1,64 +1,89 @@
-import { useTranslation } from "react-i18next";
-import Block from "../../../../components/Block/Block";
-import Title from "../../../../components/Title/Title";
-import type { Match, Option, PracticeMatch, StatRow } from "../../../../types";
-import { calculateBestAndWorstHitRates, calculateTotalCheckoutPercentage, calculateTotalFirstNineDartsAverage, calculateTotalHitRate, calculateTotalThreeDartAverage, getBestAndWorstCheckoutPercentages, getBestAndWorstFirstNineDartsAverages, getBestAndWorsThreeDartAverages } from "../../../../utils";
-import StatsTable from "../StatsTable/StatsTable";
+import { useTranslation } from 'react-i18next';
+
+import Block from '../../../../components/Block/Block';
+import Title from '../../../../components/Title/Title';
+import type { Match, Option, PracticeMatch, StatRow } from '../../../../types';
+import {
+  calculateBestAndWorstHitRates,
+  calculateTotalCheckoutPercentage,
+  calculateTotalFirstNineDartsAverage,
+  calculateTotalHitRate,
+  calculateTotalThreeDartAverage,
+  getBestAndWorsThreeDartAverages,
+  getBestAndWorstCheckoutPercentages,
+  getBestAndWorstFirstNineDartsAverages,
+} from '../../../../utils';
+import StatsTable from '../StatsTable/StatsTable';
 
 interface GeneralProps {
-    mode: Option;
-    matches: Match[];
-    practiceMatches: PracticeMatch[];
+  mode: Option;
+  matches: Match[];
+  practiceMatches: PracticeMatch[];
 }
 
 const General = ({ mode, matches, practiceMatches }: GeneralProps) => {
-    const { t } = useTranslation();
-    const totalThreeDartAverage = calculateTotalThreeDartAverage(matches);
-    const bestAndWorstAverages = getBestAndWorsThreeDartAverages(matches);
-    const totalFirstNineDartsAverage = calculateTotalFirstNineDartsAverage(matches);
-    const bestAndWorstFirstNineDartsAverages = getBestAndWorstFirstNineDartsAverages(matches);
-    const totalCheckoutPercentage = calculateTotalCheckoutPercentage(matches);
-    const bestAndWorstCheckoutPercentages = getBestAndWorstCheckoutPercentages(matches);
-    const matchRows: StatRow[] = [
-        {
-            name: t("pages.statistics.general.threeDartAverage"),
-            average: { value: totalThreeDartAverage.toFixed(2), unit: "" },
-            best: { value: bestAndWorstAverages["best"].toFixed(2), unit: "" },
-            worst: { value: bestAndWorstAverages["worst"].toFixed(2), unit: "" },
-        },
-        {
-            name: t("pages.statistics.general.firstNineDartsAverage"),
-            average: { value: totalFirstNineDartsAverage.toFixed(2), unit: "" },
-            best: { value: bestAndWorstFirstNineDartsAverages["best"].toFixed(2), unit: "" },
-            worst: { value: bestAndWorstFirstNineDartsAverages["worst"].toFixed(2), unit: "" },
-        },
-        {
-            name: t("pages.statistics.general.checkoutPercentage"),
-            average: { value: totalCheckoutPercentage.toFixed(2), unit: "%" },
-            best: { value: bestAndWorstCheckoutPercentages["best"].toFixed(2), unit: "%" },
-            worst: { value: bestAndWorstCheckoutPercentages["worst"].toFixed(2), unit: "%" },
-        },
-    ];
+  const { t } = useTranslation();
+  const totalThreeDartAverage = calculateTotalThreeDartAverage(matches);
+  const bestAndWorstAverages = getBestAndWorsThreeDartAverages(matches);
+  const totalFirstNineDartsAverage =
+    calculateTotalFirstNineDartsAverage(matches);
+  const bestAndWorstFirstNineDartsAverages =
+    getBestAndWorstFirstNineDartsAverages(matches);
+  const totalCheckoutPercentage = calculateTotalCheckoutPercentage(matches);
+  const bestAndWorstCheckoutPercentages =
+    getBestAndWorstCheckoutPercentages(matches);
+  const matchRows: StatRow[] = [
+    {
+      name: t('pages.statistics.general.threeDartAverage'),
+      average: { value: totalThreeDartAverage.toFixed(2), unit: '' },
+      best: { value: bestAndWorstAverages['best'].toFixed(2), unit: '' },
+      worst: { value: bestAndWorstAverages['worst'].toFixed(2), unit: '' },
+    },
+    {
+      name: t('pages.statistics.general.firstNineDartsAverage'),
+      average: { value: totalFirstNineDartsAverage.toFixed(2), unit: '' },
+      best: {
+        value: bestAndWorstFirstNineDartsAverages['best'].toFixed(2),
+        unit: '',
+      },
+      worst: {
+        value: bestAndWorstFirstNineDartsAverages['worst'].toFixed(2),
+        unit: '',
+      },
+    },
+    {
+      name: t('pages.statistics.general.checkoutPercentage'),
+      average: { value: totalCheckoutPercentage.toFixed(2), unit: '%' },
+      best: {
+        value: bestAndWorstCheckoutPercentages['best'].toFixed(2),
+        unit: '%',
+      },
+      worst: {
+        value: bestAndWorstCheckoutPercentages['worst'].toFixed(2),
+        unit: '%',
+      },
+    },
+  ];
 
-    const totalHitRate = calculateTotalHitRate(practiceMatches);
-    const bestAndWorstHitRates = calculateBestAndWorstHitRates(practiceMatches);
-    const practiceMatchRows: StatRow[] = [
-        {
-            name: t("pages.statistics.general.totalHitRate"),
-            average: { value: totalHitRate.toFixed(2), unit: "%" },
-            best: { value: bestAndWorstHitRates["best"].toFixed(2), unit: "%" },
-            worst: { value: bestAndWorstHitRates["worst"].toFixed(2), unit: "%" },
-        }
-    ];
+  const totalHitRate = calculateTotalHitRate(practiceMatches);
+  const bestAndWorstHitRates = calculateBestAndWorstHitRates(practiceMatches);
+  const practiceMatchRows: StatRow[] = [
+    {
+      name: t('pages.statistics.general.totalHitRate'),
+      average: { value: totalHitRate.toFixed(2), unit: '%' },
+      best: { value: bestAndWorstHitRates['best'].toFixed(2), unit: '%' },
+      worst: { value: bestAndWorstHitRates['worst'].toFixed(2), unit: '%' },
+    },
+  ];
 
-    const rows = mode.id === "match" ? matchRows : practiceMatchRows;
+  const rows = mode.id === 'match' ? matchRows : practiceMatchRows;
 
-    return (
-        <Block>
-            <Title text={t("pages.statistics.general.title")} />
-            <StatsTable rows={rows} />
-        </Block>
-    )
-}
+  return (
+    <Block>
+      <Title text={t('pages.statistics.general.title')} />
+      <StatsTable rows={rows} />
+    </Block>
+  );
+};
 
 export default General;

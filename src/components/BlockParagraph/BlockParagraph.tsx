@@ -1,18 +1,20 @@
-import type { ReactNode } from "react";
-import styles from "./BlockParagraph.module.css";
+import type { ReactNode } from 'react';
+
+import styles from './BlockParagraph.module.css';
 
 interface BlockParagraphProps {
-    children: ReactNode;
+  children: ReactNode;
 }
 
 const BlockParagraph = ({ children }: BlockParagraphProps) => {
-    return (
-        <div
-            className={`
-                ${styles.blockParagraph}`
-            }>{children}
-        </div>
-    );
-}
+  return (
+    <div
+      className={`
+                ${styles.blockParagraph}`}
+    >
+      {children}
+    </div>
+  );
+};
 
 export default BlockParagraph;

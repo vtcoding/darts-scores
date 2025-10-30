@@ -1,22 +1,22 @@
 .block {
-    color: var(--color-text);
-    background-color: var(--color-background-3);
-    border-radius: var(--radius-size-m);
-    display: grid;
-    grid-auto-rows: min-content;
-    padding: var(--gap-5);
-    row-gap: var(--gap-4);
+  color: var(--color-text);
+  background-color: var(--color-background-3);
+  border-radius: var(--radius-size-m);
+  display: grid;
+  grid-auto-rows: min-content;
+  padding: var(--gap-5);
+  row-gap: var(--gap-4);
 }
 
 .block.clickable {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .block.clickable:hover {
-    background-color: var(--color-hover-3);
+  background-color: var(--color-hover-3);
 }
 
 .block.disabled {
-    cursor: default;
-    opacity: var(--opacity-disabled);
+  cursor: default;
+  opacity: var(--opacity-disabled);
 }

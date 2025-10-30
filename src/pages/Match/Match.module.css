@@ -77,7 +77,6 @@
 }
 
 @media screen and (max-width: 1279px) {
-
   .score {
     font-size: 128px;
   }
@@ -88,7 +87,6 @@
 
   .statsTitle {
     font-size: var(--font-size-xl);
-    ;
   }
 
   .stat {
@@ -97,7 +95,6 @@
 }
 
 @media screen and (max-width: 767px) {
-
   .score {
     font-size: 96px;
   }

@@ -1,16 +1,17 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, HashRouter as Router, Routes } from 'react-router-dom';
+
+import styles from './App.module.css';
 import Home from './pages/Home/Home';
 import Match from './pages/Match/Match';
-import Statistics from './pages/Statistics/Statistics';
 import MatchSettings from './pages/MatchSettings/MatchSettings';
-import PracticeSettings from './pages/PracticeSettings/PracticeSettings';
 import Practice from './pages/Practice/Practice';
-import styles from './App.module.css';
+import PracticeSettings from './pages/PracticeSettings/PracticeSettings';
+import Statistics from './pages/Statistics/Statistics';
 
 const App = () => {
   return (
     <div className={styles.app}>
-      <Router basename={import.meta.env.DEV ? "/" : "/darts-scores"}>
+      <Router>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/match" element={<Match />} />

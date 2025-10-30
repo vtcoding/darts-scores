@@ -1,26 +1,27 @@
 .matchModal {
-    display: grid;
-    row-gap: var(--gap-4);
+  display: grid;
+  row-gap: var(--gap-4);
 }
 
 .statsWrapper {
-    display: grid;
-    row-gap: var(--gap-2);
+  display: grid;
+  row-gap: var(--gap-2);
 }
 
 .stats {
-    display: grid;
-    row-gap: var(--gap-1);
+  display: grid;
+  row-gap: var(--gap-1);
 }
 
 .stat {
-    font-size: var(--font-size-m);
+  font-size: var(--font-size-m);
 }
 
 @media screen and (max-width: 1279px) {
-    .stat {
-        font-size: var(--font-size-s);
-    }
+  .stat {
+    font-size: var(--font-size-s);
+  }
 }
 
-@media screen and (max-width: 767px) {}
+@media screen and (max-width: 767px) {
+}

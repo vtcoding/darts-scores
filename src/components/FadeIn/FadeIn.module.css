@@ -1,15 +1,15 @@
 .background {
-    background-color: var(--color-background-2);
-    min-height: 100vh;
-    max-height: 100%;
-    width: 100%;
+  background-color: var(--color-background-2);
+  min-height: 100vh;
+  max-height: 100%;
+  width: 100%;
 }
 
 .fadeIn {
-    opacity: 0;
-    transition: opacity 0.5s ease-out;
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
 }
 
 .fadeIn.visible {
-    opacity: 1;
+  opacity: 1;
 }

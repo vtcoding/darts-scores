@@ -1,125 +1,125 @@
 {
-    "components": {
-        "sidebar": {
-            "home": "Koti",
-            "playMatch": "Pelaa ottelu",
-            "practice": "Harjoittele",
-            "statistics": "Tilastot",
-            "language": "Kieli"
-        },
-        "header": {
-            "goToMenu": "Valikkoon"
-        }
+  "components": {
+    "sidebar": {
+      "home": "Koti",
+      "playMatch": "Pelaa ottelu",
+      "practice": "Harjoittele",
+      "statistics": "Tilastot",
+      "language": "Kieli"
     },
-    "pages": {
-        "home": {
-            "title": "Koti",
-            "welcomeTitle": "Tervetuloa Darts Scores-sovellukseen!",
-            "welcomeDesc": "Pelaa, harjoittele ja seuraa edistymistäsi Darts Scores-sovelluksella.",
-            "matchTitle": "Pelaa ottelu",
-            "matchDesc": "Pelaa 301, 501 tai 701.",
-            "practiceTitle": "Harjoittele",
-            "practiceDesc": "Harjoittele heittämistäsi Around the clock, Doubles training tai Triples training-peleillä.",
-            "statisticsTitle": "Tilastot",
-            "statisticsDesc": "Tarkastele tilastojasi ja seuraa edistymistäsi."
-        },
-        "matchSettings": {
-            "title": "Otteluasetukset",
-            "chooseMode": "Valitse pelimuoto",
-            "startMatch": "Aloita ottelu"
-        },
-        "practiceSettings": {
-            "title": "Harjoitusottelun asetukset",
-            "aroundTheClockTitle": "Pelaa Around the clock",
-            "aroundTheClockDesc": "Heitä kaikki sektorit läpi (1-20) ja lopeta sektoriin 25.",
-            "doublesTitle": "Pelaa Doubles practice",
-            "doublesDesc": "Heitä kaikki tuplat läpi (1-20).",
-            "triplesTitle": "Pelaa Triple practice",
-            "triplesDesc": "Heitä kaikki triplat läpi (1-20)."
-        },
-        "statistics": {
-            "title": "Tilastot",
-            "selectMode": "Valitse pelimuoto",
-            "modeMatch": "Ottelu",
-            "modeAroundTheClock": "Around the clock",
-            "modeDoublesPractice": "Doubles practice",
-            "modeTriplesPractice": "Triples practice",
-            "defaultStatMatch": "Kolmen tikan keskiarvo",
-            "defaultStatPractice": "Osumaprosentti",
-            "exportStatsButton": "Tallenna tilastot CSV-muotoon",
-            "deleteStatsButton": "Poista tilastot",
-            "deleteStatsModal": {
-                "title": "Oletko varma että haluat poistaa tilastosi?",
-                "cancel": "Peru",
-                "delete": "Poista"
-            },
-            "general": {
-                "title": "Yleiset tilastot",
-                "threeDartAverage": "Kolmen tikan keskiarvo",
-                "firstNineDartsAverage": "Ensimmäisen yhdeksän tikan keskiarvo",
-                "checkoutPercentage": "Lopetusprosentti",
-                "totalHitRate": "Osumaprosentti"
-            },
-            "matches": {
-                "lastFive": "Viimeiset 5 ottelua",
-                "endedAt": "Loppui"
-            },
-            "matchModals": {
-                "firstTo": "Ensimmäisenä 1 legiin - ",
-                "endedAt": "Loppui",
-                "threeDartAverage": "Kolmen tikan keskiarvo",
-                "firstNineDartsAverage": "Ensimmäisen yhdeksän tikan keskiarvo",
-                "checkoutPercentage": "Lopetusprosentti",
-                "dartsThrown": "Tikkoja heitetty",
-                "hitRate": "Osumaprosentti",
-                "deleteMatch": "Poista ottelu",
-                "close": "Sulje"
-            },
-            "statsTable": {
-                "average": "Kesk.",
-                "best": "Paras",
-                "worst": "Huonoin"
-            }
-        },
-        "match": {
-            "firstTo": "Ensimmäinen 1 legiin",
-            "currentLeg": "Nykyinen legi",
-            "statsTitle": "Tilastot",
-            "threeDartAverage": "3 tikan keskiarvo",
-            "dartsThrown": "Tikkoja heitetty",
-            "last score": "Viimeisin tulos",
-            "undo": "Peru",
-            "setScore": "Aseta tulos",
-            "submit": "Lähetä",
-            "clear": "Tyhjennä",
-            "doublesModal": {
-                "title": "Kuinka monta tikkaa käytetty tupliin?",
-                "submit": "Lähetä"
-            },
-            "matchFinishedModal": {
-                "title": "Ottelu päättynyt",
-                "stats": "Tilastot",
-                "threeDartAverage": "3 tikan keskiarvo",
-                "checkoutPercentage": "Lopetusprosentti",
-                "dartsThrown": "Tikkoja heitetty",
-                "playAgain": "Pelaa uudestaan",
-                "quit": "Poistu"
-            }
-        },
-        "practiceMatch": {
-            "statsTitle": "Tilastot",
-            "dartsHit": "Tikkoja osuttu",
-            "hitRate": "Osumaprosentti",
-            "undo": "Peru",
-            "miss": "Ohi",
-            "practiceFinishedModal": {
-                "title": "Harjoitusottelu päättynyt",
-                "statsTitle": "Tilastot",
-                "dartsHit": "Tikkoja osuttu",
-                "hitRate": "Osumaprosentti",
-                "playAgain": "Pelaa uudestaan",
-                "quit": "Poistu"
-            }
-        }
+    "header": {
+      "goToMenu": "Valikkoon"
     }
+  },
+  "pages": {
+    "home": {
+      "title": "Koti",
+      "welcomeTitle": "Tervetuloa Darts Scores-sovellukseen!",
+      "welcomeDesc": "Pelaa, harjoittele ja seuraa edistymistäsi Darts Scores-sovelluksella.",
+      "matchTitle": "Pelaa ottelu",
+      "matchDesc": "Pelaa 301, 501 tai 701.",
+      "practiceTitle": "Harjoittele",
+      "practiceDesc": "Harjoittele heittämistäsi Around the clock, Doubles training tai Triples training-peleillä.",
+      "statisticsTitle": "Tilastot",
+      "statisticsDesc": "Tarkastele tilastojasi ja seuraa edistymistäsi."
+    },
+    "matchSettings": {
+      "title": "Otteluasetukset",
+      "chooseMode": "Valitse pelimuoto",
+      "startMatch": "Aloita ottelu"
+    },
+    "practiceSettings": {
+      "title": "Harjoitusottelun asetukset",
+      "aroundTheClockTitle": "Pelaa Around the clock",
+      "aroundTheClockDesc": "Heitä kaikki sektorit läpi (1-20) ja lopeta sektoriin 25.",
+      "doublesTitle": "Pelaa Doubles practice",
+      "doublesDesc": "Heitä kaikki tuplat läpi (1-20).",
+      "triplesTitle": "Pelaa Triple practice",
+      "triplesDesc": "Heitä kaikki triplat läpi (1-20)."
+    },
+    "statistics": {
+      "title": "Tilastot",
+      "selectMode": "Valitse pelimuoto",
+      "modeMatch": "Ottelu",
+      "modeAroundTheClock": "Around the clock",
+      "modeDoublesPractice": "Doubles practice",
+      "modeTriplesPractice": "Triples practice",
+      "defaultStatMatch": "Kolmen tikan keskiarvo",
+      "defaultStatPractice": "Osumaprosentti",
+      "exportStatsButton": "Tallenna tilastot CSV-muotoon",
+      "deleteStatsButton": "Poista tilastot",
+      "deleteStatsModal": {
+        "title": "Oletko varma että haluat poistaa tilastosi?",
+        "cancel": "Peru",
+        "delete": "Poista"
+      },
+      "general": {
+        "title": "Yleiset tilastot",
+        "threeDartAverage": "Kolmen tikan keskiarvo",
+        "firstNineDartsAverage": "Ensimmäisen yhdeksän tikan keskiarvo",
+        "checkoutPercentage": "Lopetusprosentti",
+        "totalHitRate": "Osumaprosentti"
+      },
+      "matches": {
+        "lastFive": "Viimeiset 5 ottelua",
+        "endedAt": "Loppui"
+      },
+      "matchModals": {
+        "firstTo": "Ensimmäisenä 1 legiin - ",
+        "endedAt": "Loppui",
+        "threeDartAverage": "Kolmen tikan keskiarvo",
+        "firstNineDartsAverage": "Ensimmäisen yhdeksän tikan keskiarvo",
+        "checkoutPercentage": "Lopetusprosentti",
+        "dartsThrown": "Tikkoja heitetty",
+        "hitRate": "Osumaprosentti",
+        "deleteMatch": "Poista ottelu",
+        "close": "Sulje"
+      },
+      "statsTable": {
+        "average": "Kesk.",
+        "best": "Paras",
+        "worst": "Huonoin"
+      }
+    },
+    "match": {
+      "firstTo": "Ensimmäinen 1 legiin",
+      "currentLeg": "Nykyinen legi",
+      "statsTitle": "Tilastot",
+      "threeDartAverage": "3 tikan keskiarvo",
+      "dartsThrown": "Tikkoja heitetty",
+      "last score": "Viimeisin tulos",
+      "undo": "Peru",
+      "setScore": "Aseta tulos",
+      "submit": "Lähetä",
+      "clear": "Tyhjennä",
+      "doublesModal": {
+        "title": "Kuinka monta tikkaa käytetty tupliin?",
+        "submit": "Lähetä"
+      },
+      "matchFinishedModal": {
+        "title": "Ottelu päättynyt",
+        "stats": "Tilastot",
+        "threeDartAverage": "3 tikan keskiarvo",
+        "checkoutPercentage": "Lopetusprosentti",
+        "dartsThrown": "Tikkoja heitetty",
+        "playAgain": "Pelaa uudestaan",
+        "quit": "Poistu"
+      }
+    },
+    "practiceMatch": {
+      "statsTitle": "Tilastot",
+      "dartsHit": "Tikkoja osuttu",
+      "hitRate": "Osumaprosentti",
+      "undo": "Peru",
+      "miss": "Ohi",
+      "practiceFinishedModal": {
+        "title": "Harjoitusottelu päättynyt",
+        "statsTitle": "Tilastot",
+        "dartsHit": "Tikkoja osuttu",
+        "hitRate": "Osumaprosentti",
+        "playAgain": "Pelaa uudestaan",
+        "quit": "Poistu"
+      }
+    }
+  }
 }

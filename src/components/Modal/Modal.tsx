@@ -1,20 +1,21 @@
+import type { ReactNode } from 'react';
+
 import MuiModal from '@mui/material/Modal';
-import type { ReactNode } from "react";
-import styles from "./Modal.module.css";
+
+import styles from './Modal.module.css';
 
 interface ModalProps {
-    children: ReactNode;
-    open: boolean;
-    close?: () => void
+  children: ReactNode;
+  open: boolean;
+  close?: () => void;
 }
 
 const Modal = ({ children, open, close }: ModalProps) => {
-    return (
-        <MuiModal open={open} onClose={close}>
-            <div className={styles.modal}>
-                {children}
-            </div>
-        </MuiModal>);
-}
+  return (
+    <MuiModal open={open} onClose={close}>
+      <div className={styles.modal}>{children}</div>
+    </MuiModal>
+  );
+};
 
 export default Modal;

@@ -1,56 +1,54 @@
 .matches {
-    display: grid;
-    grid-template-columns: 1fr;
-    row-gap: var(--gap-2);
-    width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: var(--gap-2);
+  width: 100%;
 }
 
 .matchesHeader {
-    color: var(--color-text);
-    display: grid;
-    font-size: var(--font-size-l);
-    grid-template-columns: 1fr 1fr;
-    padding: var(--gap-2) var(--gap-4);
-    width: 100%;
+  color: var(--color-text);
+  display: grid;
+  font-size: var(--font-size-l);
+  grid-template-columns: 1fr 1fr;
+  padding: var(--gap-2) var(--gap-4);
+  width: 100%;
 }
 
 .match {
-    background-color: var(--color-background-4);
-    border-radius: var(--radius-size-m);
-    color: var(--color-text);
-    cursor: pointer;
-    display: grid;
-    font-size: var(--font-size-l);
-    grid-template-columns: 1fr 1fr;
-    padding: var(--gap-4);
+  background-color: var(--color-background-4);
+  border-radius: var(--radius-size-m);
+  color: var(--color-text);
+  cursor: pointer;
+  display: grid;
+  font-size: var(--font-size-l);
+  grid-template-columns: 1fr 1fr;
+  padding: var(--gap-4);
 }
 
 .match:hover {
-    background-color: var(--color-hover-4);
+  background-color: var(--color-hover-4);
 }
 
 .dateHeader,
 .date {
-    text-align: left;
+  text-align: left;
 }
 
 .averageHeader,
 .average {
-    text-align: right;
+  text-align: right;
 }
 
 @media screen and (max-width: 1279px) {
-
-    .matchesHeader,
-    .match {
-        font-size: var(--font-size-m);
-    }
+  .matchesHeader,
+  .match {
+    font-size: var(--font-size-m);
+  }
 }
 
 @media screen and (max-width: 767px) {
-
-    .matchesHeader,
-    .match {
-        font-size: var(--font-size-s);
-    }
+  .matchesHeader,
+  .match {
+    font-size: var(--font-size-s);
+  }
 }
