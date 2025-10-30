@@ -12,6 +12,10 @@
     cursor: pointer;
 }
 
+.block.clickable:hover {
+    background-color: var(--color-hover-3);
+}
+
 .block.disabled {
     cursor: default;
     opacity: var(--opacity-disabled);
