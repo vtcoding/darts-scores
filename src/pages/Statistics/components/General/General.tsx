@@ -4,7 +4,7 @@ import Block from '../../../../components/Block/Block';
 import Title from '../../../../components/Title/Title';
 import type { Match, Option, PracticeMatch, StatRow } from '../../../../types';
 import {
-  calculateBestAndWorstHitRates,
+  getBestAndWorstHitRates,
   calculateTotalCheckoutPercentage,
   calculateTotalFirstNineDartsAverage,
   calculateTotalHitRate,
@@ -66,7 +66,7 @@ const General = ({ mode, matches, practiceMatches }: GeneralProps) => {
   ];
 
   const totalHitRate = calculateTotalHitRate(practiceMatches);
-  const bestAndWorstHitRates = calculateBestAndWorstHitRates(practiceMatches);
+  const bestAndWorstHitRates = getBestAndWorstHitRates(practiceMatches);
   const practiceMatchRows: StatRow[] = [
     {
       name: t('pages.statistics.general.totalHitRate'),

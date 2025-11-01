@@ -1,4 +1,20 @@
-import type { Match, PracticeMatch, PracticeTurn, Turn } from './types';
+import type { Match, PracticeMatch, PracticeTurn, Turn } from "./types";
+
+export const formatDate = (matchDate: number) => {
+  const date = new Date(matchDate);
+
+  // Get local date
+  const localDate = date.toLocaleDateString("fi-FI");
+
+  // Get local time (24-hour format, no seconds)
+  const localTime = date.toLocaleTimeString("fi-FI", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
+
+  return `${localDate} - ${localTime}`;
+};
 
 export const saveNewMatchToStorage = (mode: string, legs: number) => {
   const id = Date.now();
@@ -11,16 +27,16 @@ export const saveNewMatchToStorage = (mode: string, legs: number) => {
     turns: [],
   };
 
-  const matches = JSON.parse(localStorage.getItem('matches') || '[]');
+  const matches = JSON.parse(localStorage.getItem("matches") || "[]");
   matches.push(match);
 
-  localStorage.setItem('activeMatch', id.toString());
-  localStorage.setItem('matches', JSON.stringify(matches));
+  localStorage.setItem("activeMatch", id.toString());
+  localStorage.setItem("matches", JSON.stringify(matches));
 };
 
 export const getMatchSettings = () => {
-  const id = localStorage.getItem('activeMatch');
-  const matches = JSON.parse(localStorage.getItem('matches') || '[]');
+  const id = localStorage.getItem("activeMatch");
+  const matches = JSON.parse(localStorage.getItem("matches") || "[]");
   const currentMatch = matches.find(
     (match: Match) => match.id === parseInt(id as string)
   );
@@ -143,34 +159,18 @@ export const saveNewPracticeToStorage = (mode: string, finishOn: number) => {
   };
 
   const practiceMatches = JSON.parse(
-    localStorage.getItem('practiceMatches') || '[]'
+    localStorage.getItem("practiceMatches") || "[]"
   );
   practiceMatches.push(practiceMatch);
 
-  localStorage.setItem('activePracticeMatch', id.toString());
-  localStorage.setItem('practiceMatches', JSON.stringify(practiceMatches));
-};
-
-export const formatDate = (matchDate: number) => {
-  const date = new Date(matchDate);
-
-  // Get local date
-  const localDate = date.toLocaleDateString('fi-FI');
-
-  // Get local time (24-hour format, no seconds)
-  const localTime = date.toLocaleTimeString('fi-FI', {
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false,
-  });
-
-  return `${localDate} - ${localTime}`;
+  localStorage.setItem("activePracticeMatch", id.toString());
+  localStorage.setItem("practiceMatches", JSON.stringify(practiceMatches));
 };
 
 export const getPracticeMatchSettings = () => {
-  const id = localStorage.getItem('activePracticeMatch');
+  const id = localStorage.getItem("activePracticeMatch");
   const practiceMatches = JSON.parse(
-    localStorage.getItem('practiceMatches') || '[]'
+    localStorage.getItem("practiceMatches") || "[]"
   );
   const currentMatch = practiceMatches.find(
     (match: Match) => match.id === parseInt(id as string)
@@ -223,7 +223,7 @@ export const calculateTotalHitRate = (matches: PracticeMatch[]) => {
   return rates.length > 0 ? rates.reduce((a, b) => a + b, 0) / rates.length : 0;
 };
 
-export const calculateBestAndWorstHitRates = (matches: PracticeMatch[]) => {
+export const getBestAndWorstHitRates = (matches: PracticeMatch[]) => {
   const rates: number[] = [];
   matches.forEach((match) => {
     const rate = calculateHitRate(match.turns);
