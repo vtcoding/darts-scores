@@ -52,7 +52,7 @@
   color: var(--color-text);
   display: grid;
   gap: var(--gap-3);
-  grid-template-columns: 100px min-content min-content;
+  grid-template-columns: 130px min-content min-content;
   padding: var(--gap-4);
   text-align: center;
 }
@@ -69,7 +69,7 @@
   background-color: var(--color-background-2);
   border-radius: var(--radius-size-m);
   cursor: pointer;
-  height: 50px;
+  height: 40px;
   justify-self: center;
   opacity: 0.4;
   padding: 10px;

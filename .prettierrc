@@ -4,8 +4,8 @@
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
   "semi": true,
-  "singleQuote": true,
-  "printWidth": 80,
+  "singleQuote": false,
+  "printWidth": 100,
   "tabWidth": 2,
   "trailingComma": "es5"
 }

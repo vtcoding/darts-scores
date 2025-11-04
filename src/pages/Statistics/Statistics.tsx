@@ -1,88 +1,84 @@
-import { useState } from 'react';
+import { useEffect, useState } from "react";
 
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
+import { useSearchParams } from "react-router-dom";
 
-import Block from '../../components/Block/Block';
-import Button from '../../components/Button/Button';
-import Dropdown from '../../components/Dropdown/Dropdown';
-import FadeIn from '../../components/FadeIn/FadeIn';
-import PageContent from '../../components/PageContent/PageContent';
-import Title from '../../components/Title/Title';
-import type { Match, Option, PracticeMatch } from '../../types';
-import styles from './Statistics.module.css';
-import DeleteStatsModal from './components/DeleteStatsModal/DeleteStatsModal';
-import General from './components/General/General';
-import Matches from './components/Matches/Matches';
+import Block from "../../components/Block/Block";
+import Button from "../../components/Button/Button";
+import Dropdown from "../../components/Dropdown/Dropdown";
+import FadeIn from "../../components/FadeIn/FadeIn";
+import PageContent from "../../components/PageContent/PageContent";
+import Title from "../../components/Title/Title";
+import type { Match, Option, PracticeMatch } from "../../types";
+import styles from "./Statistics.module.css";
+import DeleteStatsModal from "./components/DeleteStatsModal/DeleteStatsModal";
+import General from "./components/General/General";
+import Matches from "./components/Matches/Matches";
 
 const Statistics = () => {
   const { t } = useTranslation();
-  const [selectedMode, setSelectedMode] = useState<Option>({
-    name: t('pages.statistics.modeMatch'),
-    id: 'match',
-  });
-  const [deleteStatsModalVisible, setDeleteStatsModalVisible] =
-    useState<boolean>(false);
-  const matches = JSON.parse(localStorage.getItem('matches') || '[]');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [mode, setMode] = useState(searchParams.get("mode") || "match");
+  const [deleteStatsModalVisible, setDeleteStatsModalVisible] = useState<boolean>(false);
+
+  const matches = JSON.parse(localStorage.getItem("matches") || "[]");
   const finishedMatches = matches.filter((match: Match) => match.ended_at);
-  const practiceMatches = JSON.parse(
-    localStorage.getItem('practiceMatches') || '[]'
-  );
+  const practiceMatches = JSON.parse(localStorage.getItem("practiceMatches") || "[]");
   const filteredPracticeMatches = practiceMatches.filter(
-    (match: PracticeMatch) => match.mode === selectedMode.id
+    (match: PracticeMatch) => match.mode === mode
   );
   const finishedPracticeMatches = filteredPracticeMatches.filter(
     (match: PracticeMatch) => match.ended_at
   );
 
   const deleteStats = () => {
-    localStorage.clear();
+    localStorage.removeItem("matches");
+    localStorage.removeItem("practiceMatches");
+    localStorage.removeItem("activeMatch");
+    localStorage.removeItem("activePracticeMatch");
     window.location.reload();
   };
 
   const modes = [
-    { name: t('pages.statistics.modeMatch'), id: 'match' },
-    { name: t('pages.statistics.modeAroundTheClock'), id: 'around-the-clock' },
-    { name: t('pages.statistics.modeDoublesPractice'), id: 'doubles' },
-    { name: t('pages.statistics.modeTriplesPractice'), id: 'triples' },
+    { name: t("pages.statistics.modeMatch"), id: "match" },
+    { name: t("pages.statistics.modeAroundTheClock"), id: "around-the-clock" },
+    { name: t("pages.statistics.modeDoublesPractice"), id: "doubles" },
+    { name: t("pages.statistics.modeTriplesPractice"), id: "triples" },
   ];
+
+  useEffect(() => {
+    setSearchParams({ mode: mode });
+  }, [mode]);
 
   return (
     <FadeIn>
-      <PageContent headerTitle={t('pages.statistics.title')}>
+      <PageContent headerTitle={t("pages.statistics.title")}>
         <Block>
-          <Title text={t('pages.statistics.selectMode')} />
-          <Dropdown
-            options={modes}
-            selectedOption={selectedMode}
-            setSelectedOption={setSelectedMode}
-          />
+          <Title text={t("pages.statistics.selectMode")} />
+          <Dropdown options={modes} selectedOption={mode} setSelectedOption={setMode} />
         </Block>
-        <General
-          mode={selectedMode}
-          matches={finishedMatches}
-          practiceMatches={finishedPracticeMatches}
-        />
+        <General mode={mode} matches={finishedMatches} practiceMatches={finishedPracticeMatches} />
         <Matches
-          mode={selectedMode}
+          mode={modes.find((m) => m.id === mode) as Option}
           matches={finishedMatches}
           practiceMatches={finishedPracticeMatches}
           defaultStat={
-            selectedMode.id === 'match'
-              ? t('pages.statistics.defaultStatMatch')
-              : t('pages.statistics.defaultStatPractice')
+            mode === "match"
+              ? t("pages.statistics.defaultStatMatch")
+              : t("pages.statistics.defaultStatPractice")
           }
         />
         <div className={styles.buttons}>
           <Button
             onClick={() => {}}
-            text={t('pages.statistics.exportStatsButton')}
-            variant={'green'}
+            text={t("pages.statistics.exportStatsButton")}
+            variant={"green"}
             disabled
           />
           <Button
             onClick={() => setDeleteStatsModalVisible(true)}
-            text={t('pages.statistics.deleteStatsButton')}
-            variant={'red'}
+            text={t("pages.statistics.deleteStatsButton")}
+            variant={"red"}
           />
         </div>
         {deleteStatsModalVisible && (
