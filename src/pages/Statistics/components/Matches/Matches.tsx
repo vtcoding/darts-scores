@@ -1,18 +1,14 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
-import Block from '../../../../components/Block/Block';
-import Title from '../../../../components/Title/Title';
-import { type Match, type Option, type PracticeMatch } from '../../../../types';
-import {
-  calculateHitRate,
-  calculateThreeDartAverage,
-  formatDate,
-} from '../../../../utils';
-import MatchModal from '../MatchModal/MatchModal';
-import PracticeMatchModal from '../PracticeMatchModal/PracticeMatchModal';
-import styles from './Matches.module.css';
+import Block from "../../../../components/Block/Block";
+import Title from "../../../../components/Title/Title";
+import { type Match, type Option, type PracticeMatch } from "../../../../types";
+import { calculateHitRate, calculateThreeDartAverage, formatDate } from "../../../../utils";
+import MatchModal from "../MatchModal/MatchModal";
+import PracticeMatchModal from "../PracticeMatchModal/PracticeMatchModal";
+import styles from "./Matches.module.css";
 
 interface MatchesProps {
   mode: Option;
@@ -21,35 +17,43 @@ interface MatchesProps {
   defaultStat: string;
 }
 
-const Matches = ({
-  mode,
-  matches,
-  practiceMatches,
-  defaultStat,
-}: MatchesProps) => {
+const Matches = ({ mode, matches, practiceMatches, defaultStat }: MatchesProps) => {
   const { t } = useTranslation();
   const [matchModalVisible, setMatchModalVisible] = useState<boolean>(false);
-  const [selectedMatch, setSelectedMatch] = useState<
-    Match | PracticeMatch | null
-  >(null);
+  const [selectedMatch, setSelectedMatch] = useState<Match | PracticeMatch | null>(null);
+
+  const deleteMatch = (id: number) => {
+    setMatchModalVisible(false);
+    const matches = JSON.parse(localStorage.getItem("matches") || "[]") as Match[];
+    const practiceMatches = JSON.parse(
+      localStorage.getItem("practiceMatches") || "[]"
+    ) as PracticeMatch[];
+
+    if (mode.id === "match") {
+      const updatedMatches = matches.filter((match) => match.id !== id);
+      localStorage.setItem("matches", JSON.stringify(updatedMatches));
+    } else {
+      const updatedPracticeMatches = practiceMatches.filter((match) => match.id !== id);
+      localStorage.setItem("practiceMatches", JSON.stringify(updatedPracticeMatches));
+    }
+    window.location.reload();
+  };
 
   return (
     <Block>
-      <Title text={t('pages.statistics.matches.lastFive')} />
+      <Title text={t("pages.statistics.matches.lastFive")} />
       <div className={styles.matchesHeader}>
-        <div className={styles.dateHeader}>
-          {t('pages.statistics.matches.endedAt')}
-        </div>
+        <div className={styles.dateHeader}>{t("pages.statistics.matches.endedAt")}</div>
         <div className={styles.averageHeader}>{defaultStat}</div>
       </div>
       <div className={styles.matches}>
-        {mode.id === 'match' && matches.length > 0 && (
+        {mode.id === "match" && matches.length > 0 && (
           <>
             {matches
               .slice(-5)
               .reverse()
               .map((match: Match, index: number) => {
-                const date = match.ended_at ? formatDate(match.ended_at) : '-';
+                const date = match.ended_at ? formatDate(match.ended_at) : "-";
                 return (
                   <div
                     onClick={() => {
@@ -68,13 +72,13 @@ const Matches = ({
               })}
           </>
         )}
-        {mode.id !== 'match' && practiceMatches.length > 0 && (
+        {mode.id !== "match" && practiceMatches.length > 0 && (
           <>
             {practiceMatches
               .slice(-5)
               .reverse()
               .map((match: PracticeMatch, index: number) => {
-                const date = match.ended_at ? formatDate(match.ended_at) : '-';
+                const date = match.ended_at ? formatDate(match.ended_at) : "-";
                 return (
                   <div
                     onClick={() => {
@@ -94,19 +98,25 @@ const Matches = ({
           </>
         )}
       </div>
-      {matchModalVisible && selectedMatch && mode.id === 'match' && (
+      {matchModalVisible && selectedMatch && mode.id === "match" && (
         <MatchModal
           match={selectedMatch as Match}
           open={matchModalVisible}
           close={() => setMatchModalVisible(false)}
+          deleteMatch={() => {
+            deleteMatch(selectedMatch.id);
+          }}
         />
       )}
-      {matchModalVisible && selectedMatch && mode.id !== 'match' && (
+      {matchModalVisible && selectedMatch && mode.id !== "match" && (
         <PracticeMatchModal
           mode={mode.name}
           match={selectedMatch as PracticeMatch}
           open={matchModalVisible}
           close={() => setMatchModalVisible(false)}
+          deleteMatch={() => {
+            deleteMatch(selectedMatch.id);
+          }}
         />
       )}
     </Block>

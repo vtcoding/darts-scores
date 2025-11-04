@@ -1,53 +1,48 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
-import Button from '../../components/Button/Button';
-import Header from '../../components/Header/Header';
-import type { PracticeTurn } from '../../types';
-import {
-  calculateDartsHit,
-  calculateHitRate,
-  getPracticeMatchSettings,
-} from '../../utils';
-import styles from './Practice.module.css';
-import PracticeFinishedModal from './components/PracticeFinishedModal/PracticeFinishedModal';
+import Button from "../../components/Button/Button";
+import Header from "../../components/Header/Header";
+import type { PracticeTurn } from "../../types";
+import { calculateDartsHit, calculateHitRate, getPracticeMatchSettings } from "../../utils";
+import styles from "./Practice.module.css";
+import PracticeFinishedModal from "./components/PracticeFinishedModal/PracticeFinishedModal";
 
 const Practice = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const matchSettings = getPracticeMatchSettings();
   const [turns, setTurns] = useState<PracticeTurn[]>([]);
-  const [practiceEndedModalVisible, setPracticeEndedModalVisible] =
-    useState<boolean>(false);
+  const [practiceEndedModalVisible, setPracticeEndedModalVisible] = useState<boolean>(false);
 
   const getPracticeGameName = () => {
     switch (matchSettings.mode) {
-      case 'around-the-clock':
-        return 'Around the clock';
-      case 'doubles':
-        return 'Doubles practice';
-      case 'triples':
-        return 'Triples practice';
+      case "around-the-clock":
+        return "Around the clock";
+      case "doubles":
+        return "Doubles practice";
+      case "triples":
+        return "Triples practice";
       default:
-        return '';
+        return "";
     }
   };
 
   const getTargetPrefix = () => {
     if (getTarget() === matchSettings.finish_on) {
-      return '';
+      return "";
     } else {
       switch (matchSettings.mode) {
-        case 'around-the-clock':
-          return 'S';
-        case 'doubles':
-          return 'D';
-        case 'triples':
-          return 'T';
+        case "around-the-clock":
+          return "S";
+        case "doubles":
+          return "D";
+        case "triples":
+          return "T";
         default:
-          return '';
+          return "";
       }
     }
   };
@@ -63,9 +58,7 @@ const Practice = () => {
 
       // Check if all darts are filled
       const allFilled =
-        lastTurn.dart1 !== null &&
-        lastTurn.dart2 !== null &&
-        lastTurn.dart3 !== null;
+        lastTurn.dart1 !== null && lastTurn.dart2 !== null && lastTurn.dart3 !== null;
 
       if (allFilled) {
         // All darts used → start a new turn
@@ -82,6 +75,15 @@ const Practice = () => {
       const updatedTurns = [...prevTurns];
       updatedTurns[updatedTurns.length - 1] = updatedLastTurn;
 
+      // If after this throw all darts are filled, add a new empty turn
+      const allFilledAfterThrow =
+        updatedLastTurn.dart1 !== null &&
+        updatedLastTurn.dart2 !== null &&
+        updatedLastTurn.dart3 !== null;
+      if (allFilledAfterThrow) {
+        updatedTurns.push({ dart1: null, dart2: null, dart3: null });
+      }
+
       return updatedTurns;
     });
 
@@ -95,10 +97,7 @@ const Practice = () => {
       const lastTurn = prevTurns[prevTurns.length - 1];
 
       // Case 1: all darts are null → remove this empty turn
-      const allNull =
-        lastTurn.dart1 === null &&
-        lastTurn.dart2 === null &&
-        lastTurn.dart3 === null;
+      const allNull = lastTurn.dart1 === null && lastTurn.dart2 === null && lastTurn.dart3 === null;
 
       if (allNull) {
         return prevTurns.slice(0, -1);
@@ -145,7 +144,7 @@ const Practice = () => {
     if (value && value !== -1 && value !== matchSettings.finish_on) {
       return getTargetPrefix() + value;
     } else if (value === -1) {
-      return t('pages.practiceMatch.miss');
+      return t("pages.practiceMatch.miss");
     } else {
       return value;
     }
@@ -165,16 +164,13 @@ const Practice = () => {
           {getTarget()}
         </div>
         <div className={styles.statsWrapper}>
-          <div className={styles.statsTitle}>
-            {t('pages.practiceMatch.statsTitle')}
-          </div>
+          <div className={styles.statsTitle}>{t("pages.practiceMatch.statsTitle")}</div>
           <div className={styles.stats}>
             <div className={styles.stat}>
-              {t('pages.practiceMatch.dartsHit')}: {calculateDartsHit(turns)}
+              {t("pages.practiceMatch.dartsHit")}: {calculateDartsHit(turns)}
             </div>
             <div className={styles.stat}>
-              {t('pages.practiceMatch.hitRate')}:{' '}
-              {calculateHitRate(turns).toFixed(2)}%
+              {t("pages.practiceMatch.hitRate")}: {calculateHitRate(turns).toFixed(2)}%
             </div>
           </div>
         </div>
@@ -182,31 +178,25 @@ const Practice = () => {
       <div className={styles.controls}>
         <Button
           onClick={() => undoThrow()}
-          text={t('pages.practiceMatch.undo')}
-          variant={'red'}
-          size={'large'}
+          text={t("pages.practiceMatch.undo")}
+          variant={"red"}
+          size={"large"}
         />
         <div className={styles.darts}>
           <div className={styles.dart}>
-            {turns.length > 0
-              ? getThrownString(turns[turns.length - 1].dart1)
-              : ''}
+            {turns.length > 0 ? getThrownString(turns[turns.length - 1].dart1) : ""}
           </div>
           <div className={styles.dart}>
-            {turns.length > 0
-              ? getThrownString(turns[turns.length - 1].dart2)
-              : ''}
+            {turns.length > 0 ? getThrownString(turns[turns.length - 1].dart2) : ""}
           </div>
           <div className={styles.dart}>
-            {turns.length > 0
-              ? getThrownString(turns[turns.length - 1].dart3)
-              : ''}
+            {turns.length > 0 ? getThrownString(turns[turns.length - 1].dart3) : ""}
           </div>
         </div>
       </div>
       <div className={styles.keyboard}>
         <div onClick={() => handleKeyClick(-1)} className={styles.key}>
-          {t('pages.practiceMatch.miss')}
+          {t("pages.practiceMatch.miss")}
         </div>
         <div onClick={() => handleKeyClick(getTarget())} className={styles.key}>
           {getTargetPrefix()}
@@ -218,7 +208,7 @@ const Practice = () => {
           open={practiceEndedModalVisible}
           turns={turns}
           playAgain={() => playAgain()}
-          quitToMenu={() => navigate('/')}
+          quitToMenu={() => navigate("/")}
         />
       )}
     </div>

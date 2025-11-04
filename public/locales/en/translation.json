@@ -1,4 +1,9 @@
 {
+  "common": {
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "close": "Close"
+  },
   "components": {
     "sidebar": {
       "home": "Home",

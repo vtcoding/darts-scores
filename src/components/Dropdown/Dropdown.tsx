@@ -1,23 +1,19 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 
-import type { Option } from '../../types';
-import Title from '../Title/Title';
-import styles from './Dropdown.module.css';
+import type { Option } from "../../types";
+import Title from "../Title/Title";
+import styles from "./Dropdown.module.css";
 
 interface DropdownProps {
   options: Option[];
-  selectedOption: Option;
-  setSelectedOption: (value: Option) => void;
+  selectedOption: string;
+  setSelectedOption: (option: string) => void;
 }
 
-const Dropdown = ({
-  options,
-  selectedOption,
-  setSelectedOption,
-}: DropdownProps) => {
+const Dropdown = ({ options, selectedOption, setSelectedOption }: DropdownProps) => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
   return (
@@ -26,7 +22,7 @@ const Dropdown = ({
         onClick={() => setMenuOpen(menuOpen ? false : true)}
         className={`${styles.select} ${menuOpen && styles.opened}`}
       >
-        <Title text={selectedOption.name} />
+        <Title text={options.find((o) => o.id === selectedOption)?.name ?? ""} />
         {menuOpen && <ArrowDropUpIcon />}
         {!menuOpen && <ArrowDropDownIcon />}
       </div>
@@ -36,7 +32,7 @@ const Dropdown = ({
             return (
               <div
                 onClick={() => {
-                  setSelectedOption(option);
+                  setSelectedOption(option.id);
                   setMenuOpen(false);
                 }}
                 key={option.id}
