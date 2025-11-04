@@ -43,10 +43,8 @@ const Match = () => {
   const [turns, setTurns] = useState<Turn[]>([]);
   const [input, setInput] = useState<string>("");
   const [submitAction, setSubmitAction] = useState<string>("");
-  const [doublesModalVisible, setDoublesModalVisible] =
-    useState<boolean>(false);
-  const [matchFinishedModalVisible, setMatchFinishedModalVisible] =
-    useState<boolean>(false);
+  const [doublesModalVisible, setDoublesModalVisible] = useState<boolean>(false);
+  const [matchFinishedModalVisible, setMatchFinishedModalVisible] = useState<boolean>(false);
 
   const validateInput = (input: string) => {
     if (input) {
@@ -69,11 +67,7 @@ const Match = () => {
 
   const submitTurn = (action: string) => {
     setSubmitAction(action);
-    const remaining: number = calculateRemainingScore(
-      parseInt(legLength),
-      currentLeg,
-      turns
-    );
+    const remaining: number = calculateRemainingScore(parseInt(legLength), currentLeg, turns);
     const numberInput = input === "" ? "0" : input;
     let score: number = 0;
     let newRemaining: number = 0;
@@ -88,7 +82,7 @@ const Match = () => {
 
     if (score < 181 && newRemaining > -1 && newRemaining !== 1) {
       /* if (newRemaining === 0 || (remaining < 171 && (number === 0 || newRemaining < 171))) { */
-      if (newRemaining === 0 || (newRemaining < 51 && newRemaining > 1)) {
+      if (score === 0 || newRemaining === 0 || (newRemaining < 51 && newRemaining > 1)) {
         setDoublesModalVisible(true);
       } else {
         setInput("");
@@ -105,11 +99,7 @@ const Match = () => {
   const handleDoubleSubmit = (dartsUsedOnDouble: number) => {
     setDoublesModalVisible(false);
     const numberInput = input === "" ? "0" : input;
-    const remaining: number = calculateRemainingScore(
-      parseInt(legLength),
-      currentLeg,
-      turns
-    );
+    const remaining: number = calculateRemainingScore(parseInt(legLength), currentLeg, turns);
     let score: number = 0;
     let newRemaining: number = 0;
 
@@ -148,10 +138,7 @@ const Match = () => {
   return (
     <FadeIn>
       <div className={styles.match}>
-        <Header
-          title={`${legLength} - ${t("pages.match.firstTo")}`}
-          showQuitButton
-        />
+        <Header title={`${legLength} - ${t("pages.match.firstTo")}`} showQuitButton />
         <div className={styles.matchInfo}>
           <Title text={`${t("pages.match.currentLeg")}: ${currentLeg}`} />
         </div>
@@ -160,13 +147,10 @@ const Match = () => {
             {calculateRemainingScore(parseInt(legLength), currentLeg, turns)}
           </div>
           <div className={styles.statsWrapper}>
-            <div className={styles.statsTitle}>
-              {t("pages.match.statsTitle")}
-            </div>
+            <div className={styles.statsTitle}>{t("pages.match.statsTitle")}</div>
             <div className={styles.stats}>
               <div className={styles.stat}>
-                {t("pages.match.threeDartAverage")}:{" "}
-                {calculateThreeDartAverage(turns).toFixed(2)}
+                {t("pages.match.threeDartAverage")}: {calculateThreeDartAverage(turns).toFixed(2)}
               </div>
               <div className={styles.stat}>
                 {t("pages.match.dartsThrown")}: {turns.length * 3}
@@ -216,9 +200,7 @@ const Match = () => {
         {doublesModalVisible && (
           <DoublesModal
             open={doublesModalVisible}
-            handleSubmit={(dartsUsedOnDouble) =>
-              handleDoubleSubmit(dartsUsedOnDouble)
-            }
+            handleSubmit={(dartsUsedOnDouble) => handleDoubleSubmit(dartsUsedOnDouble)}
           />
         )}
         {matchFinishedModalVisible && (
