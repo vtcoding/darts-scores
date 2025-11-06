@@ -51,13 +51,13 @@ const Button = ({
   return (
     <div
       onMouseDown={handleHoldStart}
-      onMouseUp={(e) => {
+      onMouseUp={() => {
         handleHoldEnd();
         handleClick();
       }}
       onMouseLeave={handleHoldEnd}
       onTouchStart={handleHoldStart}
-      onTouchEnd={(e) => {
+      onTouchEnd={() => {
         handleHoldEnd();
         handleClick();
       }}

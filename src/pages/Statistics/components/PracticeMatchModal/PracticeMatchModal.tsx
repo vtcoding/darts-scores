@@ -10,7 +10,7 @@ import styles from "./PracticeMatchModal.module.css";
 interface PracticeMatchModalProps {
   open: boolean;
   close: () => void;
-  deleteMatch?: () => void;
+  deleteMatch: () => void;
   match: PracticeMatch;
   mode: string;
 }
@@ -40,10 +40,9 @@ const PracticeMatchModal = ({
           </div>
         </div>
         <Button
-          onClick={() => {}}
+          onClick={deleteMatch}
           text={t("pages.statistics.matchModals.deleteMatch")}
           variant="red"
-          disabled
         />
         <Button
           onClick={close}
