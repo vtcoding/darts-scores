@@ -231,7 +231,7 @@ export const getHitRatesForSector = (turns: PracticeTurn[], sector: number) => {
   if (targetIndex === -1) return 0; // target not found
 
   // Walk backwards counting consecutive -1 values
-  let count = 0;
+  let count = 1;
   for (let i = targetIndex - 1; i >= 0; i--) {
     const dart = darts[i];
     if (dart === -1) {
@@ -242,4 +242,14 @@ export const getHitRatesForSector = (turns: PracticeTurn[], sector: number) => {
   }
 
   return darts.length > 0 ? (count === 0 ? 100 : (1 / count) * 100) : 0;
+};
+
+export const getTotalHitRatesForSector = (matches: PracticeMatch[], sector: number) => {
+  const rates: number[] = [];
+  matches.forEach((match) => {
+    const hitRateForSector = getHitRatesForSector(match.turns, sector);
+    rates.push(hitRateForSector);
+  });
+
+  return rates.length > 0 ? rates.reduce((a, b) => a + b, 0) / rates.length : 0;
 };
