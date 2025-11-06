@@ -37,17 +37,11 @@ export const saveNewMatchToStorage = (mode: string, legs: number) => {
 export const getMatchSettings = () => {
   const id = localStorage.getItem("activeMatch");
   const matches = JSON.parse(localStorage.getItem("matches") || "[]");
-  const currentMatch = matches.find(
-    (match: Match) => match.id === parseInt(id as string)
-  );
+  const currentMatch = matches.find((match: Match) => match.id === parseInt(id as string));
   return currentMatch;
 };
 
-export const calculateRemainingScore = (
-  legLength: number,
-  currentLeg: number,
-  turns: Turn[]
-) => {
+export const calculateRemainingScore = (legLength: number, currentLeg: number, turns: Turn[]) => {
   let score = 0;
   turns.forEach((turn: Turn) => {
     if (turn.leg === currentLeg) {
@@ -158,9 +152,7 @@ export const saveNewPracticeToStorage = (mode: string, finishOn: number) => {
     turns: [],
   };
 
-  const practiceMatches = JSON.parse(
-    localStorage.getItem("practiceMatches") || "[]"
-  );
+  const practiceMatches = JSON.parse(localStorage.getItem("practiceMatches") || "[]");
   practiceMatches.push(practiceMatch);
 
   localStorage.setItem("activePracticeMatch", id.toString());
@@ -169,12 +161,8 @@ export const saveNewPracticeToStorage = (mode: string, finishOn: number) => {
 
 export const getPracticeMatchSettings = () => {
   const id = localStorage.getItem("activePracticeMatch");
-  const practiceMatches = JSON.parse(
-    localStorage.getItem("practiceMatches") || "[]"
-  );
-  const currentMatch = practiceMatches.find(
-    (match: Match) => match.id === parseInt(id as string)
-  );
+  const practiceMatches = JSON.parse(localStorage.getItem("practiceMatches") || "[]");
+  const currentMatch = practiceMatches.find((match: Match) => match.id === parseInt(id as string));
   return currentMatch;
 };
 
@@ -233,4 +221,25 @@ export const getBestAndWorstHitRates = (matches: PracticeMatch[]) => {
     best: rates.length > 0 ? Math.max(...rates) : 0,
     worst: rates.length > 0 ? Math.min(...rates) : 0,
   };
+};
+
+export const getHitRatesForSector = (turns: PracticeTurn[], sector: number) => {
+  const darts = turns.flatMap((t) => [t.dart1, t.dart2, t.dart3]);
+
+  // Find index of target
+  const targetIndex = darts.findIndex((d) => d === sector);
+  if (targetIndex === -1) return 0; // target not found
+
+  // Walk backwards counting consecutive -1 values
+  let count = 0;
+  for (let i = targetIndex - 1; i >= 0; i--) {
+    const dart = darts[i];
+    if (dart === -1) {
+      count++;
+    } else if (dart !== null) {
+      break; // stop if we hit any number other than -1
+    }
+  }
+
+  return darts.length > 0 ? (count === 0 ? 100 : (1 / count) * 100) : 0;
 };
