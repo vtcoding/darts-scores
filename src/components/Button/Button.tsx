@@ -31,7 +31,8 @@ const Button = ({
     }
   };
 
-  const handleHoldStart = () => {
+  const handleHoldStart = (e: React.TouchEvent | React.MouseEvent) => {
+    e.preventDefault(); // stops synthetic clicks on mobile
     held.current = false;
     holdTimer.current = window.setTimeout(() => {
       held.current = true;
@@ -50,17 +51,12 @@ const Button = ({
 
   return (
     <div
-      onMouseDown={handleHoldStart}
-      onMouseUp={() => {
+      onPointerDown={handleHoldStart}
+      onPointerUp={() => {
         handleHoldEnd();
         handleClick();
       }}
-      onMouseLeave={handleHoldEnd}
-      onTouchStart={handleHoldStart}
-      onTouchEnd={() => {
-        handleHoldEnd();
-        handleClick();
-      }}
+      onPointerLeave={handleHoldEnd}
       className={`
                 ${styles.button}
                 ${variant === 'green' && styles.green}
