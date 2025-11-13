@@ -21,7 +21,6 @@ const Button = ({
   selected,
   disabled,
 }: ButtonProps) => {
-  // Explicitly type the ref
   const holdTimer = useRef<number | null>(null);
   const held = useRef(false);
 
@@ -32,7 +31,7 @@ const Button = ({
   };
 
   const handleHoldStart = (e: React.TouchEvent | React.MouseEvent) => {
-    e.preventDefault(); // stops synthetic clicks on mobile
+    e.preventDefault();
     held.current = false;
     holdTimer.current = window.setTimeout(() => {
       held.current = true;
