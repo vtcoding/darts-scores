@@ -13,7 +13,7 @@ interface DoublesModalProps {
 }
 
 const DoublesModal = ({ open, handleSubmit }: DoublesModalProps) => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [selectedDouble, setSelectedDouble] = useState<number>(0);
 
   return (
