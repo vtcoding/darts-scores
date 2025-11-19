@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import Button from '../../../../components/Button/Button';
 import Modal from '../../../../components/Modal/Modal';
 import Title from '../../../../components/Title/Title';
-import type { PracticeMatch, PracticeTurn } from '../../../../types';
+import type { PracticeTurn } from '../../../../types';
 import { calculateDartsHit, calculateHitRate } from '../../../../utils';
 import styles from './PracticeFinishedModal.module.css';
 
@@ -30,16 +30,14 @@ const PracticeFinishedModal = ({
 
   const savePractice = () => {
     if (activePracticeMatch) {
-      const matchId = parseInt(activePracticeMatch);
-      const matchIndex = storedPracticeMatches.findIndex(
-        (storedMatch: PracticeMatch) => storedMatch.id === matchId
-      );
-      storedPracticeMatches[matchIndex].turns = turns;
-      storedPracticeMatches[matchIndex].ended_at = Date.now();
+      const match = JSON.parse(activePracticeMatch);
+      match.turns = turns;
+      match.ended_at = Date.now();
       localStorage.setItem(
         'practiceMatches',
         JSON.stringify(storedPracticeMatches)
       );
+      localStorage.removeItem("activePracticeMatch");
     }
   };
 

@@ -35,11 +35,15 @@
       "title": "Match settings",
       "unfinishedTitle": "You have an unfinished match!",
       "unfinishedDesc": "If you don't finish your match, it will be deleted once you start a new one.",
+      "continueUnfinished": "Continue unfinished match",
       "chooseMode": "Choose mode",
       "startMatch": "Start match"
     },
     "practiceSettings": {
       "title": "Practice settings",
+      "unfinishedTitle": "You have an unfinished practice match!",
+      "unfinishedDesc": "If you don't finish your practice match, it will be deleted once you start a new one.",
+      "continueUnfinished": "Continue unfinished practice match",
       "aroundTheClockTitle": "Play Around the clock",
       "aroundTheClockDesc": "Go through each sector (1-20) and finish with single bull.",
       "doublesTitle": "Play Doubles practice",

@@ -41,7 +41,7 @@ const MatchSettings = () => {
             <BlockParagraph>
               {t("pages.matchSettings.unfinishedDesc")}
             </BlockParagraph>
-            <Button onClick={() => navigate("/match")} text="Continue unfinished match" variant={"green"} />
+            <Button onClick={() => navigate("/match")} text={t("pages.matchSettings.continueUnfinished")} variant={"green"} />
           </Block>
         }
         <Block>

@@ -15,7 +15,6 @@ import {
   getBestAndWorstCheckoutPercentages,
   getBestAndWorstFirstNineDartsAverages,
   getBestAndWorstHitRates,
-  getPracticeMatchSettings,
   saveNewMatchToStorage,
   saveNewPracticeToStorage,
 } from "./utils";
@@ -86,7 +85,9 @@ describe("Unit tests for utils", () => {
 
       saveNewPracticeToStorage(mode, legs);
 
-      const result = getPracticeMatchSettings();
+      const matchInStorage = localStorage.getItem("activePracticeMatch");
+      const result = matchInStorage ? JSON.parse(matchInStorage) : null;
+
       expect(result).toEqual({
         id: mockNow,
         finish_on: 1,

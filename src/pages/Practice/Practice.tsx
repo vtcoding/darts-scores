@@ -1,20 +1,27 @@
 import { useState } from "react";
 
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 import Button from "../../components/Button/Button";
 import Header from "../../components/Header/Header";
 import type { PracticeTurn } from "../../types";
-import { calculateDartsHit, calculateHitRate, getPracticeMatchSettings } from "../../utils";
+import { calculateDartsHit, calculateHitRate, savePracticeMatchProgressToStorage } from "../../utils";
 import styles from "./Practice.module.css";
 import PracticeFinishedModal from "./components/PracticeFinishedModal/PracticeFinishedModal";
 
 const Practice = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const matchSettings = getPracticeMatchSettings();
-  const [turns, setTurns] = useState<PracticeTurn[]>([]);
+  const activePracticeMatch = localStorage.getItem("activePracticeMatch");
+
+  if (!activePracticeMatch) {
+    return <Navigate to="/practice-settings" />
+  }
+
+  const matchSettings = JSON.parse(activePracticeMatch as string);
+
+  const [turns, setTurns] = useState<PracticeTurn[]>(matchSettings.turns);
   const [practiceEndedModalVisible, setPracticeEndedModalVisible] = useState<boolean>(false);
 
   const getPracticeGameName = () => {
@@ -84,6 +91,8 @@ const Practice = () => {
         updatedTurns.push({ dart1: null, dart2: null, dart3: null });
       }
 
+      savePracticeMatchProgressToStorage(updatedTurns);
+
       return updatedTurns;
     });
 
@@ -112,6 +121,8 @@ const Practice = () => {
 
       const updatedTurns = [...prevTurns];
       updatedTurns[updatedTurns.length - 1] = updatedLastTurn;
+
+      savePracticeMatchProgressToStorage(updatedTurns);
 
       return updatedTurns;
     });

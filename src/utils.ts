@@ -41,13 +41,6 @@ export const saveMatchProgressToStorage = (turns: Turn[]) => {
   localStorage.setItem("activeMatch", JSON.stringify(match));
 };
 
-export const getMatchSettings = () => {
-  const id = localStorage.getItem("activeMatch");
-  const matches = JSON.parse(localStorage.getItem("matches") || "[]");
-  const currentMatch = matches.find((match: Match) => match.id === parseInt(id as string));
-  return currentMatch;
-};
-
 export const calculateRemainingScore = (legLength: number, currentLeg: number, turns: Turn[]) => {
   let score = 0;
   turns.forEach((turn: Turn) => {
@@ -162,15 +155,15 @@ export const saveNewPracticeToStorage = (mode: string, finishOn: number) => {
   const practiceMatches = JSON.parse(localStorage.getItem("practiceMatches") || "[]");
   practiceMatches.push(practiceMatch);
 
-  localStorage.setItem("activePracticeMatch", id.toString());
+  localStorage.setItem("activePracticeMatch", JSON.stringify(practiceMatch));
   localStorage.setItem("practiceMatches", JSON.stringify(practiceMatches));
 };
 
-export const getPracticeMatchSettings = () => {
-  const id = localStorage.getItem("activePracticeMatch");
-  const practiceMatches = JSON.parse(localStorage.getItem("practiceMatches") || "[]");
-  const currentMatch = practiceMatches.find((match: Match) => match.id === parseInt(id as string));
-  return currentMatch;
+export const savePracticeMatchProgressToStorage = (turns: PracticeTurn[]) => {
+  const activePracticeMatch = localStorage.getItem("activePracticeMatch");
+  const practiceMatch = activePracticeMatch ? JSON.parse(activePracticeMatch) : null;
+  practiceMatch.turns = turns;
+  localStorage.setItem("activePracticeMatch", JSON.stringify(practiceMatch));
 };
 
 /* Darts hit on practice matches */

@@ -9,9 +9,11 @@ import FadeIn from '../../components/FadeIn/FadeIn';
 import PageContent from '../../components/PageContent/PageContent';
 import Title from '../../components/Title/Title';
 import { saveNewPracticeToStorage } from '../../utils';
+import Button from '../../components/Button/Button';
 
 const PracticeSettings = () => {
   const navigate = useNavigate();
+  const activePracticeMatch = localStorage.getItem("activePracticeMatch");
   const { t } = useTranslation();
 
   const startPracticeMatch = (mode: string, finishOn: number) => {
@@ -22,6 +24,17 @@ const PracticeSettings = () => {
   return (
     <FadeIn>
       <PageContent headerTitle={t('pages.practiceSettings.title')}>
+        {
+          activePracticeMatch &&
+          <Block>
+            <Title text={t("pages.practiceSettings.unfinishedTitle")} />
+              <BlockParagraph>
+                {t("pages.practiceSettings.unfinishedDesc")}
+              </BlockParagraph>
+              <Button onClick={() => navigate("/practice")} text={t("pages.practiceSettings.continueUnfinished")} variant={"green"} />
+          </Block>
+        }
+        
         <Block onClick={() => startPracticeMatch('around-the-clock', 25)}>
           <BlockHeader>
             <RefreshIcon />
