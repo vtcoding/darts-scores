@@ -8,10 +8,7 @@ interface BlockParagraphProps {
 
 const BlockParagraph = ({ children }: BlockParagraphProps) => {
   return (
-    <div
-      className={`
-                ${styles.blockParagraph}`}
-    >
+    <div className={styles.blockParagraph}>
       {children}
     </div>
   );

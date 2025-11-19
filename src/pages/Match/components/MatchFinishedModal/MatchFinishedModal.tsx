@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import Button from '../../../../components/Button/Button';
 import Modal from '../../../../components/Modal/Modal';
 import Title from '../../../../components/Title/Title';
-import type { Match, Turn } from '../../../../types';
+import type { Turn } from '../../../../types';
 import {
   calculateCheckoutPercentage,
   calculateThreeDartAverage,
@@ -31,13 +31,12 @@ const MatchFinishedModal = ({
 
   const saveMatch = () => {
     if (activeMatch) {
-      const matchId = parseInt(activeMatch);
-      const matchIndex = storedMatches.findIndex(
-        (storedMatch: Match) => storedMatch.id === matchId
-      );
-      storedMatches[matchIndex].turns = turns;
-      storedMatches[matchIndex].ended_at = Date.now();
+      const match = JSON.parse(activeMatch);
+      match.turns = turns;
+      match.ended_at = Date.now();
+      storedMatches.push(match);
       localStorage.setItem('matches', JSON.stringify(storedMatches));
+      localStorage.removeItem("activeMatch");
     }
   };
 

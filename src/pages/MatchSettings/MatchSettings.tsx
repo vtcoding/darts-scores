@@ -11,10 +11,12 @@ import PageContent from "../../components/PageContent/PageContent";
 import Title from "../../components/Title/Title";
 import type { Option } from "../../types";
 import { saveNewMatchToStorage } from "../../utils";
+import BlockParagraph from "../../components/BlockParagraph/BlockParagraph";
 
 const MatchSettings = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const activeMatch = localStorage.getItem("activeMatch");
   const [mode, setMode] = useState<string>("501");
   const [legs] = useState<string>("1");
 
@@ -32,6 +34,16 @@ const MatchSettings = () => {
   return (
     <FadeIn>
       <PageContent headerTitle={t("pages.matchSettings.title")}>
+        {
+          activeMatch &&
+          <Block>
+            <Title text={t("pages.matchSettings.unfinishedTitle")} />
+            <BlockParagraph>
+              {t("pages.matchSettings.unfinishedDesc")}
+            </BlockParagraph>
+            <Button onClick={() => navigate("/match")} text="Continue unfinished match" variant={"green"} />
+          </Block>
+        }
         <Block>
           <Title text={t("pages.matchSettings.chooseMode")} />
           <Dropdown options={modes} selectedOption={mode} setSelectedOption={setMode} />

@@ -1,18 +1,18 @@
 import { useState } from "react";
 
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 import Button from "../../components/Button/Button";
 import FadeIn from "../../components/FadeIn/FadeIn";
 import Header from "../../components/Header/Header";
 import Input from "../../components/Input/Input";
 import Title from "../../components/Title/Title";
-import type { Match as MatchType, Turn } from "../../types";
+import type { Turn } from "../../types";
 import {
   calculateRemainingScore,
   calculateThreeDartAverage,
-  getMatchSettings,
+  saveMatchProgressToStorage,
   saveNewMatchToStorage,
 } from "../../utils";
 import styles from "./Match.module.css";
@@ -22,6 +22,13 @@ import MatchFinishedModal from "./components/MatchFinishedModal/MatchFinishedMod
 const Match = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const activeMatch = localStorage.getItem("activeMatch");
+
+  if (!activeMatch) {
+    return <Navigate to="/match-settings" />
+  }
+
+  const matchSettings = JSON.parse(activeMatch as string);
   const keys = [
     { key: 1, name: 1 },
     { key: 2, name: 2 },
@@ -36,11 +43,10 @@ const Match = () => {
     { key: 9, name: 9 },
     { key: "clear", name: t("pages.match.clear") },
   ];
-  const matchSettings: MatchType = getMatchSettings();
   const legLength = matchSettings.mode;
   const legs = matchSettings.legs;
   const [currentLeg, setCurrentLeg] = useState<number>(1);
-  const [turns, setTurns] = useState<Turn[]>([]);
+  const [turns, setTurns] = useState<Turn[]>(matchSettings.turns);
   const [input, setInput] = useState<string>("");
   const [submitAction, setSubmitAction] = useState<string>("");
   const [doublesModalVisible, setDoublesModalVisible] = useState<boolean>(false);
@@ -91,7 +97,11 @@ const Match = () => {
           leg: currentLeg,
           dartsUsedOnDouble: 0,
         };
-        setTurns((turns) => [...turns, newTurn]);
+        setTurns((prevTurns) => {
+          const updated = [...prevTurns, newTurn];
+          saveMatchProgressToStorage(updated);
+          return updated;
+        });
       }
     }
   };
@@ -118,13 +128,18 @@ const Match = () => {
     const newTurns = [...turns, newTurn];
     setInput("");
     setTurns(newTurns);
+    saveMatchProgressToStorage(newTurns);
     if (newRemaining === 0) {
       setMatchFinishedModalVisible(true);
     }
   };
 
   const undoTurn = () => {
-    setTurns((turns) => turns.slice(0, -1));
+    setTurns((prevTurns) => {
+      const updated = prevTurns.slice(0, -1);
+      saveMatchProgressToStorage(updated);
+      return updated;
+    });
   };
 
   const playAgain = () => {

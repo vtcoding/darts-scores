@@ -16,8 +16,6 @@ const DoublesModal = ({ open, handleSubmit }: DoublesModalProps) => {
   const { t, i18n } = useTranslation();
   const [selectedDouble, setSelectedDouble] = useState<number>(0);
 
-  console.log(i18n.language);
-
   return (
     <Modal open={open}>
       <Title text={t('pages.match.doublesModal.title')} />

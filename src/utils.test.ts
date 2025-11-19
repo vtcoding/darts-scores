@@ -15,7 +15,6 @@ import {
   getBestAndWorstCheckoutPercentages,
   getBestAndWorstFirstNineDartsAverages,
   getBestAndWorstHitRates,
-  getMatchSettings,
   getPracticeMatchSettings,
   saveNewMatchToStorage,
   saveNewPracticeToStorage,
@@ -65,7 +64,9 @@ describe("Unit tests for utils", () => {
 
       saveNewMatchToStorage(mode, legs);
 
-      const result = getMatchSettings();
+      const matchInStorage = localStorage.getItem("activeMatch");
+      const result = matchInStorage ? JSON.parse(matchInStorage) : null;
+
       expect(result).toEqual({
         id: mockNow,
         mode,
@@ -166,9 +167,7 @@ describe("Unit tests for utils", () => {
         { score: 60, leg: 1, dartsUsedOnDouble: 0 },
         { score: 100, leg: 1, dartsUsedOnDouble: 0 },
       ];
-      const matches: Match[] = [
-        { id: 1, mode: "501", legs: 1, started_at: 1, ended_at: 2, turns },
-      ];
+      const matches: Match[] = [{ id: 1, mode: "501", legs: 1, started_at: 1, ended_at: 2, turns }];
 
       const result = calculateTotalThreeDartAverage(matches).toFixed(2);
       expect(result).toBe("80.00");
@@ -261,9 +260,7 @@ describe("Unit tests for utils", () => {
       ],
     };
 
-    const result = calculateTotalCheckoutPercentage([match1, match2]).toFixed(
-      2
-    );
+    const result = calculateTotalCheckoutPercentage([match1, match2]).toFixed(2);
     expect(result).toBe("50.00");
   });
 
@@ -349,10 +346,7 @@ describe("Unit tests for utils", () => {
       ],
     };
 
-    const result = calculateTotalFirstNineDartsAverage([
-      match1,
-      match2,
-    ]).toFixed(2);
+    const result = calculateTotalFirstNineDartsAverage([match1, match2]).toFixed(2);
     expect(result).toBe("40.00");
   });
 
@@ -394,11 +388,7 @@ describe("Unit tests for utils", () => {
       ],
     };
 
-    const result = getBestAndWorstFirstNineDartsAverages([
-      match1,
-      match2,
-      match3,
-    ]);
+    const result = getBestAndWorstFirstNineDartsAverages([match1, match2, match3]);
     expect(result.best.toFixed(2)).toBe("45.00");
     expect(result.worst.toFixed(2)).toBe("25.00");
   });
@@ -436,10 +426,7 @@ describe("Unit tests for utils", () => {
       turns: [{ dart1: 1, dart2: 1, dart3: 1 }],
     };
 
-    const result = calculateTotalHitRate([
-      practiceMatch,
-      practiceMatch2,
-    ]).toFixed(2);
+    const result = calculateTotalHitRate([practiceMatch, practiceMatch2]).toFixed(2);
     expect(result).toBe("83.33");
   });
 

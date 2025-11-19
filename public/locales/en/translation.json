@@ -33,6 +33,8 @@
     },
     "matchSettings": {
       "title": "Match settings",
+      "unfinishedTitle": "You have an unfinished match!",
+      "unfinishedDesc": "If you don't finish your match, it will be deleted once you start a new one.",
       "chooseMode": "Choose mode",
       "startMatch": "Start match"
     },

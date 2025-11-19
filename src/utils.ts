@@ -30,8 +30,15 @@ export const saveNewMatchToStorage = (mode: string, legs: number) => {
   const matches = JSON.parse(localStorage.getItem("matches") || "[]");
   matches.push(match);
 
-  localStorage.setItem("activeMatch", id.toString());
+  localStorage.setItem("activeMatch", JSON.stringify(match));
   localStorage.setItem("matches", JSON.stringify(matches));
+};
+
+export const saveMatchProgressToStorage = (turns: Turn[]) => {
+  const activeMatch = localStorage.getItem("activeMatch");
+  const match = activeMatch ? JSON.parse(activeMatch) : null;
+  match.turns = turns;
+  localStorage.setItem("activeMatch", JSON.stringify(match));
 };
 
 export const getMatchSettings = () => {

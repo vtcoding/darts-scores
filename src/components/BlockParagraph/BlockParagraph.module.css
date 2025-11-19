@@ -1,15 +1,15 @@
 .blockParagraph {
-  font-size: var(--font-size-l);
+  font-size: var(--font-size-m);
 }
 
 @media screen and (max-width: 1279px) {
   .blockParagraph {
-    font-size: var(--font-size-m);
+    font-size: var(--font-size-s);
   }
 }
 
 @media screen and (max-width: 676px) {
   .blockParagraph {
-    font-size: var(--font-size-s);
+    font-size: var(--font-size-xs);
   }
 }
