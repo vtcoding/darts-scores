@@ -33,6 +33,8 @@
     },
     "matchSettings": {
       "title": "Otteluasetukset",
+      "unfinishedTitle": "Sinulla on keskeneräinen ottelu!",
+      "unfinishedDesc": "Jos et pelaa otteluasi loppuun, se poistetaan kun aloitat uuden ottelun.",
       "chooseMode": "Valitse pelimuoto",
       "startMatch": "Aloita ottelu"
     },
