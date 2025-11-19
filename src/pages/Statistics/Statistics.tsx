@@ -7,6 +7,7 @@ import Block from "../../components/Block/Block";
 import Button from "../../components/Button/Button";
 import Dropdown from "../../components/Dropdown/Dropdown";
 import FadeIn from "../../components/FadeIn/FadeIn";
+import HitRates from "../../components/HitRates/HitRates";
 import PageContent from "../../components/PageContent/PageContent";
 import Title from "../../components/Title/Title";
 import type { Match, Option, PracticeMatch } from "../../types";
@@ -14,7 +15,6 @@ import styles from "./Statistics.module.css";
 import DeleteStatsModal from "./components/DeleteStatsModal/DeleteStatsModal";
 import General from "./components/General/General";
 import Matches from "./components/Matches/Matches";
-import HitRates from "../../components/HitRates/HitRates";
 
 const Statistics = () => {
   const { t } = useTranslation();
@@ -59,10 +59,7 @@ const Statistics = () => {
           <Dropdown options={modes} selectedOption={mode} setSelectedOption={setMode} />
         </Block>
         <General mode={mode} matches={finishedMatches} practiceMatches={finishedPracticeMatches} />
-        {
-          mode !== "match" &&
-          <HitRates mode={mode} practiceMatches={finishedPracticeMatches} />
-        }
+        {mode !== "match" && <HitRates mode={mode} practiceMatches={finishedPracticeMatches} />}
         <Matches
           mode={modes.find((m) => m.id === mode) as Option}
           matches={finishedMatches}

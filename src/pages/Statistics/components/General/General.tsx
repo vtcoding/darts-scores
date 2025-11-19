@@ -4,7 +4,6 @@ import Block from "../../../../components/Block/Block";
 import Title from "../../../../components/Title/Title";
 import type { Match, PracticeMatch, StatRow } from "../../../../types";
 import {
-  getBestAndWorstHitRates,
   calculateTotalCheckoutPercentage,
   calculateTotalFirstNineDartsAverage,
   calculateTotalHitRate,
@@ -12,6 +11,7 @@ import {
   getBestAndWorsThreeDartAverages,
   getBestAndWorstCheckoutPercentages,
   getBestAndWorstFirstNineDartsAverages,
+  getBestAndWorstHitRates,
 } from "../../../../utils";
 import StatsTable from "../StatsTable/StatsTable";
 

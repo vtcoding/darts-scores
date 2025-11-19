@@ -1,14 +1,14 @@
-import EqualizerIcon from '@mui/icons-material/Equalizer';
-import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
-import HomeIcon from '@mui/icons-material/Home';
-import ScoreboardIcon from '@mui/icons-material/Scoreboard';
-import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import EqualizerIcon from "@mui/icons-material/Equalizer";
+import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
+import HomeIcon from "@mui/icons-material/Home";
+import ScoreboardIcon from "@mui/icons-material/Scoreboard";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
-import fi from '../../assets/fi.png';
-import gb from '../../assets/gb.png';
-import Title from '../Title/Title';
-import styles from './Sidebar.module.css';
+import fi from "../../assets/fi.png";
+import gb from "../../assets/gb.png";
+import Title from "../Title/Title";
+import styles from "./Sidebar.module.css";
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const Sidebar = () => {
 
   const changeLanguage = (lang: string) => {
     i18n.changeLanguage(lang);
-    localStorage.setItem('lang', lang);
+    localStorage.setItem("lang", lang);
   };
 
   return (
@@ -26,37 +26,31 @@ const Sidebar = () => {
         <b>DARTS</b> SCORES
       </div>
       <div className={styles.navigation}>
-        <div onClick={() => navigate('/')} className={styles.navItem}>
-          <HomeIcon /> {t('components.sidebar.home')}
+        <div onClick={() => navigate("/")} className={styles.navItem}>
+          <HomeIcon /> {t("components.sidebar.home")}
         </div>
-        <div
-          onClick={() => navigate('/match-settings')}
-          className={styles.navItem}
-        >
-          <ScoreboardIcon /> {t('components.sidebar.playMatch')}
+        <div onClick={() => navigate("/match-settings")} className={styles.navItem}>
+          <ScoreboardIcon /> {t("components.sidebar.playMatch")}
         </div>
-        <div
-          onClick={() => navigate('/practice-settings')}
-          className={styles.navItem}
-        >
-          <FitnessCenterIcon /> {t('components.sidebar.practice')}
+        <div onClick={() => navigate("/practice-settings")} className={styles.navItem}>
+          <FitnessCenterIcon /> {t("components.sidebar.practice")}
         </div>
-        <div onClick={() => navigate('/statistics')} className={styles.navItem}>
-          <EqualizerIcon /> {t('components.sidebar.statistics')}
+        <div onClick={() => navigate("/statistics")} className={styles.navItem}>
+          <EqualizerIcon /> {t("components.sidebar.statistics")}
         </div>
       </div>
       <div className={styles.languages}>
         <div className={styles.languageTitle}>
-          <Title text={t('components.sidebar.language')} />
+          <Title text={t("components.sidebar.language")} />
         </div>
         <img
-          onClick={() => changeLanguage('en')}
-          className={`${styles.language} ${currentLanguage === 'en' && styles.selected}`}
+          onClick={() => changeLanguage("en")}
+          className={`${styles.language} ${currentLanguage === "en" && styles.selected}`}
           src={gb}
         />
         <img
-          onClick={() => changeLanguage('fi')}
-          className={`${styles.language} ${currentLanguage === 'fi' && styles.selected}`}
+          onClick={() => changeLanguage("fi")}
+          className={`${styles.language} ${currentLanguage === "fi" && styles.selected}`}
           src={fi}
         />
       </div>

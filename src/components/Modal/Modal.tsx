@@ -1,8 +1,8 @@
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 
-import MuiModal from '@mui/material/Modal';
+import MuiModal from "@mui/material/Modal";
 
-import styles from './Modal.module.css';
+import styles from "./Modal.module.css";
 
 interface ModalProps {
   children: ReactNode;

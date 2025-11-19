@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 import Block from "../../components/Block/Block";
+import BlockParagraph from "../../components/BlockParagraph/BlockParagraph";
 import Button from "../../components/Button/Button";
 import Dropdown from "../../components/Dropdown/Dropdown";
 import FadeIn from "../../components/FadeIn/FadeIn";
@@ -11,7 +12,6 @@ import PageContent from "../../components/PageContent/PageContent";
 import Title from "../../components/Title/Title";
 import type { Option } from "../../types";
 import { saveNewMatchToStorage } from "../../utils";
-import BlockParagraph from "../../components/BlockParagraph/BlockParagraph";
 
 const MatchSettings = () => {
   const navigate = useNavigate();
@@ -34,16 +34,17 @@ const MatchSettings = () => {
   return (
     <FadeIn>
       <PageContent headerTitle={t("pages.matchSettings.title")}>
-        {
-          activeMatch &&
+        {activeMatch && (
           <Block>
             <Title text={t("pages.matchSettings.unfinishedTitle")} />
-            <BlockParagraph>
-              {t("pages.matchSettings.unfinishedDesc")}
-            </BlockParagraph>
-            <Button onClick={() => navigate("/match")} text={t("pages.matchSettings.continueUnfinished")} variant={"green"} />
+            <BlockParagraph>{t("pages.matchSettings.unfinishedDesc")}</BlockParagraph>
+            <Button
+              onClick={() => navigate("/match")}
+              text={t("pages.matchSettings.continueUnfinished")}
+              variant={"green"}
+            />
           </Block>
-        }
+        )}
         <Block>
           <Title text={t("pages.matchSettings.chooseMode")} />
           <Dropdown options={modes} selectedOption={mode} setSelectedOption={setMode} />

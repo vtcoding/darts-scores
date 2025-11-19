@@ -1,8 +1,8 @@
-import { type ReactNode, useEffect, useState } from 'react';
+import { type ReactNode, useEffect, useState } from "react";
 
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 
-import styles from './FadeIn.module.css';
+import styles from "./FadeIn.module.css";
 
 interface FadeInProps {
   children: ReactNode;
@@ -21,9 +21,7 @@ const FadeIn = ({ children }: FadeInProps) => {
 
   return (
     <div className={styles.background}>
-      <div className={`${styles.fadeIn} ${visible && styles.visible}`}>
-        {children}
-      </div>
+      <div className={`${styles.fadeIn} ${visible && styles.visible}`}>{children}</div>
     </div>
   );
 };

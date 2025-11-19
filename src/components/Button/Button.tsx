@@ -1,6 +1,6 @@
-import { useRef } from 'react';
+import { useRef } from "react";
 
-import styles from './Button.module.css';
+import styles from "./Button.module.css";
 
 interface ButtonProps {
   onClick: () => void;
@@ -58,9 +58,9 @@ const Button = ({
       onPointerLeave={handleHoldEnd}
       className={`
                 ${styles.button}
-                ${variant === 'green' && styles.green}
-                ${variant === 'red' && styles.red}
-                ${size === 'large' && styles.large}
+                ${variant === "green" && styles.green}
+                ${variant === "red" && styles.red}
+                ${size === "large" && styles.large}
                 ${selected && styles.selected}
                 ${disabled && styles.disabled}`}
     >

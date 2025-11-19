@@ -25,11 +25,11 @@ const Match = () => {
   const activeMatch = localStorage.getItem("activeMatch");
 
   if (!activeMatch) {
-    return <Navigate to="/match-settings" />
+    return <Navigate to="/match-settings" />;
   }
 
   const matchSettings = JSON.parse(activeMatch as string);
-  
+
   const keys = [
     { key: 1, name: 1 },
     { key: 2, name: 2 },

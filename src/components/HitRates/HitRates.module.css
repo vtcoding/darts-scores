@@ -4,21 +4,21 @@
 }
 
 .columns {
-    align-items: start;
-    display: grid;
-    gap: var(--gap-3);
-    grid-auto-rows: auto;
-    grid-template-columns: 1fr 1fr;
+  align-items: start;
+  display: grid;
+  gap: var(--gap-3);
+  grid-auto-rows: auto;
+  grid-template-columns: 1fr 1fr;
 }
 
 .column {
-    display: grid;
-    grid-template-rows: max-content;
-    row-gap: var(--gap-3);
+  display: grid;
+  grid-template-rows: max-content;
+  row-gap: var(--gap-3);
 }
 
 .hitRate {
-    background-color: var(--color-background-4);
-    border-radius: var(--radius-size-m);
-    padding: var(--gap-3);
+  background-color: var(--color-background-4);
+  border-radius: var(--radius-size-m);
+  padding: var(--gap-3);
 }

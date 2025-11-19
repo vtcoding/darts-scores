@@ -1,7 +1,7 @@
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
-import type { StatRow } from '../../../../types';
-import styles from './StatsTable.module.css';
+import type { StatRow } from "../../../../types";
+import styles from "./StatsTable.module.css";
 
 interface StatsTableProps {
   rows: StatRow[];
@@ -14,13 +14,9 @@ const StatsTable = ({ rows }: StatsTableProps) => {
       <thead>
         <tr className={styles.tr}>
           <th className={styles.th}></th>
-          <th className={styles.th}>
-            {t('pages.statistics.statsTable.average')}
-          </th>
-          <th className={styles.th}>{t('pages.statistics.statsTable.best')}</th>
-          <th className={styles.th}>
-            {t('pages.statistics.statsTable.worst')}
-          </th>
+          <th className={styles.th}>{t("pages.statistics.statsTable.average")}</th>
+          <th className={styles.th}>{t("pages.statistics.statsTable.best")}</th>
+          <th className={styles.th}>{t("pages.statistics.statsTable.worst")}</th>
         </tr>
       </thead>
       <tbody>

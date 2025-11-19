@@ -15,13 +15,7 @@ interface PracticeMatchModalProps {
   mode: string;
 }
 
-const PracticeMatchModal = ({
-  open,
-  close,
-  deleteMatch,
-  match,
-  mode,
-}: PracticeMatchModalProps) => {
+const PracticeMatchModal = ({ open, close, deleteMatch, match, mode }: PracticeMatchModalProps) => {
   const { t } = useTranslation();
   const turns = match.turns;
   const date = match.ended_at ? formatDate(match.ended_at) : "-";
@@ -35,8 +29,7 @@ const PracticeMatchModal = ({
             {t("pages.statistics.matchModals.endedAt")}: {date}
           </div>
           <div className={styles.stat}>
-            {t("pages.statistics.matchModals.hitRate")}:{" "}
-            {calculateHitRate(turns).toFixed(2)}%
+            {t("pages.statistics.matchModals.hitRate")}: {calculateHitRate(turns).toFixed(2)}%
           </div>
         </div>
         <Button
@@ -44,10 +37,7 @@ const PracticeMatchModal = ({
           text={t("pages.statistics.matchModals.deleteMatch")}
           variant="red"
         />
-        <Button
-          onClick={close}
-          text={t("pages.statistics.matchModals.close")}
-        />
+        <Button onClick={close} text={t("pages.statistics.matchModals.close")} />
       </div>
     </Modal>
   );

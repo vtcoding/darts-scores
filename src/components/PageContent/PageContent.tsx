@@ -1,10 +1,10 @@
-import { type ReactNode, useState } from 'react';
+import { type ReactNode, useState } from "react";
 
-import Drawer from '@mui/material/Drawer';
+import Drawer from "@mui/material/Drawer";
 
-import Header from '../Header/Header';
-import Sidebar from '../Sidebar/Sidebar';
-import styles from './PageContent.module.css';
+import Header from "../Header/Header";
+import Sidebar from "../Sidebar/Sidebar";
+import styles from "./PageContent.module.css";
 
 interface PageContentProps {
   headerTitle: string;

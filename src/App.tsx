@@ -1,12 +1,12 @@
-import { Route, HashRouter as Router, Routes } from 'react-router-dom';
+import { Route, HashRouter as Router, Routes } from "react-router-dom";
 
-import styles from './App.module.css';
-import Home from './pages/Home/Home';
-import Match from './pages/Match/Match';
-import MatchSettings from './pages/MatchSettings/MatchSettings';
-import Practice from './pages/Practice/Practice';
-import PracticeSettings from './pages/PracticeSettings/PracticeSettings';
-import Statistics from './pages/Statistics/Statistics';
+import styles from "./App.module.css";
+import Home from "./pages/Home/Home";
+import Match from "./pages/Match/Match";
+import MatchSettings from "./pages/MatchSettings/MatchSettings";
+import Practice from "./pages/Practice/Practice";
+import PracticeSettings from "./pages/PracticeSettings/PracticeSettings";
+import Statistics from "./pages/Statistics/Statistics";
 
 const App = () => {
   return (

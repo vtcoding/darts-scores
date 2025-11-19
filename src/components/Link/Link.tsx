@@ -1,4 +1,4 @@
-import styles from './Link.module.css';
+import styles from "./Link.module.css";
 
 interface LinkProps {
   onClick: () => void;

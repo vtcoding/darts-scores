@@ -1,6 +1,6 @@
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 
-import styles from './Block.module.css';
+import styles from "./Block.module.css";
 
 interface BlockProps {
   children: ReactNode;

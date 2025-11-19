@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
-import Button from '../../../../components/Button/Button';
-import Modal from '../../../../components/Modal/Modal';
-import Title from '../../../../components/Title/Title';
-import styles from './DoublesModal.module.css';
+import Button from "../../../../components/Button/Button";
+import Modal from "../../../../components/Modal/Modal";
+import Title from "../../../../components/Title/Title";
+import styles from "./DoublesModal.module.css";
 
 interface DoublesModalProps {
   open: boolean;
@@ -18,7 +18,7 @@ const DoublesModal = ({ open, handleSubmit }: DoublesModalProps) => {
 
   return (
     <Modal open={open}>
-      <Title text={t('pages.match.doublesModal.title')} />
+      <Title text={t("pages.match.doublesModal.title")} />
       <div className={styles.doubles}>
         {[0, 1, 2, 3].map((double) => {
           return (
@@ -33,7 +33,7 @@ const DoublesModal = ({ open, handleSubmit }: DoublesModalProps) => {
       </div>
       <Button
         onClick={() => handleSubmit(selectedDouble)}
-        text={t('pages.match.doublesModal.submit')}
+        text={t("pages.match.doublesModal.submit")}
         variant="green"
       />
     </Modal>

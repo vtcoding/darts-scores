@@ -1,10 +1,10 @@
-import MenuIcon from '@mui/icons-material/Menu';
-import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import MenuIcon from "@mui/icons-material/Menu";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
-import Link from '../Link/Link';
-import Title from '../Title/Title';
-import styles from './Header.module.css';
+import Link from "../Link/Link";
+import Title from "../Title/Title";
+import styles from "./Header.module.css";
 
 interface HeaderProps {
   title: string;
@@ -25,10 +25,7 @@ const Header = ({ title, toggleSidebar, showQuitButton }: HeaderProps) => {
         </div>
       )}
       {showQuitButton && (
-        <Link
-          text={t('components.header.goToMenu')}
-          onClick={() => navigate('/')}
-        />
+        <Link text={t("components.header.goToMenu")} onClick={() => navigate("/")} />
       )}
     </div>
   );

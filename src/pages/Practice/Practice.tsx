@@ -6,7 +6,11 @@ import { Navigate, useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import Header from "../../components/Header/Header";
 import type { PracticeTurn } from "../../types";
-import { calculateDartsHit, calculateHitRate, savePracticeMatchProgressToStorage } from "../../utils";
+import {
+  calculateDartsHit,
+  calculateHitRate,
+  savePracticeMatchProgressToStorage,
+} from "../../utils";
 import styles from "./Practice.module.css";
 import PracticeFinishedModal from "./components/PracticeFinishedModal/PracticeFinishedModal";
 
@@ -16,7 +20,7 @@ const Practice = () => {
   const activePracticeMatch = localStorage.getItem("activePracticeMatch");
 
   if (!activePracticeMatch) {
-    return <Navigate to="/practice-settings" />
+    return <Navigate to="/practice-settings" />;
   }
 
   const matchSettings = JSON.parse(activePracticeMatch as string);
