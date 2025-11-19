@@ -35,11 +35,15 @@
       "title": "Otteluasetukset",
       "unfinishedTitle": "Sinulla on keskeneräinen ottelu!",
       "unfinishedDesc": "Jos et pelaa otteluasi loppuun, se poistetaan kun aloitat uuden ottelun.",
+      "continueUnfinished": "Jatka keskeneräistä ottelua",
       "chooseMode": "Valitse pelimuoto",
       "startMatch": "Aloita ottelu"
     },
     "practiceSettings": {
       "title": "Harjoitusottelun asetukset",
+      "unfinishedTitle": "Sinulla on keskeneräinen harjoitusottelu!",
+      "unfinishedDesc": "Jos et pelaa harjoitusotteluasi loppuun, se poistetaan kun aloitat uuden harjoitusottelun.",
+      "continueUnfinished": "Jatka keskeneräistä harjoitusotteluaottelua",
       "aroundTheClockTitle": "Pelaa Around the clock",
       "aroundTheClockDesc": "Heitä kaikki sektorit läpi (1-20) ja lopeta sektoriin 25.",
       "doublesTitle": "Pelaa Doubles practice",
