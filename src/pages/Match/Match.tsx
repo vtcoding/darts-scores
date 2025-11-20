@@ -8,13 +8,13 @@ import FadeIn from "../../components/FadeIn/FadeIn";
 import Header from "../../components/Header/Header";
 import Input from "../../components/Input/Input";
 import Title from "../../components/Title/Title";
-import type { Turn } from "../../types";
+import type { Turn } from "../../utils/types";
 import {
   calculateRemainingScore,
   calculateThreeDartAverage,
   saveMatchProgressToStorage,
   saveNewMatchToStorage,
-} from "../../utils";
+} from "../../utils/utils";
 import styles from "./Match.module.css";
 import DoublesModal from "./components/DoublesModal/DoublesModal";
 import MatchFinishedModal from "./components/MatchFinishedModal/MatchFinishedModal";

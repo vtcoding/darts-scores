@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-import type { StatRow } from "../../../../types";
+import type { StatRow } from "../../../../utils/types";
 import styles from "./StatsTable.module.css";
 
 interface StatsTableProps {

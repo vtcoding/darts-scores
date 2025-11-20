@@ -5,9 +5,9 @@ import { useTranslation } from "react-i18next";
 import Button from "../../../../components/Button/Button";
 import Modal from "../../../../components/Modal/Modal";
 import Title from "../../../../components/Title/Title";
-import type { PracticeTurn } from "../../../../types";
-import { calculateDartsHit, calculateHitRate } from "../../../../utils";
+import type { PracticeTurn } from "../../../../utils/types";
 import styles from "./PracticeFinishedModal.module.css";
+import { calculateDartsHit, calculateHitRate } from "../../../../utils/utils";
 
 interface PracticeFinishedModalProps {
   open: boolean;

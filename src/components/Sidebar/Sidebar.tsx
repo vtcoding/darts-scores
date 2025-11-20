@@ -2,6 +2,7 @@ import EqualizerIcon from "@mui/icons-material/Equalizer";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import HomeIcon from "@mui/icons-material/Home";
 import ScoreboardIcon from "@mui/icons-material/Scoreboard";
+import LogoutIcon from '@mui/icons-material/Logout';
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
@@ -18,6 +19,15 @@ const Sidebar = () => {
   const changeLanguage = (lang: string) => {
     i18n.changeLanguage(lang);
     localStorage.setItem("lang", lang);
+  };
+
+  const handleLogout = () => {
+    // Remove JWT tokens
+    localStorage.removeItem("access");
+    localStorage.removeItem("refresh");
+
+    // Redirect to login
+    navigate("/login");
   };
 
   return (
@@ -37,6 +47,9 @@ const Sidebar = () => {
         </div>
         <div onClick={() => navigate("/statistics")} className={styles.navItem}>
           <EqualizerIcon /> {t("components.sidebar.statistics")}
+        </div>
+        <div onClick={() => handleLogout()} className={styles.navItem}>
+          <LogoutIcon /> {"Logout"}
         </div>
       </div>
       <div className={styles.languages}>

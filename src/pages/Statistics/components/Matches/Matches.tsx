@@ -4,8 +4,8 @@ import { useTranslation } from "react-i18next";
 
 import Block from "../../../../components/Block/Block";
 import Title from "../../../../components/Title/Title";
-import { type Match, type Option, type PracticeMatch } from "../../../../types";
-import { calculateHitRate, calculateThreeDartAverage, formatDate } from "../../../../utils";
+import { type Match, type Option, type PracticeMatch } from "../../../../utils/types";
+import { calculateHitRate, calculateThreeDartAverage, formatDate } from "../../../../utils/utils";
 import MatchModal from "../MatchModal/MatchModal";
 import PracticeMatchModal from "../PracticeMatchModal/PracticeMatchModal";
 import styles from "./Matches.module.css";

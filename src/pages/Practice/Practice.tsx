@@ -5,12 +5,12 @@ import { Navigate, useNavigate } from "react-router-dom";
 
 import Button from "../../components/Button/Button";
 import Header from "../../components/Header/Header";
-import type { PracticeTurn } from "../../types";
+import type { PracticeTurn } from "../../utils/types";
 import {
   calculateDartsHit,
   calculateHitRate,
   savePracticeMatchProgressToStorage,
-} from "../../utils";
+} from "../../utils/utils";
 import styles from "./Practice.module.css";
 import PracticeFinishedModal from "./components/PracticeFinishedModal/PracticeFinishedModal";
 

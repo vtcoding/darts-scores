@@ -5,9 +5,9 @@ import { useTranslation } from "react-i18next";
 import Button from "../../../../components/Button/Button";
 import Modal from "../../../../components/Modal/Modal";
 import Title from "../../../../components/Title/Title";
-import type { Turn } from "../../../../types";
-import { calculateCheckoutPercentage, calculateThreeDartAverage } from "../../../../utils";
+import type { Turn } from "../../../../utils/types";
 import styles from "./MatchFinishedModal.module.css";
+import { calculateCheckoutPercentage, calculateThreeDartAverage } from "../../../../utils/utils";
 
 interface MatchFinishedModalProps {
   open: boolean;

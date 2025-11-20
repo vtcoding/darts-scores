@@ -3,9 +3,9 @@ import { useTranslation } from "react-i18next";
 import Button from "../../../../components/Button/Button";
 import Modal from "../../../../components/Modal/Modal";
 import Title from "../../../../components/Title/Title";
-import type { PracticeMatch } from "../../../../types";
-import { calculateHitRate, formatDate } from "../../../../utils";
+import type { PracticeMatch } from "../../../../utils/types";
 import styles from "./PracticeMatchModal.module.css";
+import { calculateHitRate, formatDate } from "../../../../utils/utils";
 
 interface PracticeMatchModalProps {
   open: boolean;

@@ -9,7 +9,7 @@ import Button from "../../components/Button/Button";
 import FadeIn from "../../components/FadeIn/FadeIn";
 import PageContent from "../../components/PageContent/PageContent";
 import Title from "../../components/Title/Title";
-import { saveNewPracticeToStorage } from "../../utils";
+import { saveNewPracticeToStorage } from "../../utils/utils";
 
 const PracticeSettings = () => {
   const navigate = useNavigate();

@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 
 import Block from "../../../../components/Block/Block";
 import Title from "../../../../components/Title/Title";
-import type { Match, PracticeMatch, StatRow } from "../../../../types";
+import type { Match, PracticeMatch, StatRow } from "../../../../utils/types";
 import {
   calculateTotalCheckoutPercentage,
   calculateTotalFirstNineDartsAverage,
@@ -12,7 +12,7 @@ import {
   getBestAndWorstCheckoutPercentages,
   getBestAndWorstFirstNineDartsAverages,
   getBestAndWorstHitRates,
-} from "../../../../utils";
+} from "../../../../utils/utils";
 import StatsTable from "../StatsTable/StatsTable";
 
 interface GeneralProps {

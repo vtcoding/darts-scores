@@ -3,7 +3,7 @@ import { useState } from "react";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 
-import type { Option } from "../../types";
+import type { Option } from "../../utils/types";
 import Title from "../Title/Title";
 import styles from "./Dropdown.module.css";
 

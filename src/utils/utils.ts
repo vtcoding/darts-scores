@@ -1,4 +1,4 @@
-import type { Match, PracticeMatch, PracticeTurn, Turn } from "./types";
+import type { Match, PracticeMatch, PracticeTurn, Turn } from "./utils/types";
 
 export const formatDate = (matchDate: number) => {
   const date = new Date(matchDate);

@@ -10,8 +10,8 @@ import Dropdown from "../../components/Dropdown/Dropdown";
 import FadeIn from "../../components/FadeIn/FadeIn";
 import PageContent from "../../components/PageContent/PageContent";
 import Title from "../../components/Title/Title";
-import type { Option } from "../../types";
-import { saveNewMatchToStorage } from "../../utils";
+import type { Option } from "../../utils/types";
+import { saveNewMatchToStorage } from "../../utils/utils";
 
 const MatchSettings = () => {
   const navigate = useNavigate();
