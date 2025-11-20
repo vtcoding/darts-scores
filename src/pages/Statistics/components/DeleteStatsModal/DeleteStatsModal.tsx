@@ -1,5 +1,4 @@
 import { useTranslation } from "react-i18next";
-
 import Button from "../../../../components/Button/Button";
 import Modal from "../../../../components/Modal/Modal";
 import Title from "../../../../components/Title/Title";
@@ -15,7 +14,7 @@ const DeleteStatsModal = ({ open, close, confirmDeletion }: DeleteStatsModalProp
   const { t } = useTranslation();
 
   return (
-    <Modal open={open}>
+    <Modal open={open} close={close}>
       <div className={styles.deleteStatsModal}>
         <Title text={t("pages.statistics.deleteStatsModal.title")} />
         <div className={styles.buttons}>

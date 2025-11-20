@@ -17,11 +17,13 @@ import DeleteStatsModal from "./components/DeleteStatsModal/DeleteStatsModal";
 import General from "./components/General/General";
 import Matches from "./components/Matches/Matches";
 import { useMatches } from "../../utils/api";
+import DownloadModal from "./components/DownloadModal/DownloadModal";
 
 const Statistics = () => {
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const [mode, setMode] = useState(searchParams.get("mode") || "match");
+  const [downloadModalVisible, setDownloadModalVisible] = useState<boolean>(false);
   const [deleteStatsModalVisible, setDeleteStatsModalVisible] = useState<boolean>(false);
   const { data: matches, isLoading, isError, error } = useMatches();
   const practiceMatches = JSON.parse(localStorage.getItem("practiceMatches") || "[]");
@@ -89,6 +91,12 @@ const Statistics = () => {
                 variant={"red"}
               />
             </div>
+            {downloadModalVisible && (
+              <DownloadModal
+                open={downloadModalVisible}
+                close={() => setDownloadModalVisible(false)}
+              />
+            )}
             {deleteStatsModalVisible && (
               <DeleteStatsModal
                 open={deleteStatsModalVisible}
