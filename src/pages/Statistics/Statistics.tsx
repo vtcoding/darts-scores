@@ -15,11 +15,13 @@ import styles from "./Statistics.module.css";
 import DeleteStatsModal from "./components/DeleteStatsModal/DeleteStatsModal";
 import General from "./components/General/General";
 import Matches from "./components/Matches/Matches";
+import DownloadModal from "./components/DownloadModal/DownloadModal";
 
 const Statistics = () => {
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const [mode, setMode] = useState(searchParams.get("mode") || "match");
+  const [downloadModalVisible, setDownloadModalVisible] = useState<boolean>(false);
   const [deleteStatsModalVisible, setDeleteStatsModalVisible] = useState<boolean>(false);
 
   const matches = JSON.parse(localStorage.getItem("matches") || "[]");
@@ -72,10 +74,9 @@ const Statistics = () => {
         />
         <div className={styles.buttons}>
           <Button
-            onClick={() => {}}
+            onClick={() => setDownloadModalVisible(true)}
             text={t("pages.statistics.exportStatsButton")}
             variant={"green"}
-            disabled
           />
           <Button
             onClick={() => setDeleteStatsModalVisible(true)}
@@ -83,6 +84,13 @@ const Statistics = () => {
             variant={"red"}
           />
         </div>
+        {downloadModalVisible && (
+          <DownloadModal
+            open={downloadModalVisible}
+            close={() => setDownloadModalVisible(false)}
+          />
+        )
+        }
         {deleteStatsModalVisible && (
           <DeleteStatsModal
             open={deleteStatsModalVisible}
