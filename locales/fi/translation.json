@@ -60,7 +60,11 @@
       "modeTriplesPractice": "Triples practice",
       "defaultStatMatch": "Kolmen tikan keskiarvo",
       "defaultStatPractice": "Osumaprosentti",
-      "exportStatsButton": "Tallenna tilastot CSV-muotoon",
+      "exportStatsButton": "Lataa tilastot CSV-muodossa",
+      "exportModal": {
+        "title": "Lataa tilastot",
+        "download": "Lataa"
+      },
       "deleteStatsButton": "Poista tilastot",
       "deleteStatsModal": {
         "title": "Oletko varma että haluat poistaa tilastosi?",

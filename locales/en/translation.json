@@ -61,6 +61,10 @@
       "defaultStatMatch": "Three dart average",
       "defaultStatPractice": "Hit rate",
       "exportStatsButton": "Export statistics as CSV",
+      "exportModal": {
+        "title": "Download stats",
+        "download": "Download"
+      },
       "deleteStatsButton": "Delete statistics",
       "deleteStatsModal": {
         "title": "Are you sure you want to delete your statistics?",
