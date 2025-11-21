@@ -9,19 +9,15 @@ import type { Match } from "../../../../utils/types";
 interface DownloadModalProps {
   open: boolean;
   close: () => void;
+  matches: Match[];
 }
 
-const DownloadModal = ({ open, close }: DownloadModalProps) => {
+const DownloadModal = ({ open, close, matches }: DownloadModalProps) => {
   const { t } = useTranslation();
-  const matches = localStorage.getItem("matches");
 
   const handleDownload = () => {
-    if (!matches) return;
-
-    const parsedMatches = JSON.parse(matches); // Match[]
-
     // Build one row per match
-    const rows = parsedMatches.map((match: Match) => ({
+    const rows = matches.map((match: Match) => ({
       id: match.id,
       mode: match.mode,
       legs: match.legs,

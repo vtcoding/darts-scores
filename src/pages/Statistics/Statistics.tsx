@@ -11,7 +11,7 @@ import FadeIn from "../../components/FadeIn/FadeIn";
 import HitRates from "../../components/HitRates/HitRates";
 import PageContent from "../../components/PageContent/PageContent";
 import Title from "../../components/Title/Title";
-import type { Option, PracticeMatch } from "../../utils/types";
+import type { Match, Option, PracticeMatch } from "../../utils/types";
 import styles from "./Statistics.module.css";
 import DeleteStatsModal from "./components/DeleteStatsModal/DeleteStatsModal";
 import General from "./components/General/General";
@@ -95,6 +95,7 @@ const Statistics = () => {
               <DownloadModal
                 open={downloadModalVisible}
                 close={() => setDownloadModalVisible(false)}
+                matches={matches}
               />
             )}
             {deleteStatsModalVisible && (
