@@ -1,6 +1,7 @@
 .dropdown {
   display: grid;
   grid-template-columns: 1fr;
+  position: relative;
 }
 
 .select {
@@ -21,8 +22,13 @@
 }
 
 .menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr;
+  z-index: 999;
 }
 
 .menuOption {

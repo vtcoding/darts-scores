@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 import { useTranslation } from "react-i18next";
 
 import Button from "../../../../components/Button/Button";
@@ -31,15 +29,11 @@ const PracticeFinishedModal = ({
       const match = JSON.parse(activePracticeMatch);
       match.turns = turns;
       match.ended_at = Date.now();
+      storedPracticeMatches.push(match);
       localStorage.setItem("practiceMatches", JSON.stringify(storedPracticeMatches));
       localStorage.removeItem("activePracticeMatch");
     }
   };
-
-  // Save match when modal is rendered
-  useEffect(() => {
-    savePractice();
-  });
 
   return (
     <Modal open={open}>
@@ -57,12 +51,18 @@ const PracticeFinishedModal = ({
         </div>
       </div>
       <Button
-        onClick={playAgain}
+        onClick={() => {
+          savePractice();
+          playAgain();
+        }}
         text={t("pages.practiceMatch.practiceFinishedModal.playAgain")}
         variant={"green"}
       />
       <Button
-        onClick={quitToMenu}
+        onClick={() => {
+          savePractice();
+          quitToMenu();
+        }}
         text={t("pages.practiceMatch.practiceFinishedModal.quit")}
         variant={"red"}
       />

@@ -13,9 +13,10 @@ import Title from "../../components/Title/Title";
 import type { Match, Option, PracticeMatch } from "../../types";
 import styles from "./Statistics.module.css";
 import DeleteStatsModal from "./components/DeleteStatsModal/DeleteStatsModal";
+import DownloadModal from "./components/DownloadModal/DownloadModal";
 import General from "./components/General/General";
 import Matches from "./components/Matches/Matches";
-import DownloadModal from "./components/DownloadModal/DownloadModal";
+import Trend from "./components/Trend/Trend";
 
 const Statistics = () => {
   const { t } = useTranslation();
@@ -61,6 +62,7 @@ const Statistics = () => {
           <Dropdown options={modes} selectedOption={mode} setSelectedOption={setMode} />
         </Block>
         <General mode={mode} matches={finishedMatches} practiceMatches={finishedPracticeMatches} />
+        <Trend mode={mode} matches={finishedMatches} practiceMatches={finishedPracticeMatches} />
         {mode !== "match" && <HitRates mode={mode} practiceMatches={finishedPracticeMatches} />}
         <Matches
           mode={modes.find((m) => m.id === mode) as Option}
@@ -85,12 +87,8 @@ const Statistics = () => {
           />
         </div>
         {downloadModalVisible && (
-          <DownloadModal
-            open={downloadModalVisible}
-            close={() => setDownloadModalVisible(false)}
-          />
-        )
-        }
+          <DownloadModal open={downloadModalVisible} close={() => setDownloadModalVisible(false)} />
+        )}
         {deleteStatsModalVisible && (
           <DeleteStatsModal
             open={deleteStatsModalVisible}

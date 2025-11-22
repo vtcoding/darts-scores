@@ -1,6 +1,6 @@
 .pageContent {
   display: grid;
-  grid-template-columns: max-content 1fr;
+  grid-template-columns: 300px 1fr;
 }
 
 .container {

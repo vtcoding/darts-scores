@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 import { useTranslation } from "react-i18next";
 
 import Button from "../../../../components/Button/Button";
@@ -32,11 +30,6 @@ const MatchFinishedModal = ({ open, turns, playAgain, quit }: MatchFinishedModal
     }
   };
 
-  // Save match when modal is rendered
-  useEffect(() => {
-    saveMatch();
-  });
-
   return (
     <Modal open={open}>
       <Title text={t("pages.match.matchFinishedModal.title")} />
@@ -57,12 +50,18 @@ const MatchFinishedModal = ({ open, turns, playAgain, quit }: MatchFinishedModal
         </div>
       </div>
       <Button
-        onClick={() => playAgain()}
+        onClick={() => {
+          saveMatch();
+          playAgain();
+        }}
         text={t("pages.match.matchFinishedModal.playAgain")}
         variant={"green"}
       />
       <Button
-        onClick={() => quit()}
+        onClick={() => {
+          saveMatch();
+          quit();
+        }}
         text={t("pages.match.matchFinishedModal.quit")}
         variant={"red"}
       />

@@ -48,3 +48,10 @@ export type StatRow = {
     unit: string;
   };
 };
+
+export type ChartDataItem = {
+  label: string;
+  value: string;
+};
+
+export type Frequency = "daily" | "weekly" | "monthly" | "yearly";

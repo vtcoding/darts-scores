@@ -4,6 +4,7 @@
   grid-template-columns: 1fr;
   grid-template-rows: min-content min-content 1fr;
   height: 100vh;
+  position: fixed;
   row-gap: var(--gap-7);
   width: 300px;
 }

@@ -2,7 +2,12 @@
   "common": {
     "confirm": "Confirm",
     "cancel": "Cancel",
-    "close": "Close"
+    "close": "Close",
+    "threeDartAverage": "Three dart average",
+    "firstNineDartAverage": "First nine darts average",
+    "checkoutPercentage": "Checkout percentage",
+    "dartsThrown": "Darts thrown",
+    "hitRate": "Hit rate"
   },
   "components": {
     "sidebar": {
@@ -77,6 +82,15 @@
         "firstNineDartsAverage": "First nine darts average",
         "checkoutPercentage": "Checkout percentage",
         "totalHitRate": "Total hit rate"
+      },
+      "trend": {
+        "title": "Trend",
+        "daily": "Daily",
+        "weekly": "Weekly",
+        "monthly": "Monthly",
+        "yearly": "Yearly",
+        "selectStatistic": "Select statistic",
+        "selectFrequency": "Select frequency"
       },
       "matches": {
         "lastFive": "Last 5 matches",

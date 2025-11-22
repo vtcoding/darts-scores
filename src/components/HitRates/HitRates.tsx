@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 
 import type { PracticeMatch } from "../../types";
-import { getHitRatesForSector } from "../../utils";
+import { getTotalHitRatesForSector } from "../../utils";
 import Block from "../Block/Block";
 import Title from "../Title/Title";
 import styles from "./HitRates.module.css";
@@ -26,8 +26,7 @@ const HitRates = ({ mode, practiceMatches }: HitRatesProps) => {
               {[...Array(10)].map((_, i) => {
                 return (
                   <div className={styles.hitRate}>
-                    <b>{i + 1}</b>:{" "}
-                    {getHitRatesForSector(filteredMatches[0].turns, i + 1).toFixed(2)}%
+                    <b>{i + 1}</b>: {getTotalHitRatesForSector(filteredMatches, i + 1).toFixed(2)}%
                   </div>
                 );
               })}
@@ -36,14 +35,14 @@ const HitRates = ({ mode, practiceMatches }: HitRatesProps) => {
               {[...Array(10)].map((_, i) => {
                 return (
                   <div className={styles.hitRate}>
-                    <b>{i + 11}</b>:{" "}
-                    {getHitRatesForSector(filteredMatches[0].turns, i + 11).toFixed(2)}%
+                    <b>{i + 11}</b>: {getTotalHitRatesForSector(filteredMatches, i + 11).toFixed(2)}
+                    %
                   </div>
                 );
               })}
               <div className={styles.hitRate}>
                 <b>{finish_on}</b>:{" "}
-                {getHitRatesForSector(filteredMatches[0].turns, finish_on).toFixed(2)}%
+                {getTotalHitRatesForSector(filteredMatches, finish_on).toFixed(2)}%
               </div>
             </div>
           </div>
