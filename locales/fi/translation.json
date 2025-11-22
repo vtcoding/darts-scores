@@ -1,8 +1,13 @@
 {
   "common": {
-    "confirm": "Confirm",
-    "cancel": "Cancel",
-    "close": "Close"
+    "confirm": "Vahvista",
+    "cancel": "Peru",
+    "close": "Sulje",
+    "threeDartAverage": "Kolmen tikan keskiarvo",
+    "firstNineDartsAverage": "Ensimmäisen yhdeksän tikan keskiarvo",
+    "checkoutPercentage": "Lopetusprosentti",
+    "dartsThrown": "Tikkoja heitetty",
+    "hitRate": "Osumaprosentti"
   },
   "components": {
     "sidebar": {
@@ -77,6 +82,15 @@
         "firstNineDartsAverage": "Ensimmäisen yhdeksän tikan keskiarvo",
         "checkoutPercentage": "Lopetusprosentti",
         "totalHitRate": "Osumaprosentti"
+      },
+      "trend": {
+        "title": "Kehitys",
+        "daily": "Päivittäin",
+        "weekly": "Viikoittain",
+        "monthly": "Kuukausittain",
+        "yearly": "Vuosittain",
+        "selectStatistic": "Valitse tilasto",
+        "selectFrequency": "Valitse vaihteluväli"
       },
       "matches": {
         "lastFive": "Viimeiset 5 ottelua",
