@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 
 import type { PracticeMatch } from "../../types";
-import { getTotalHitRatesForSector } from "../../utils";
+import { getSectorRates, getTotalHitRatesForSector, sortSectors } from "../../utils";
 import Block from "../Block/Block";
 import Title from "../Title/Title";
 import styles from "./HitRates.module.css";
@@ -16,16 +16,14 @@ interface HitRatesProps {
 
 const HitRates = ({ mode, practiceMatches }: HitRatesProps) => {
   const { t } = useTranslation();
-  const [selectedOrder, setSelectedOrder] = useState<string>("sector");
+  const [selectedOrder, setSelectedOrder] = useState<"sector" | "rate">("sector");
+  const [selectedSort, setSelectedSort] = useState<"asc" | "desc">("asc");
   const filteredMatches = practiceMatches.filter((match) => match.mode === mode);
   const finish_on = mode === "around-the-clock" ? 25 : 50;
-  const orderedHitRates = () => {
-    const rates: number[] = [];
-    [...Array(20)].forEach((_, i) => {
-      const rate = getTotalHitRatesForSector(filteredMatches, i + 1);
-      rates.push(rate);
-    });
-  }
+
+  const sectors = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, finish_on];
+  const sectorRates = getSectorRates(filteredMatches, sectors);
+  const sortedSectorRates = sortSectors(sectorRates, selectedOrder, selectedSort);
   
   const orderOptions = [
     {
@@ -38,40 +36,54 @@ const HitRates = ({ mode, practiceMatches }: HitRatesProps) => {
     }
   ];
 
+  const sortOptions = [
+    {
+      name: "Ascending",
+      id: "asc"  
+    },
+    {
+      name: "Descending",
+      id: "desc"
+    }
+  ]
+
   return (
     <Block>
       <div className={styles.hitRates}>
         <Title text={t("components.hitRates.title")} />
-        <div className={styles.orderBy}>
-        <BlockParagraph>
-          Order by:
-        </BlockParagraph>
-        <Dropdown options={orderOptions} selectedOption={selectedOrder} setSelectedOption={setSelectedOrder}/>
+        <div className={styles.options}>
+          <div className={styles.orderBy}>
+            <BlockParagraph>
+              Order by:
+            </BlockParagraph>
+            <Dropdown options={orderOptions} selectedOption={selectedOrder} setSelectedOption={(option) => setSelectedOrder(option as "sector" | "rate")}/>
+          </div>
+          <div className={styles.sortBy}>
+            <BlockParagraph>
+              Sort by:
+            </BlockParagraph>
+            <Dropdown options={sortOptions} selectedOption={selectedSort} setSelectedOption={(option) => setSelectedSort(option as "asc" | "desc")}/>
+          </div>
         </div>
         {practiceMatches.length > 0 && (
           <div className={styles.columns}>
             <div className={styles.column}>
-              {[...Array(10)].map((_, i) => {
+              {sortedSectorRates.slice(0, 10).map((sector) => {
                 return (
                   <div className={styles.hitRate}>
-                    <b>{i + 1}</b>: {getTotalHitRatesForSector(filteredMatches, i + 1).toFixed(2)}%
+                    <b>{sector.sector}</b>: {sector.rate.toFixed(2)}%
                   </div>
                 );
               })}
             </div>
             <div className={styles.column}>
-              {[...Array(10)].map((_, i) => {
+              {sortedSectorRates.slice(-11).map((sector) => {
                 return (
                   <div className={styles.hitRate}>
-                    <b>{i + 11}</b>: {getTotalHitRatesForSector(filteredMatches, i + 11).toFixed(2)}
-                    %
+                    <b>{sector.sector}</b>: {sector.rate.toFixed(2)}%
                   </div>
                 );
               })}
-              <div className={styles.hitRate}>
-                <b>{finish_on}</b>:{" "}
-                {getTotalHitRatesForSector(filteredMatches, finish_on).toFixed(2)}%
-              </div>
             </div>
           </div>
         )}

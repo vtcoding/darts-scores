@@ -1,4 +1,4 @@
-import type { Frequency, Match, PracticeMatch, PracticeTurn, Turn } from "./types";
+import type { Frequency, Match, PracticeMatch, PracticeTurn, SectorRate, Turn } from "./types";
 
 export const formatDate = (matchDate: number) => {
   const date = new Date(matchDate);
@@ -253,6 +253,27 @@ export const getTotalHitRatesForSector = (matches: PracticeMatch[], sector: numb
   return ratesForSector.length > 0
     ? ratesForSector.reduce((a, b) => a + b, 0) / ratesForSector.length
     : 0;
+};
+
+export const getSectorRates = (
+  matches: PracticeMatch[],
+  sectors: number[]
+) => {
+  return sectors.map((sector) => ({
+    sector,
+    rate: getTotalHitRatesForSector(matches, sector),
+  }));
+};
+
+export const sortSectors = (
+  arr: SectorRate[],
+  key: "sector" | "rate",
+  order: "asc" | "desc"
+): SectorRate[] => {
+  return [...arr].sort((a, b) => {
+    const result = a[key] < b[key] ? -1 : a[key] > b[key] ? 1 : 0;
+    return order === "asc" ? result : -result;
+  });
 };
 
 // ---- Helper for generating period labels ----

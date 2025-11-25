@@ -28,6 +28,11 @@ export type PracticeTurn = {
   dart3: number | null;
 };
 
+export type SectorRate = {
+  sector: number;
+  rate: number;
+}
+
 export type Option = {
   name: string;
   id: string;
