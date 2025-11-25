@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 
 import type { PracticeMatch } from "../../types";
-import { getSectorRates, getTotalHitRatesForSector, sortSectors } from "../../utils";
+import { getSectorRates, sortSectors } from "../../utils";
 import Block from "../Block/Block";
 import Title from "../Title/Title";
 import styles from "./HitRates.module.css";
