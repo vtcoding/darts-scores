@@ -9,6 +9,7 @@ import type { PracticeTurn } from "../../utils/types";
 import {
   calculateDartsHit,
   calculateHitRate,
+  saveNewPracticeToStorage,
   savePracticeMatchProgressToStorage,
 } from "../../utils/utils";
 import styles from "./Practice.module.css";
@@ -166,6 +167,7 @@ const Practice = () => {
   };
 
   const playAgain = () => {
+    saveNewPracticeToStorage(matchSettings.mode, matchSettings.finish_on);
     setPracticeEndedModalVisible(false);
     setTurns([]);
   };

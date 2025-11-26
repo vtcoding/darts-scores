@@ -1,0 +1,5 @@
+.trendChart {
+  color: var(--color-text);
+  height: 400px;
+  width: 100%;
+}

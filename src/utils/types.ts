@@ -28,6 +28,11 @@ export type PracticeTurn = {
   dart3: number | null;
 };
 
+export type SectorRate = {
+  sector: number;
+  rate: number;
+}
+
 export type Option = {
   name: string;
   id: string;
@@ -48,3 +53,10 @@ export type StatRow = {
     unit: string;
   };
 };
+
+export type ChartDataItem = {
+  label: string;
+  value: string;
+};
+
+export type Frequency = "daily" | "weekly" | "monthly" | "yearly";

@@ -1,0 +1,17 @@
+.dropdowns {
+  display: grid;
+  gap: var(--gap-4);
+  grid-template-columns: 1fr 1fr;
+  row-gap: var(--gap-4);
+}
+
+.dropdown {
+  display: grid;
+  row-gap: var(--gap-3);
+}
+
+@media screen and (max-width: 767px) {
+  .dropdowns {
+    grid-template-columns: 1fr;
+  }
+}

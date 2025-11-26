@@ -1,4 +1,4 @@
-import type { Match, PracticeMatch, PracticeTurn, Turn } from "./utils/types";
+import type { Frequency, Match, PracticeMatch, PracticeTurn, SectorRate, Turn } from "./types";
 
 export const formatDate = (matchDate: number) => {
   const date = new Date(matchDate);
@@ -241,5 +241,129 @@ export const getHitRatesForSector = (turns: PracticeTurn[], sector: number) => {
     }
   }
 
-  return darts.length > 0 ? (count === 0 ? 100 : (1 / count) * 100) : 0;
+  return darts.length > 0 ? (count === 0 ? 100 : (1 / (count + 1)) * 100) : 0;
+};
+
+export const getTotalHitRatesForSector = (matches: PracticeMatch[], sector: number) => {
+  const ratesForSector: number[] = [];
+  matches.forEach((match) => {
+    const rate = getHitRatesForSector(match.turns, sector);
+    ratesForSector.push(rate);
+  });
+  return ratesForSector.length > 0
+    ? ratesForSector.reduce((a, b) => a + b, 0) / ratesForSector.length
+    : 0;
+};
+
+export const getSectorRates = (
+  matches: PracticeMatch[],
+  sectors: number[]
+) => {
+  return sectors.map((sector) => ({
+    sector,
+    rate: getTotalHitRatesForSector(matches, sector),
+  }));
+};
+
+export const sortSectors = (
+  arr: SectorRate[],
+  key: "sector" | "rate",
+  order: "asc" | "desc"
+): SectorRate[] => {
+  return [...arr].sort((a, b) => {
+    const result = a[key] < b[key] ? -1 : a[key] > b[key] ? 1 : 0;
+    return order === "asc" ? result : -result;
+  });
+};
+
+// ---- Helper for generating period labels ----
+const getPeriodLabel = (timestamp: number, frequency: Frequency) => {
+  const d = new Date(timestamp);
+
+  switch (frequency) {
+    case "daily":
+      return d.toISOString().split("T")[0];
+
+    case "weekly": {
+      const year = d.getUTCFullYear();
+      const firstDay = new Date(Date.UTC(year, 0, 1));
+      const days = Math.floor((d.getTime() - firstDay.getTime()) / (1000 * 60 * 60 * 24));
+      const weekNumber = Math.ceil((days + firstDay.getUTCDay() + 1) / 7);
+      return `${year}-W${weekNumber}`;
+    }
+
+    case "monthly":
+      return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, "0")}`;
+
+    case "yearly":
+      return `${d.getUTCFullYear()}`;
+  }
+};
+
+export const getMatchStatistics = (matches: Match[], frequency: Frequency) => {
+  // ---- Group matches by period ----
+  const groups: Record<string, Match[]> = {};
+
+  matches.forEach((match) => {
+    const label = getPeriodLabel(match.started_at, frequency);
+    if (!groups[label]) groups[label] = [];
+    groups[label].push(match);
+  });
+
+  // ---- Compute statistics for each period ----
+  return Object.entries(groups)
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([label, matchesForPeriod]) => {
+      // All turns for 3-dart avg
+      const allTurns = matchesForPeriod.flatMap((m) => m.turns);
+
+      const threeDartAverage = calculateThreeDartAverage(allTurns);
+
+      // First nine avg: per match → mean
+      const firstNineAverages = matchesForPeriod.map((m) =>
+        calculateFirstNineDartsAverage(m.turns)
+      );
+      const firstNineDartAverage =
+        firstNineAverages.reduce((a, b) => a + b, 0) / (firstNineAverages.length || 1);
+
+      // Checkout %: per match → mean
+      const checkoutPercentages = matchesForPeriod.map((m) => calculateCheckoutPercentage(m.turns));
+      const checkoutPercentage =
+        checkoutPercentages.reduce((a, b) => a + b, 0) / (checkoutPercentages.length || 1);
+
+      return {
+        label,
+        threeDartAverage,
+        firstNineDartAverage,
+        checkoutPercentage,
+      };
+    });
+};
+
+export const getPracticeMatchStatistics = (
+  practiceMatches: PracticeMatch[],
+  frequency: Frequency
+) => {
+  // ---- Group matches by period ----
+  const groups: Record<string, PracticeMatch[]> = {};
+
+  practiceMatches.forEach((match) => {
+    const label = getPeriodLabel(match.started_at, frequency);
+    if (!groups[label]) groups[label] = [];
+    groups[label].push(match);
+  });
+
+  // ---- Compute statistics for each period ----
+  return Object.entries(groups)
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([label, matchesForPeriod]) => {
+      // All turns for hit rate
+      const hitRates = matchesForPeriod.map((m) => calculateHitRate(m.turns));
+
+      const hitRate = hitRates.reduce((a, b) => a + b, 0) / (hitRates.length || 1);
+      return {
+        label,
+        hitRate,
+      };
+    });
 };

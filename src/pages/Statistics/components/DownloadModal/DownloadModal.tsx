@@ -1,10 +1,11 @@
 import { useTranslation } from "react-i18next";
+
 import Button from "../../../../components/Button/Button";
 import Modal from "../../../../components/Modal/Modal";
 import Title from "../../../../components/Title/Title";
+import type { Match } from "../../../../utils/types";
 import styles from "./DownloadModal.module.css";
 import Papa from 'papaparse';
-import type { Match } from "../../../../utils/types";
 
 interface DownloadModalProps {
   open: boolean;
@@ -23,7 +24,7 @@ const DownloadModal = ({ open, close, matches }: DownloadModalProps) => {
       legs: match.legs,
       started_at: match.started_at,
       ended_at: match.ended_at,
-      turns: JSON.stringify(match.turns)  // <-- turns in a single column
+      turns: JSON.stringify(match.turns), // <-- turns in a single column
     }));
 
     const csv = Papa.unparse(rows);

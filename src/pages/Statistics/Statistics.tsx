@@ -14,10 +14,11 @@ import Title from "../../components/Title/Title";
 import type { Match, Option, PracticeMatch } from "../../utils/types";
 import styles from "./Statistics.module.css";
 import DeleteStatsModal from "./components/DeleteStatsModal/DeleteStatsModal";
+import DownloadModal from "./components/DownloadModal/DownloadModal";
 import General from "./components/General/General";
 import Matches from "./components/Matches/Matches";
+import Trend from "./components/Trend/Trend";
 import { useMatches } from "../../utils/api";
-import DownloadModal from "./components/DownloadModal/DownloadModal";
 
 const Statistics = () => {
   const { t } = useTranslation();
@@ -26,6 +27,7 @@ const Statistics = () => {
   const [downloadModalVisible, setDownloadModalVisible] = useState<boolean>(false);
   const [deleteStatsModalVisible, setDeleteStatsModalVisible] = useState<boolean>(false);
   const { data: matches, isLoading, isError, error } = useMatches();
+  const finishedMatches = matches ? matches.filter((match: Match) => match.ended_at) : [];
   const practiceMatches = JSON.parse(localStorage.getItem("practiceMatches") || "[]");
   const filteredPracticeMatches = practiceMatches.filter(
     (match: PracticeMatch) => match.mode === mode
@@ -56,21 +58,22 @@ const Statistics = () => {
   return (
     <FadeIn>
       <PageContent headerTitle={t("pages.statistics.title")}>
-        <Block>
-          <Title text={t("pages.statistics.selectMode")} />
-          <Dropdown options={modes} selectedOption={mode} setSelectedOption={setMode} />
-        </Block>
         {
           isLoading && <CircularProgress />
         }
         {
           !isLoading && matches &&
           <>
-            <General mode={mode} matches={matches} practiceMatches={finishedPracticeMatches} />
+            <Block>
+              <Title text={t("pages.statistics.selectMode")} />
+              <Dropdown options={modes} selectedOption={mode} setSelectedOption={setMode} />
+            </Block>
+            <General mode={mode} matches={finishedMatches} practiceMatches={finishedPracticeMatches} />
+            <Trend mode={mode} matches={finishedMatches} practiceMatches={finishedPracticeMatches} />
             {mode !== "match" && <HitRates mode={mode} practiceMatches={finishedPracticeMatches} />}
             <Matches
               mode={modes.find((m) => m.id === mode) as Option}
-              matches={matches}
+              matches={finishedMatches}
               practiceMatches={finishedPracticeMatches}
               defaultStat={
                 mode === "match"
@@ -80,10 +83,9 @@ const Statistics = () => {
             />
             <div className={styles.buttons}>
               <Button
-                onClick={() => {}}
+                onClick={() => setDownloadModalVisible(true)}
                 text={t("pages.statistics.exportStatsButton")}
                 variant={"green"}
-                disabled
               />
               <Button
                 onClick={() => setDeleteStatsModalVisible(true)}
@@ -92,11 +94,7 @@ const Statistics = () => {
               />
             </div>
             {downloadModalVisible && (
-              <DownloadModal
-                open={downloadModalVisible}
-                close={() => setDownloadModalVisible(false)}
-                matches={matches}
-              />
+              <DownloadModal matches={matches} open={downloadModalVisible} close={() => setDownloadModalVisible(false)} />
             )}
             {deleteStatsModalVisible && (
               <DeleteStatsModal

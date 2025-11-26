@@ -17,6 +17,18 @@
   row-gap: var(--gap-3);
 }
 
+.options {
+  display: grid;
+  gap: var(--gap-3);
+  grid-template-columns: 1fr 1fr;
+}
+
+.orderBy, .sortBy {
+  display: grid;
+  row-gap: var(--gap-3);
+}
+
+
 .hitRate {
   background-color: var(--color-background-4);
   border-radius: var(--radius-size-m);
