@@ -10,7 +10,7 @@ export type Match = {
 export type Turn = {
   score: number;
   leg: number;
-  dartsUsedOnDouble: number;
+  darts_used_on_double: number;
 };
 
 export type PracticeMatch = {

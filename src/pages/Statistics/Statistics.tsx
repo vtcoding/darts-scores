@@ -18,7 +18,7 @@ import DownloadModal from "./components/DownloadModal/DownloadModal";
 import General from "./components/General/General";
 import Matches from "./components/Matches/Matches";
 import Trend from "./components/Trend/Trend";
-import { useMatches } from "../../utils/api";
+import { useMatches, usePracticeMatches } from "../../utils/api";
 
 const Statistics = () => {
   const { t } = useTranslation();
@@ -26,12 +26,12 @@ const Statistics = () => {
   const [mode, setMode] = useState(searchParams.get("mode") || "match");
   const [downloadModalVisible, setDownloadModalVisible] = useState<boolean>(false);
   const [deleteStatsModalVisible, setDeleteStatsModalVisible] = useState<boolean>(false);
-  const { data: matches, isLoading, isError, error } = useMatches();
+  const { data: matches, isLoading } = useMatches();
+  const { data: practiceMatches, isLoading: isLoadingPracticeMatches } = usePracticeMatches();
   const finishedMatches = matches ? matches.filter((match: Match) => match.ended_at) : [];
-  const practiceMatches = JSON.parse(localStorage.getItem("practiceMatches") || "[]");
-  const filteredPracticeMatches = practiceMatches.filter(
+  const filteredPracticeMatches = practiceMatches ? practiceMatches.filter(
     (match: PracticeMatch) => match.mode === mode
-  );
+  ) : [];
   const finishedPracticeMatches = filteredPracticeMatches.filter(
     (match: PracticeMatch) => match.ended_at
   );
@@ -59,10 +59,10 @@ const Statistics = () => {
     <FadeIn>
       <PageContent headerTitle={t("pages.statistics.title")}>
         {
-          isLoading && <CircularProgress />
+          (isLoading || isLoadingPracticeMatches) && <CircularProgress />
         }
         {
-          !isLoading && matches &&
+          !isLoading && !isLoadingPracticeMatches && matches && practiceMatches &&
           <>
             <Block>
               <Title text={t("pages.statistics.selectMode")} />

@@ -1,7 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { fetchWithAuth } from "../utils/fetchWithAuth";
-import type { Match } from "./types";
+import type { Match, PracticeMatch } from "./types";
 
 const API_URL = "http://localhost:8000/api"; // adjust if needed
 
@@ -36,5 +36,63 @@ export const useMatches = () => {
   return useQuery<Match[], Error>({
     queryKey: ["matches"],
     queryFn: fetchMatches,
+  });
+};
+
+const uploadMatch = async (match: Match): Promise<Match> => {
+  const res = await fetchWithAuth("/matches/upload/", {
+    method: "POST",
+    body: JSON.stringify(match),
+  });
+
+  if (!res.ok) throw new Error("Failed to upload match");
+
+  return res.json();
+};
+
+export const useUploadMatch = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: uploadMatch,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["matches"] });
+    },
+  });
+};
+
+const fetchPracticeMatches = async (): Promise<PracticeMatch[]> => {
+  const res = await fetchWithAuth("/practice-matches/");
+  if (!res.ok) throw new Error("Failed to fetch practice matches");
+  const data: PracticeMatch[] = await res.json();
+  return data;
+};
+
+export const usePracticeMatches = () => {
+  return useQuery<PracticeMatch[], Error>({
+    queryKey: ["practice-matches"],
+    queryFn: fetchPracticeMatches,
+  });
+};
+
+const uploadPracticeMatch = async (match: PracticeMatch): Promise<PracticeMatch> => {
+  const res = await fetchWithAuth("/practice-matches/upload/", {
+    method: "POST",
+    body: JSON.stringify(match),
+  });
+
+  if (!res.ok) throw new Error("Failed to upload match");
+
+  return res.json();
+};
+
+export const useUploadPracticeMatch = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: uploadPracticeMatch,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["practice-matches"] });
+    },
   });
 };

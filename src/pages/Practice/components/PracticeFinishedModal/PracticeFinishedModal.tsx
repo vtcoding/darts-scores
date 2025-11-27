@@ -6,6 +6,7 @@ import Title from "../../../../components/Title/Title";
 import type { PracticeTurn } from "../../../../utils/types";
 import styles from "./PracticeFinishedModal.module.css";
 import { calculateDartsHit, calculateHitRate } from "../../../../utils/utils";
+import { useUploadPracticeMatch } from "../../../../utils/api";
 
 interface PracticeFinishedModalProps {
   open: boolean;
@@ -20,17 +21,16 @@ const PracticeFinishedModal = ({
   playAgain,
   quitToMenu,
 }: PracticeFinishedModalProps) => {
+  const { mutate } = useUploadPracticeMatch();
   const { t } = useTranslation();
   const activePracticeMatch = localStorage.getItem("activePracticeMatch");
-  const storedPracticeMatches = JSON.parse(localStorage.getItem("practiceMatches") || "[]");
 
   const savePractice = () => {
     if (activePracticeMatch) {
       const match = JSON.parse(activePracticeMatch);
       match.turns = turns;
       match.ended_at = Date.now();
-      storedPracticeMatches.push(match);
-      localStorage.setItem("practiceMatches", JSON.stringify(storedPracticeMatches));
+      mutate(match);
       localStorage.removeItem("activePracticeMatch");
     }
   };

@@ -96,7 +96,7 @@ const Match = () => {
         const newTurn: Turn = {
           score: score,
           leg: currentLeg,
-          dartsUsedOnDouble: 0,
+          darts_used_on_double: 0,
         };
         setTurns((prevTurns) => {
           const updated = [...prevTurns, newTurn];
@@ -107,7 +107,7 @@ const Match = () => {
     }
   };
 
-  const handleDoubleSubmit = (dartsUsedOnDouble: number) => {
+  const handleDoubleSubmit = (darts_used_on_double: number) => {
     setDoublesModalVisible(false);
     const numberInput = input === "" ? "0" : input;
     const remaining: number = calculateRemainingScore(parseInt(legLength), currentLeg, turns);
@@ -124,7 +124,7 @@ const Match = () => {
     const newTurn: Turn = {
       score: score,
       leg: currentLeg,
-      dartsUsedOnDouble: dartsUsedOnDouble,
+      darts_used_on_double: darts_used_on_double,
     };
     const newTurns = [...turns, newTurn];
     setInput("");
@@ -216,7 +216,7 @@ const Match = () => {
         {doublesModalVisible && (
           <DoublesModal
             open={doublesModalVisible}
-            handleSubmit={(dartsUsedOnDouble) => handleDoubleSubmit(dartsUsedOnDouble)}
+            handleSubmit={(darts_used_on_double) => handleDoubleSubmit(darts_used_on_double)}
           />
         )}
         {matchFinishedModalVisible && (

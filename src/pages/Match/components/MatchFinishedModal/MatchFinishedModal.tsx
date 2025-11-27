@@ -6,6 +6,7 @@ import Title from "../../../../components/Title/Title";
 import type { Turn } from "../../../../utils/types";
 import styles from "./MatchFinishedModal.module.css";
 import { calculateCheckoutPercentage, calculateThreeDartAverage } from "../../../../utils/utils";
+import { useUploadMatch } from "../../../../utils/api";
 
 interface MatchFinishedModalProps {
   open: boolean;
@@ -15,17 +16,16 @@ interface MatchFinishedModalProps {
 }
 
 const MatchFinishedModal = ({ open, turns, playAgain, quit }: MatchFinishedModalProps) => {
+  const { mutate } = useUploadMatch();
   const { t } = useTranslation();
   const activeMatch = localStorage.getItem("activeMatch");
-  const storedMatches = JSON.parse(localStorage.getItem("matches") || "[]");
 
   const saveMatch = () => {
     if (activeMatch) {
       const match = JSON.parse(activeMatch);
       match.turns = turns;
       match.ended_at = Date.now();
-      storedMatches.push(match);
-      localStorage.setItem("matches", JSON.stringify(storedMatches));
+      mutate(match);
       localStorage.removeItem("activeMatch");
     }
   };

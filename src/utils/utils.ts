@@ -80,11 +80,11 @@ export const getBestAndWorsThreeDartAverages = (matches: Match[]) => {
 };
 
 export const calculateCheckoutPercentage = (turns: Turn[]) => {
-  let dartsUsedOnDoubles = 0;
+  let darts_used_on_doubles = 0;
   turns.forEach((turn) => {
-    dartsUsedOnDoubles = dartsUsedOnDoubles + turn.dartsUsedOnDouble;
+    darts_used_on_doubles = darts_used_on_doubles + turn.darts_used_on_double;
   });
-  return dartsUsedOnDoubles > 0 ? (1 / dartsUsedOnDoubles) * 100 : 0;
+  return darts_used_on_doubles > 0 ? (1 / darts_used_on_doubles) * 100 : 0;
 };
 
 export const calculateTotalCheckoutPercentage = (matches: Match[]) => {

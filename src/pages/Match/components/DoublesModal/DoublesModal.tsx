@@ -9,7 +9,7 @@ import styles from "./DoublesModal.module.css";
 
 interface DoublesModalProps {
   open: boolean;
-  handleSubmit: (dartsUsedOnDouble: number) => void;
+  handleSubmit: (darts_used_on_double: number) => void;
 }
 
 const DoublesModal = ({ open, handleSubmit }: DoublesModalProps) => {

@@ -107,7 +107,7 @@ describe("Unit tests for utils", () => {
         {
           score: 100,
           leg: 1,
-          dartsUsedOnDouble: 0,
+          darts_used_on_double: 0,
         },
       ];
 
@@ -117,9 +117,9 @@ describe("Unit tests for utils", () => {
 
     test("Expect three dart average to be correct", () => {
       const turns: Turn[] = [
-        { score: 60, leg: 1, dartsUsedOnDouble: 0 },
-        { score: 45, leg: 1, dartsUsedOnDouble: 0 },
-        { score: 100, leg: 1, dartsUsedOnDouble: 0 },
+        { score: 60, leg: 1, darts_used_on_double: 0 },
+        { score: 45, leg: 1, darts_used_on_double: 0 },
+        { score: 100, leg: 1, darts_used_on_double: 0 },
       ];
 
       const result = calculateThreeDartAverage(turns).toFixed(2);
@@ -135,10 +135,10 @@ describe("Unit tests for utils", () => {
 
     test("Expect three dart average of multiple matches to be correct", () => {
       const turns1: Turn[] = [
-        { score: 37, leg: 1, dartsUsedOnDouble: 0 },
-        { score: 45, leg: 1, dartsUsedOnDouble: 0 },
+        { score: 37, leg: 1, darts_used_on_double: 0 },
+        { score: 45, leg: 1, darts_used_on_double: 0 },
       ];
-      const turns2: Turn[] = [{ score: 120, leg: 2, dartsUsedOnDouble: 1 }];
+      const turns2: Turn[] = [{ score: 120, leg: 2, darts_used_on_double: 1 }];
 
       const matches: Match[] = [
         {
@@ -165,8 +165,8 @@ describe("Unit tests for utils", () => {
 
     test("Expect three dart average for single match to be correct", () => {
       const turns: Turn[] = [
-        { score: 60, leg: 1, dartsUsedOnDouble: 0 },
-        { score: 100, leg: 1, dartsUsedOnDouble: 0 },
+        { score: 60, leg: 1, darts_used_on_double: 0 },
+        { score: 100, leg: 1, darts_used_on_double: 0 },
       ];
       const matches: Match[] = [{ id: 1, mode: "501", legs: 1, started_at: 1, ended_at: 2, turns }];
 
@@ -182,8 +182,8 @@ describe("Unit tests for utils", () => {
         started_at: 1,
         ended_at: 2,
         turns: [
-          { score: 70, leg: 1, dartsUsedOnDouble: 0 },
-          { score: 100, leg: 1, dartsUsedOnDouble: 0 },
+          { score: 70, leg: 1, darts_used_on_double: 0 },
+          { score: 100, leg: 1, darts_used_on_double: 0 },
         ],
       };
       const match2: Match = {
@@ -193,8 +193,8 @@ describe("Unit tests for utils", () => {
         started_at: 3,
         ended_at: 4,
         turns: [
-          { score: 90, leg: 1, dartsUsedOnDouble: 0 },
-          { score: 120, leg: 1, dartsUsedOnDouble: 0 },
+          { score: 90, leg: 1, darts_used_on_double: 0 },
+          { score: 120, leg: 1, darts_used_on_double: 0 },
         ],
       };
       const match3: Match = {
@@ -204,8 +204,8 @@ describe("Unit tests for utils", () => {
         started_at: 5,
         ended_at: 6,
         turns: [
-          { score: 45, leg: 1, dartsUsedOnDouble: 0 },
-          { score: 35, leg: 1, dartsUsedOnDouble: 0 },
+          { score: 45, leg: 1, darts_used_on_double: 0 },
+          { score: 35, leg: 1, darts_used_on_double: 0 },
         ],
       };
 
@@ -222,9 +222,9 @@ describe("Unit tests for utils", () => {
         started_at: 1,
         ended_at: 2,
         turns: [
-          { score: 180, leg: 1, dartsUsedOnDouble: 0 },
-          { score: 100, leg: 1, dartsUsedOnDouble: 1 },
-          { score: 21, leg: 1, dartsUsedOnDouble: 2 },
+          { score: 180, leg: 1, darts_used_on_double: 0 },
+          { score: 100, leg: 1, darts_used_on_double: 1 },
+          { score: 21, leg: 1, darts_used_on_double: 2 },
         ],
       };
 
@@ -241,10 +241,10 @@ describe("Unit tests for utils", () => {
       started_at: 1,
       ended_at: 2,
       turns: [
-        { score: 100, leg: 1, dartsUsedOnDouble: 0 },
-        { score: 100, leg: 1, dartsUsedOnDouble: 0 },
-        { score: 60, leg: 1, dartsUsedOnDouble: 1 },
-        { score: 41, leg: 1, dartsUsedOnDouble: 1 },
+        { score: 100, leg: 1, darts_used_on_double: 0 },
+        { score: 100, leg: 1, darts_used_on_double: 0 },
+        { score: 60, leg: 1, darts_used_on_double: 1 },
+        { score: 41, leg: 1, darts_used_on_double: 1 },
       ],
     };
     const match2: Match = {
@@ -254,10 +254,10 @@ describe("Unit tests for utils", () => {
       started_at: 3,
       ended_at: 4,
       turns: [
-        { score: 180, leg: 1, dartsUsedOnDouble: 0 },
-        { score: 80, leg: 1, dartsUsedOnDouble: 0 },
-        { score: 21, leg: 1, dartsUsedOnDouble: 1 },
-        { score: 20, leg: 1, dartsUsedOnDouble: 1 },
+        { score: 180, leg: 1, darts_used_on_double: 0 },
+        { score: 80, leg: 1, darts_used_on_double: 0 },
+        { score: 21, leg: 1, darts_used_on_double: 1 },
+        { score: 20, leg: 1, darts_used_on_double: 1 },
       ],
     };
 
@@ -273,8 +273,8 @@ describe("Unit tests for utils", () => {
       started_at: 1,
       ended_at: 2,
       turns: [
-        { score: 180, leg: 1, dartsUsedOnDouble: 0 },
-        { score: 121, leg: 1, dartsUsedOnDouble: 1 },
+        { score: 180, leg: 1, darts_used_on_double: 0 },
+        { score: 121, leg: 1, darts_used_on_double: 1 },
       ],
     };
     const match2: Match = {
@@ -284,10 +284,10 @@ describe("Unit tests for utils", () => {
       started_at: 3,
       ended_at: 4,
       turns: [
-        { score: 180, leg: 1, dartsUsedOnDouble: 0 },
-        { score: 80, leg: 1, dartsUsedOnDouble: 0 },
-        { score: 21, leg: 1, dartsUsedOnDouble: 1 },
-        { score: 20, leg: 1, dartsUsedOnDouble: 1 },
+        { score: 180, leg: 1, darts_used_on_double: 0 },
+        { score: 80, leg: 1, darts_used_on_double: 0 },
+        { score: 21, leg: 1, darts_used_on_double: 1 },
+        { score: 20, leg: 1, darts_used_on_double: 1 },
       ],
     };
     const match3: Match = {
@@ -297,11 +297,11 @@ describe("Unit tests for utils", () => {
       started_at: 3,
       ended_at: 4,
       turns: [
-        { score: 180, leg: 1, dartsUsedOnDouble: 0 },
-        { score: 21, leg: 1, dartsUsedOnDouble: 0 },
-        { score: 60, leg: 1, dartsUsedOnDouble: 1 },
-        { score: 20, leg: 1, dartsUsedOnDouble: 1 },
-        { score: 20, leg: 1, dartsUsedOnDouble: 1 },
+        { score: 180, leg: 1, darts_used_on_double: 0 },
+        { score: 21, leg: 1, darts_used_on_double: 0 },
+        { score: 60, leg: 1, darts_used_on_double: 1 },
+        { score: 20, leg: 1, darts_used_on_double: 1 },
+        { score: 20, leg: 1, darts_used_on_double: 1 },
       ],
     };
 
@@ -312,9 +312,9 @@ describe("Unit tests for utils", () => {
 
   test("Expect first nine darts average to be correct", () => {
     const turns: Turn[] = [
-      { score: 60, leg: 1, dartsUsedOnDouble: 0 },
-      { score: 40, leg: 1, dartsUsedOnDouble: 0 },
-      { score: 50, leg: 1, dartsUsedOnDouble: 0 },
+      { score: 60, leg: 1, darts_used_on_double: 0 },
+      { score: 40, leg: 1, darts_used_on_double: 0 },
+      { score: 50, leg: 1, darts_used_on_double: 0 },
     ];
 
     const result = calculateFirstNineDartsAverage(turns).toFixed(2);
@@ -329,9 +329,9 @@ describe("Unit tests for utils", () => {
       started_at: 1,
       ended_at: 2,
       turns: [
-        { score: 40, leg: 1, dartsUsedOnDouble: 0 },
-        { score: 30, leg: 1, dartsUsedOnDouble: 0 },
-        { score: 35, leg: 1, dartsUsedOnDouble: 0 },
+        { score: 40, leg: 1, darts_used_on_double: 0 },
+        { score: 30, leg: 1, darts_used_on_double: 0 },
+        { score: 35, leg: 1, darts_used_on_double: 0 },
       ],
     };
     const match2: Match = {
@@ -341,9 +341,9 @@ describe("Unit tests for utils", () => {
       started_at: 3,
       ended_at: 4,
       turns: [
-        { score: 50, leg: 1, dartsUsedOnDouble: 0 },
-        { score: 40, leg: 1, dartsUsedOnDouble: 0 },
-        { score: 45, leg: 1, dartsUsedOnDouble: 0 },
+        { score: 50, leg: 1, darts_used_on_double: 0 },
+        { score: 40, leg: 1, darts_used_on_double: 0 },
+        { score: 45, leg: 1, darts_used_on_double: 0 },
       ],
     };
 
@@ -359,9 +359,9 @@ describe("Unit tests for utils", () => {
       started_at: 1,
       ended_at: 2,
       turns: [
-        { score: 40, leg: 1, dartsUsedOnDouble: 0 },
-        { score: 30, leg: 1, dartsUsedOnDouble: 0 },
-        { score: 35, leg: 1, dartsUsedOnDouble: 0 },
+        { score: 40, leg: 1, darts_used_on_double: 0 },
+        { score: 30, leg: 1, darts_used_on_double: 0 },
+        { score: 35, leg: 1, darts_used_on_double: 0 },
       ],
     };
     const match2: Match = {
@@ -371,9 +371,9 @@ describe("Unit tests for utils", () => {
       started_at: 3,
       ended_at: 4,
       turns: [
-        { score: 50, leg: 1, dartsUsedOnDouble: 0 },
-        { score: 40, leg: 1, dartsUsedOnDouble: 0 },
-        { score: 45, leg: 1, dartsUsedOnDouble: 0 },
+        { score: 50, leg: 1, darts_used_on_double: 0 },
+        { score: 40, leg: 1, darts_used_on_double: 0 },
+        { score: 45, leg: 1, darts_used_on_double: 0 },
       ],
     };
     const match3: Match = {
@@ -383,9 +383,9 @@ describe("Unit tests for utils", () => {
       started_at: 3,
       ended_at: 4,
       turns: [
-        { score: 20, leg: 1, dartsUsedOnDouble: 0 },
-        { score: 30, leg: 1, dartsUsedOnDouble: 0 },
-        { score: 25, leg: 1, dartsUsedOnDouble: 0 },
+        { score: 20, leg: 1, darts_used_on_double: 0 },
+        { score: 30, leg: 1, darts_used_on_double: 0 },
+        { score: 25, leg: 1, darts_used_on_double: 0 },
       ],
     };
 
