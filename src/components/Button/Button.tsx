@@ -1,5 +1,3 @@
-import { useRef } from "react";
-
 import styles from "./Button.module.css";
 
 interface ButtonProps {
@@ -14,48 +12,15 @@ interface ButtonProps {
 
 const Button = ({
   onClick,
-  onHoldReleased,
   text,
   variant,
   size,
   selected,
   disabled,
 }: ButtonProps) => {
-  const holdTimer = useRef<number | null>(null);
-  const held = useRef(false);
-
-  const handleClick = () => {
-    if (!held.current) {
-      onClick();
-    }
-  };
-
-  const handleHoldStart = (e: React.TouchEvent | React.MouseEvent) => {
-    e.preventDefault();
-    held.current = false;
-    holdTimer.current = window.setTimeout(() => {
-      held.current = true;
-      if (onHoldReleased) {
-        onHoldReleased();
-      }
-    }, 1000);
-  };
-
-  const handleHoldEnd = () => {
-    if (holdTimer.current !== null) {
-      clearTimeout(holdTimer.current);
-      holdTimer.current = null;
-    }
-  };
-
   return (
     <div
-      onPointerDown={handleHoldStart}
-      onPointerUp={() => {
-        handleHoldEnd();
-        handleClick();
-      }}
-      onPointerLeave={handleHoldEnd}
+      onClick={onClick}
       className={`
                 ${styles.button}
                 ${variant === "green" && styles.green}

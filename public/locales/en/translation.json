@@ -121,8 +121,9 @@
       "dartsThrown": "Darts thrown",
       "lastScore": "Last score",
       "undo": "Undo",
+      "remaining": "Remaining",
       "setScore": "Set a score",
-      "submit": "Submit",
+      "submit": "Thrown",
       "clear": "Clear",
       "doublesModal": {
         "title": "How many darts used on doubles?",

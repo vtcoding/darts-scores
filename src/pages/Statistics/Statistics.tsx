@@ -53,6 +53,8 @@ const Statistics = () => {
   useEffect(() => {
     setSearchParams({ mode: mode });
   }, [mode]);
+  
+  console.log(downloadModalVisible)
 
   return (
     <FadeIn>
