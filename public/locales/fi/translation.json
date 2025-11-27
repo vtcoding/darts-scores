@@ -121,8 +121,9 @@
       "dartsThrown": "Tikkoja heitetty",
       "last score": "Viimeisin tulos",
       "undo": "Peru",
+      "remaining": "Jäljellä",
       "setScore": "Aseta tulos",
-      "submit": "Lähetä",
+      "submit": "Heitetty",
       "clear": "Tyhjennä",
       "doublesModal": {
         "title": "Kuinka monta tikkaa käytetty tupliin?",

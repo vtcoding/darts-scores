@@ -38,11 +38,11 @@ const Match = () => {
     { key: 4, name: 4 },
     { key: 5, name: 5 },
     { key: 6, name: 6 },
-    { key: "", name: "" },
+    { key: "clear", name: t("pages.match.clear") },
     { key: 7, name: 7 },
     { key: 8, name: 8 },
     { key: 9, name: 9 },
-    { key: "clear", name: t("pages.match.clear") },
+    { key: "undo", name: t("pages.match.undo") },
   ];
   const legLength = matchSettings.mode;
   const legs = matchSettings.legs;
@@ -67,6 +67,8 @@ const Match = () => {
   const handleKeyKlick = (value: string) => {
     if (value === "clear") {
       setInput("");
+    } else if (value === "undo") {
+      undoTurn();
     } else {
       setInput(input + value);
     }
@@ -79,7 +81,7 @@ const Match = () => {
     let score: number = 0;
     let newRemaining: number = 0;
 
-    if (action === "hold") {
+    if (action === "remaining") {
       score = remaining - parseInt(numberInput);
       newRemaining = parseInt(numberInput);
     } else {
@@ -114,7 +116,7 @@ const Match = () => {
     let score: number = 0;
     let newRemaining: number = 0;
 
-    if (submitAction === "hold") {
+    if (submitAction === "remaining") {
       score = remaining - parseInt(numberInput);
       newRemaining = parseInt(numberInput);
     } else {
@@ -180,9 +182,9 @@ const Match = () => {
         </div>
         <div className={styles.controls}>
           <Button
-            onClick={() => undoTurn()}
-            text={t("pages.match.undo")}
-            variant={"red"}
+            onClick={() => submitTurn("remaining")}
+            text={t("pages.match.remaining")}
+            variant={"green"}
             size={"large"}
           />
           <Input
@@ -191,8 +193,7 @@ const Match = () => {
             validateInput={(value: string) => validateInput(value)}
           />
           <Button
-            onClick={() => submitTurn("click")}
-            onHoldReleased={() => submitTurn("hold")}
+            onClick={() => submitTurn("thrown")}
             text={t("pages.match.submit")}
             variant={"green"}
             size={"large"}

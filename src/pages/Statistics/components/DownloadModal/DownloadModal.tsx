@@ -48,7 +48,7 @@ const DownloadModal = ({ open, close, matches }: DownloadModalProps) => {
           <Button onClick={() => close()} text={t("common.cancel")} />
           <Button
             onClick={handleDownload}
-            text={t("pages.statitics.exportModal.download")}
+            text={t("pages.statistics.exportModal.download")}
             variant={"green"}
           />
         </div>

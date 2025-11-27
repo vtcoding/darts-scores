@@ -3,7 +3,7 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: min-content min-content 1fr;
-  height: 100vh;
+  height: 100dvh;
   position: fixed;
   row-gap: var(--gap-7);
   width: 300px;
