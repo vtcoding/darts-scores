@@ -65,10 +65,15 @@
       "modeTriplesPractice": "Triples practice",
       "defaultStatMatch": "Three dart average",
       "defaultStatPractice": "Hit rate",
-      "exportStatsButton": "Export statistics as CSV",
+      "exportStatsButton": "Export statistics as JSON",
       "exportModal": {
         "title": "Download stats",
         "download": "Download"
+      },
+      "uploadStatsButton": "Upload statistics as JSON",
+      "uploadModal": {
+        "title": "Upload stats",
+        "upload": "Upload"
       },
       "deleteStatsButton": "Delete statistics",
       "deleteStatsModal": {

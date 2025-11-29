@@ -3,38 +3,29 @@ import { useTranslation } from "react-i18next";
 import Button from "../../../../components/Button/Button";
 import Modal from "../../../../components/Modal/Modal";
 import Title from "../../../../components/Title/Title";
-import type { Match } from "../../../../utils/types";
+import type { Match, PracticeMatch } from "../../../../utils/types";
 import styles from "./DownloadModal.module.css";
-import Papa from 'papaparse';
 
 interface DownloadModalProps {
   open: boolean;
   close: () => void;
   matches: Match[];
+  practiceMatches: PracticeMatch[];
 }
 
-const DownloadModal = ({ open, close, matches }: DownloadModalProps) => {
+const DownloadModal = ({ open, close, matches, practiceMatches }: DownloadModalProps) => {
   const { t } = useTranslation();
 
-  const handleDownload = () => {
-    // Build one row per match
-    const rows = matches.map((match: Match) => ({
-      id: match.id,
-      mode: match.mode,
-      legs: match.legs,
-      started_at: match.started_at,
-      ended_at: match.ended_at,
-      turns: JSON.stringify(match.turns), // <-- turns in a single column
-    }));
+  const handleDownload = (matches: Match[], practiceMatches: PracticeMatch[]) => {
+    const data: {matches: Match[], practiceMatches: PracticeMatch[]} = { matches, practiceMatches };
+    const jsonStr = JSON.stringify(data, null, 2); // pretty print optional
 
-    const csv = Papa.unparse(rows);
-
-    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const blob = new Blob([jsonStr], { type: "application/json" });
     const url = URL.createObjectURL(blob);
 
     const link = document.createElement("a");
     link.href = url;
-    link.download = "matches.csv";
+    link.download = "matches_export.json";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -47,7 +38,7 @@ const DownloadModal = ({ open, close, matches }: DownloadModalProps) => {
         <div className={styles.buttons}>
           <Button onClick={() => close()} text={t("common.cancel")} />
           <Button
-            onClick={handleDownload}
+            onClick={() => handleDownload(matches, practiceMatches)}
             text={t("pages.statistics.exportModal.download")}
             variant={"green"}
           />

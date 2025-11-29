@@ -28,6 +28,11 @@ export type PracticeTurn = {
   dart3: number | null;
 };
 
+export type Stats = {
+  matches: Match[];
+  practiceMatches: PracticeMatch[];
+}
+
 export type SectorRate = {
   sector: number;
   rate: number;

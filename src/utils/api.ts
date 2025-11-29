@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { fetchWithAuth } from "../utils/fetchWithAuth";
-import type { Match, PracticeMatch } from "./types";
+import type { Match, PracticeMatch, Stats } from "./types";
 
 const API_URL = "http://localhost:8000/api"; // adjust if needed
 
@@ -39,13 +39,14 @@ export const useMatches = () => {
   });
 };
 
-const uploadMatch = async (match: Match): Promise<Match> => {
+const uploadMatch = async (match: Match[]): Promise<Match[]> => {
   const res = await fetchWithAuth("/matches/upload/", {
     method: "POST",
     body: JSON.stringify(match),
+    headers: { "Content-Type": "application/json" },
   });
 
-  if (!res.ok) throw new Error("Failed to upload match");
+  if (!res.ok) throw new Error("Failed to upload matches");
 
   return res.json();
 };
@@ -93,6 +94,49 @@ export const useUploadPracticeMatch = () => {
     mutationFn: uploadPracticeMatch,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["practice-matches"] });
+    },
+  });
+};
+
+const uploadStats = async (stats: Stats): Promise<Stats> => {
+  const res = await fetchWithAuth("/stats/upload/", {
+    method: "POST",
+    body: JSON.stringify(stats),
+  });
+
+  if (!res.ok) throw new Error("Failed to upload stats");
+
+  return res.json();
+};
+
+export const useUploadStats = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: uploadStats,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["matches", "practice-matches"] });
+    },
+  });
+}
+
+const deleteStats = async () => {
+  const res = await fetchWithAuth("/stats/delete/", {
+    method: "DELETE",
+  });
+
+  if (!res.ok) throw new Error("Failed to delete stats");
+
+  return null;
+};
+
+export const useDeleteStats = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: deleteStats,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["matches", "practice-matches"] });
     },
   });
 };

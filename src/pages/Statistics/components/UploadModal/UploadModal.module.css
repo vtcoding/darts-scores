@@ -1,0 +1,25 @@
+.uploadModal {
+  display: grid;
+  row-gap: var(--gap-4);
+}
+
+.buttons {
+  display: grid;
+  row-gap: var(--gap-3);
+}
+
+.title {
+  font-size: var(--font-size-l);
+}
+
+@media screen and (max-width: 1279px) {
+  .title {
+    font-size: var(--font-size-m);
+  }
+}
+
+@media screen and (max-width: 676px) {
+  .title {
+    font-size: var(--font-size-s);
+  }
+}

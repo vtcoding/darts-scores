@@ -19,15 +19,18 @@ import General from "./components/General/General";
 import Matches from "./components/Matches/Matches";
 import Trend from "./components/Trend/Trend";
 import { useMatches, usePracticeMatches } from "../../utils/api";
+import UploadModal from "./components/UploadModal/UploadModal";
 
 const Statistics = () => {
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const [mode, setMode] = useState(searchParams.get("mode") || "match");
   const [downloadModalVisible, setDownloadModalVisible] = useState<boolean>(false);
+  const [uploadModalVisible, setUploadModalVisible] = useState<boolean>(false);
   const [deleteStatsModalVisible, setDeleteStatsModalVisible] = useState<boolean>(false);
   const { data: matches, isLoading } = useMatches();
   const { data: practiceMatches, isLoading: isLoadingPracticeMatches } = usePracticeMatches();
+
   const finishedMatches = matches ? matches.filter((match: Match) => match.ended_at) : [];
   const filteredPracticeMatches = practiceMatches ? practiceMatches.filter(
     (match: PracticeMatch) => match.mode === mode
@@ -35,14 +38,6 @@ const Statistics = () => {
   const finishedPracticeMatches = filteredPracticeMatches.filter(
     (match: PracticeMatch) => match.ended_at
   );
-
-  const deleteStats = () => {
-    localStorage.removeItem("matches");
-    localStorage.removeItem("practiceMatches");
-    localStorage.removeItem("activeMatch");
-    localStorage.removeItem("activePracticeMatch");
-    window.location.reload();
-  };
 
   const modes = [
     { name: t("pages.statistics.modeMatch"), id: "match" },
@@ -54,8 +49,6 @@ const Statistics = () => {
   useEffect(() => {
     setSearchParams({ mode: mode });
   }, [mode]);
-  
-  console.log(downloadModalVisible)
 
   return (
     <FadeIn>
@@ -90,18 +83,25 @@ const Statistics = () => {
                 variant={"green"}
               />
               <Button
+                onClick={() => setUploadModalVisible(true)}
+                text={t("pages.statistics.uploadStatsButton")}
+                variant={"green"}
+              />
+              <Button
                 onClick={() => setDeleteStatsModalVisible(true)}
                 text={t("pages.statistics.deleteStatsButton")}
                 variant={"red"}
               />
             </div>
             {downloadModalVisible && (
-              <DownloadModal matches={matches} open={downloadModalVisible} close={() => setDownloadModalVisible(false)} />
+              <DownloadModal matches={finishedMatches} practiceMatches={finishedPracticeMatches} open={downloadModalVisible} close={() => setDownloadModalVisible(false)} />
+            )}
+            {uploadModalVisible && (
+              <UploadModal open={uploadModalVisible} close={() => setUploadModalVisible(false)} />
             )}
             {deleteStatsModalVisible && (
               <DeleteStatsModal
                 open={deleteStatsModalVisible}
-                confirmDeletion={() => deleteStats()}
                 close={() => setDeleteStatsModalVisible(false)}
               />
             )}
