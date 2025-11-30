@@ -3,8 +3,6 @@ import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import ScoreboardIcon from "@mui/icons-material/Scoreboard";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-
-import statistics from "../../assets/statistics.png";
 import Block from "../../components/Block/Block";
 import BlockHeader from "../../components/BlockHeader/BlockHeader";
 import BlockParagraph from "../../components/BlockParagraph/BlockParagraph";
@@ -46,7 +44,6 @@ const Home = () => {
             <Title text={t("pages.home.statisticsTitle")} />
           </BlockHeader>
           <BlockParagraph>{t("pages.home.statisticsDesc")}</BlockParagraph>
-          <img width={"100%"} src={statistics} />
         </Block>
       </PageContent>
     </FadeIn>
